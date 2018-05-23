@@ -235,37 +235,25 @@
     }
 
 
-	 public function addImage($file)
-	 {
-
-		 if((isset($file['tmp_name'])) && ($file['tmp_name'] != ''))
-		 {
-			$extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-
-			    if(in_array($extension, self::$image_ext))
-			    {
-                    $folder = "department";
-                }
-				else
-				{
-                    die(json_encode(array(
-                        'status' => 0,
-                        'message' => 'Invalid File Extension'
-                    )));
-                }
-
+	 public function addImage( $file ) {
+		 if( ( isset( $file['tmp_name'] ) ) && ( $file['tmp_name'] != '' ) ) {
+        $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if( in_array( $extension, self::$image_ext ) ) {
+          $folder = "department";
+        } else {
+          die(json_encode(array(
+              'status' => 0,
+              'message' => 'Invalid File Extension'
+          )));
+        } 
 				$tempFileName = date('YmdGis') . "." . $extension;
-                $uploadPath = self::$postUploadPath . "{$folder}/{$tempFileName}";
-
-				 if(move_uploaded_file($file['tmp_name'], $uploadPath))
-				{
-                    return $tempFileName;
-                }
-				else
-				{
-                    throw new Exception("File Upload Problem");
-                }
+        $uploadPath = self::$postUploadPath . "{$folder}/{$tempFileName}";
+        if( move_uploaded_file( $file['tmp_name'], $uploadPath ) ) {
+          return $tempFileName;
+        } else {
+          throw new Exception("File Upload Problem");
+        }
 		 }
 	 }
-   }
+}
 ?>

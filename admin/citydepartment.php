@@ -30,7 +30,7 @@
 								           <option value="<?=$country['id']?>"><?=$country['name']?></option>
 									<?php
 										}
-									?> 
+									?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -48,20 +48,20 @@
 							<div class="form-group">
 							   <label>Ministry(Department) Name</label>
 							   <input class="form-control" placeholder="Enter Ministry or department name" type="text" name="city_ministry_name">
-							</div> 
-							
-							<div class="form-group">						
+							</div>
+
+							<div class="form-group">
 								<label>Profile Pic Head of Ministry(Department)</label>
 								<input type="file" class="form-control" name="department_head_pic">
 							</div>
-							
+
 								<button type="submit" class="btn btn-primary btn-md">Save</button>
-								
-						</form>	
+
+						</form>
                     </div>
-				
+
                 </div>
-              
+
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
@@ -69,14 +69,14 @@
         </div>
         <!-- /#wrapper -->
 
-      
+
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="assets/js/metisMenu.min.js"></script>
 
         <!-- Morris Charts JavaScript -->
         <script src="assets/js/raphael.min.js"></script>
-       
+
         <!-- Custom Theme JavaScript -->
         <script src="assets/js/startmin.js"></script>
  <!-- DataTables JavaScript -->
@@ -98,41 +98,41 @@
 		   $(document).on("submit", ".city-ministry", function(event){
 			   event.preventDefault();
 			   var country_name = $(this).find('select[name="country_data"]').val();
-			   
+
 			   if(country_name == '00')
 			   {
 				   alert("Select country name.");
 				   return;
 			   }
-			   
+
 			   var state_name = $(this).find('select[name="state_data"]').val();
-			   
+
 			   if(state_name == '00')
 			   {
 				   alert("Select state name.");
 				   return;
 			   }
-			   
-			   
+
+
 			   var city_name = $(this).find('select[name="city_data"]').val();
-			   
+
 			   if(city_name == '00')
 			   {
 				   alert("Select city name.");
 				   return;
 			   }
-			   
-			   
+
+
 			   var ministry_name = $(this).find('input[name="city_ministry_name"]').val();
-			    
+
 				if(ministry_name == '')
 				{
 					alert("Enter ministry name.");
 					return;
 				}
-				
+
 				 var formData = new FormData($(this) [0]);
-				 
+
 				 $.ajax({
 					url:'../controller/DepartmentController.php?action=addDeprtment',
 					type:'post',
@@ -152,10 +152,10 @@
 						}
 					}
 				 });
-				 
+
 		   });
-		   
-		   
+
+
 		   $(document).on("click", ".show-state-data", function(){
 			   var country_id = $(this).val();
 			   if(country_id == '00')
@@ -179,13 +179,13 @@
 						     {
 								$(".show-state").append('<option value="'+response.data[i].id+'">'+response.data[i].name+'</option>');
 							 }
-							
+
 						 }
 					  });
 			   }
 		   });
-		   
-		   
+
+
 		   $(document).on("click", ".show-state", function(){
 			   var state_id = $(this).val();
 			   if(state_id == '00')
@@ -209,7 +209,7 @@
 						     {
 								$(".show-city").append('<option value="'+response.data[i].id+'">'+response.data[i].name+'</option>');
 							 }
-							
+
 						 }
 					  });
 			   }
