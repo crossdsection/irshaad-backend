@@ -40,6 +40,7 @@ class UserModel extends Database
     public $subAdminEmail;
     public $designation;
     public $uploadCertificate;
+
     public function __construct($flag = '', $data = '', $file = '')
     {
         parent::__construct();
@@ -279,6 +280,7 @@ class UserModel extends Database
             }
         }
     }
+
     public function userSignup()
     {
         $userdata = array(
@@ -305,6 +307,7 @@ class UserModel extends Database
             throw new Exception("Error in adding user");
         }
     }
+
     public function subAdminSignup()
     {
         if ($this->type_flag != 0) {
@@ -351,6 +354,7 @@ class UserModel extends Database
             )));
         }
     }
+
     public function verifySubAdminEmail()
     {
         $check = $this->select("*", "wv_authority", "email = '$this->subAdminEmail'");
@@ -372,6 +376,7 @@ class UserModel extends Database
             )));
         }
     }
+
     public function verifyEmail()
     {
         $emailData = $this->select("email", $this->tableName, "email= '{$this->verify_email}'");
@@ -396,6 +401,7 @@ class UserModel extends Database
             throw new Exception("Email does not exist");
         }
     }
+
     public function gmailLogin()
     {
         $check = $this->select("*", $this->tableName, "email= '{$this->google_email}'");
@@ -461,6 +467,7 @@ class UserModel extends Database
             }
         }
     }
+
     public function subadminProfileSetting()
     {
         $details       = array(
@@ -487,12 +494,11 @@ class UserModel extends Database
             )));
         }
     }
+
     public function changeProfileImage()
     {
         $image           = $this->addImage($this->fileLink);
         $getSubadminData = $this->select("wv_authority.department_id", "wv_authority", "wv_authority.id= '{$this->id}'");
-        var_dump($getSubadminData);
-        exit;
         if (count($getSubadminData) > 0) {
             $getSubadminData = $getSubadminData[0];
             if ($getSubadminData['department_id'] != '0') {

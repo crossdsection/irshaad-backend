@@ -33,18 +33,17 @@ switch ($action) {
             }
             // echo $_POST['user_address']." ".$_POST['user_address_latitude']." ".$_POST['user_address_longitude'];
             // echo $locationData->status;
-if ((isset($_FILES['authority_position_certificate'])) && ($_FILES['authority_position_certificate']['tmp_name'] != '')) {
-                    $user = new UserModel('', $_POST, $_FILES);
-                    $user->subAdminSignup();
-                } else {
-                    die(json_encode(array(
-                        'status' => 0,
-                        'message' => "Upload certificate is required"
-                    )));
-                }
+            if ((isset($_FILES['authority_position_certificate'])) && ($_FILES['authority_position_certificate']['tmp_name'] != '')) {
+                $user = new UserModel('', $_POST, $_FILES);
+                $user->subAdminSignup();
+            } else {
+                die(json_encode(array(
+                    'status' => 0,
+                    'message' => "Upload certificate is required"
+                )));
+            }
             $user = new UserModel('', $_POST, '');
             $user->userSignup();
-
         }
         catch (Exception $ex) {
             die(json_encode(array(
@@ -169,7 +168,6 @@ if ((isset($_FILES['authority_position_certificate'])) && ($_FILES['authority_po
                 );
                 $user = new UserModel('image', $data, $_FILES);
                 $user->changeProfileImage();
-                var_dump(22);exit;
             } else {
                 die(json_encode(array(
                     'status' => 0,

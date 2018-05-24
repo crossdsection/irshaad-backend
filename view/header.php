@@ -226,8 +226,7 @@ $showAddress = implode(" >",$userLocation);
     <a href="#myDeskboard" data-toggle="tab">
       <p class="depart_style">My Deskboard</br>
     <span>
-      <i class="fas fa-chevron-down">
-      </i>
+      <i class="fas fa-chevron-down"></i>
     </span>
     </p>
   </a>
@@ -245,24 +244,20 @@ $showAddress = implode(" >",$userLocation);
             <input type="text" class=" search_input_category search-query " placeholder="Search on worldvoting.org " />
             <span class="input-group-btn">
               <button class="btn btn-danger" type="button">
-                <span class=" glyphicon glyphicon-search">
-                </span>
+                <span class=" glyphicon glyphicon-search"></span>
               </button>
             </span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-xs-2" style="margin-top: 9px;">
-        <p class="toggle_text">Normal Mode
-        </p>
+        <p class="toggle_text">Normal Mode</p>
         <br>
         <div class="onoffswitch onoffbar" style="">
           <input type="checkbox" name="onoffswitch" class="on onoffswitch-checkbox" id="myonoffswitch" checked>
           <label class="onoffswitch-label" for="myonoffswitch">
-            <span class="onoffswitch-inner">
-            </span>
-            <span class="onoffswitch-switch">
-            </span>
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
           </label>
         </div>
       </div>
