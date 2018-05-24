@@ -1,0 +1,32 @@
+2018-08-11 06:00:08 Warning: Warning (512): Association property name "area_level" clashes with field of same name of table "wv_area_ratings". You should explicitly specify the "propertyName" option. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/ORM/Association.php, line 760]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Cake\ORM\Association::getProperty() - CORE/src/ORM/Association.php, line 760
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 580
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 136
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 113
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:12:08 Warning: Warning (512): Association property name "area_level" clashes with field of same name of table "wv_area_ratings". You should explicitly specify the "propertyName" option. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/ORM/Association.php, line 760]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Cake\ORM\Association::getProperty() - CORE/src/ORM/Association.php, line 760
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 580
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 136
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 113
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+

@@ -1,0 +1,1925 @@
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: Departments in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: Users in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: Countries in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: States in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: Cities in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-02 10:00:43 Notice: Notice (8): Undefined index: Localities in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: Users in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: Departments in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: Countries in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: States in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: Cities in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-11 09:11:36 Notice: Notice (8): Undefined index: Localities in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-13 11:19:46 Notice: Notice (8): Undefined index: Users in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-13 11:19:46 Notice: Notice (8): Undefined index: Posts in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-20 05:55:14 Notice: Notice (8): Undefined index: Users in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_f917364e802a49afedef17688bef669a910e29bcc778f6edffdb7c468958a892::doDisplay() - ROOT/tmp/cache/twigView/39/39dd334f8bd3ef03ce8bee69a850b9f3174a2b8e8c7fb9ca60d4e22b5c1f42c5.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-26 10:27:45 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 205
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-26 10:27:45 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-26 10:27:45 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-26 10:27:45 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:57:46 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 205
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:57:46 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:57:46 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:57:46 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:59:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 205
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:59:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:59:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-27 07:59:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 205
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:05:43 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:05:43 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:05:43 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:05:43 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:09 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:09 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:09 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:09 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:19 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:19 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:19 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:19 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:25 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:25 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:25 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:13:25 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:17:10 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:17:10 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:17:10 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:17:10 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:32:39 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:32:39 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:32:39 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:32:39 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:06 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:06 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:06 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:06 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 210
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-07-30 07:33:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 210
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:03:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 215
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:03:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:03:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:03:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:40 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 215
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:40 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:40 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:40 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 215
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-02 05:07:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 215
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:34 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 266
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:34 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:34 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:34 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:44 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 266
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:44 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:44 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-09 09:57:44 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 05:59:59 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 266
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 05:59:59 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 05:59:59 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 05:59:59 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:00:07 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 266
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:00:07 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:00:07 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:00:07 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:01:04 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 266
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:01:04 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:01:04 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 06:01:04 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 266
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:20 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:23 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:23 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:23 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:23 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:32 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:32 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:32 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:06:32 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:07:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:07:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:07:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:07:12 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:47 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Notice (8): Undefined index: AreaLevels in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_bd196dd51614ee4ee20f41aec0ba7ec52ff4eb13451d47559617d47641e6e625::doDisplay() - ROOT/tmp/cache/twigView/93/939700442b19b0c167330759d3e61e2c36b531dc133391497c191e64148c5a15.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:11:52 Notice: Notice (8): Undefined index: Users in [/var/www/worlvoting/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+Bake\View\Helper\DocBlockHelper::buildTableAnnotations() - ROOT/vendor/cakephp/bake/src/View/Helper/DocBlockHelper.php, line 238
+Twig_Template::getAttribute() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 679
+__TwigTemplate_bd196dd51614ee4ee20f41aec0ba7ec52ff4eb13451d47559617d47641e6e625::doDisplay() - ROOT/tmp/cache/twigView/93/939700442b19b0c167330759d3e61e2c36b531dc133391497c191e64148c5a15.php, line 22
+Twig_Template::displayWithErrorHandling() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 432
+Twig_Template::display() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 403
+Twig_Template::render() - ROOT/vendor/twig/twig/lib/Twig/Template.php, line 411
+WyriHaximus\TwigView\View\TwigView::_render() - ROOT/vendor/wyrihaximus/twig-view/src/View/TwigView.php, line 180
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 146
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 91
+Bake\Shell\Task\ModelTask::bakeTable() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 956
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 114
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 100
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 532
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 525
+Cake\Console\CommandRunner::runShell() - CORE/src/Console/CommandRunner.php, line 342
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 164
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:12:08 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/config/routes.php, line: 271
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:12:08 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:12:08 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
+2018-08-11 07:12:08 Notice: Deprecated (16384): You no longer need to call `Plugin::routes()` after upgrading to use Http\Server. See https://book.cakephp.org/3.0/en/development/application.html#adding-the-new-http-stack-to-an-existing-application for upgrade information. - /var/www/worlvoting/vendor/cakephp/cakephp/src/Core/Plugin.php, line: 310
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [/var/www/worlvoting/vendor/cakephp/cakephp/src/Core/functions.php, line 310]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 159
+deprecationWarning - CORE/src/Core/functions.php, line 310
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 306
+Cake\Core\Plugin::routes() - CORE/src/Core/Plugin.php, line 310
+require - ROOT/config/routes.php, line 271
+Cake\Http\BaseApplication::routes() - CORE/src/Http/BaseApplication.php, line 176
+Cake\Console\CommandRunner::loadRoutes() - CORE/src/Console/CommandRunner.php, line 377
+Cake\Console\CommandRunner::run() - CORE/src/Console/CommandRunner.php, line 150
+[main] - ROOT/bin/cake.php, line 12
+
+
+
