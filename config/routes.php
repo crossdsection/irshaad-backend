@@ -65,6 +65,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'login']
     );
 
+    $routes->post(
+        '/auth/signup/*',
+        ['controller' => 'WvUser', 'action' => 'signup']
+    );
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
