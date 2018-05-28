@@ -4,8 +4,8 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
-
 /**
  * WvUser Model
  *
@@ -193,5 +193,19 @@ class WvUserTable extends Table
         $rules->add($rules->existsIn(['city_id'], 'Cities'));
 
         return $rules;
+    }
+
+    public function add( $userData = array() ){
+      if( !empty( $userData ) ){
+        if( isset( $userData['password'] ) ){
+          $users = TableRegistry::get('WvUser');
+          $entity = $users->newEntity( $userData );
+          $users->save( $entity );
+          if( $users->save( $entity ) ){
+            return true;
+          }
+        }
+      }
+      return false;
     }
 }

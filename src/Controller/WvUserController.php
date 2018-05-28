@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Firebase\JWT\JWT;
-
+use App\Model\Entity\WvUser;
 /**
  * WvUser Controller
  *
@@ -18,6 +18,26 @@ class WvUserController extends AppController
      */
     public function signup() {
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
+        $userData = array();
+        $postKeys = array('email', 'password','firstName','lastName','latitude','longitude','gender','phone','certificate');
+        foreach( $postKeys as $postKey ){
+          if( isset( $this->request->data[ $postKey ] ) && !empty( $this->request->data[ $postKey ] ) ){
+            $newKey = strtolower( $postKey );
+            if( $postKey == 'certificate' ){
+              $file = $this->request->data[ $postKey ];
+              $filePath = 'img' . DS . 'upload' . DS . $file['name'];
+              $fileUrl = WWW_ROOT . $filePath;
+              if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
+                $userData[ $newKey ] = $filePath;
+              }
+            } else {
+              $userData[ $newKey ] = $this->request->data[ $postKey ];
+            }
+          }
+        }
+        if( !empty( $userData ) && $this->WvUser->add( $userData ) ){
+          $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
+        }
         $this->response = $this->response->withType('application/json')
                                          ->withStringBody( json_encode( $response ) );
         return $this->response;

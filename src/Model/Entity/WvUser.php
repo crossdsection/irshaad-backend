@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * WvUser Entity
@@ -81,4 +82,32 @@ class WvUser extends Entity
     protected $_hidden = [
         'password'
     ];
+
+    /**
+     * Hashes password when setting
+     *
+     * @param string $password
+     * @return bool|string
+     */
+    public function _setPassword($password)
+    {
+        return (new DefaultPasswordHasher)->hash($password);
+    }
+    /**
+     * parentNode
+     *
+     * @return array
+     */
+    public function parentNode()
+    {
+        if (!$this->id) {
+            return null;
+        }
+        if( empty( $this->get('access_role_ids') ) ) {
+            return null;
+        } else {
+            $access_role_ids = json_decode( $this->get('AccessRoles') );
+            return ['AccessRoles' => ['id' => $access_role_ids ]];
+        }
+    }
 }
