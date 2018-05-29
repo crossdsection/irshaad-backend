@@ -89,17 +89,23 @@ class WvUser extends Entity
      * @param string $password
      * @return bool|string
      */
-    public function _setPassword($password)
-    {
+    public function _setPassword( $password ) {
         return (new DefaultPasswordHasher)->hash($password);
     }
+
+    public function _checkPassword( $password, $storedPassword ) {
+      if( (new DefaultPasswordHasher)->check( $storedPassword, $password ) ) {
+           return true;
+      }
+      return false;
+    }
+
     /**
      * parentNode
      *
      * @return array
      */
-    public function parentNode()
-    {
+    public function parentNode() {
         if (!$this->id) {
             return null;
         }

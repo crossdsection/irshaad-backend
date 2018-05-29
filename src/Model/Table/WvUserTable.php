@@ -9,10 +9,10 @@ use Cake\Validation\Validator;
 /**
  * WvUser Model
  *
- * @property |\Cake\ORM\Association\BelongsTo $Departments
- * @property |\Cake\ORM\Association\BelongsTo $Countries
- * @property |\Cake\ORM\Association\BelongsTo $States
- * @property |\Cake\ORM\Association\BelongsTo $Cities
+ * @property |\Cake\ORM\Association\BelongsTo $WvMinistry
+ * @property |\Cake\ORM\Association\BelongsTo $WvCountries
+ * @property |\Cake\ORM\Association\BelongsTo $WvStates
+ * @property |\Cake\ORM\Association\BelongsTo $WvCities
  *
  * @method \App\Model\Entity\WvUser get($primaryKey, $options = [])
  * @method \App\Model\Entity\WvUser newEntity($data = null, array $options = [])
@@ -43,19 +43,19 @@ class WvUserTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Departments', [
+        $this->belongsTo('WvMinistry', [
             'foreignKey' => 'department_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Countries', [
+        $this->belongsTo('WvCountries', [
             'foreignKey' => 'country_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('States', [
+        $this->belongsTo('WvStates', [
             'foreignKey' => 'state_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Cities', [
+        $this->belongsTo('WvCities', [
             'foreignKey' => 'city_id',
             'joinType' => 'INNER'
         ]);
@@ -129,32 +129,32 @@ class WvUserTable extends Table
 
         $validator
             ->boolean('status')
-            ->requirePresence('status', 'create')
+            // ->requirePresence('status', 'create')
             ->notEmpty('status');
 
         $validator
             ->boolean('active')
-            ->requirePresence('active', 'create')
+            // ->requirePresence('active', 'create')
             ->notEmpty('active');
 
         $validator
             ->boolean('email_verified')
-            ->requirePresence('email_verified', 'create')
+            // ->requirePresence('email_verified', 'create')
             ->notEmpty('email_verified');
 
         $validator
             ->integer('adhar_verified')
-            ->requirePresence('adhar_verified', 'create')
+            // ->requirePresence('adhar_verified', 'create')
             ->notEmpty('adhar_verified');
 
         $validator
-            ->requirePresence('authority_flag', 'create')
+            // ->requirePresence('authority_flag', 'create')
             ->notEmpty('authority_flag');
 
         $validator
             ->scalar('access_role_ids')
             ->maxLength('access_role_ids', 1024)
-            ->requirePresence('access_role_ids', 'create')
+            // ->requirePresence('access_role_ids', 'create')
             ->notEmpty('access_role_ids');
 
         $validator
@@ -165,7 +165,7 @@ class WvUserTable extends Table
         $validator
             ->scalar('designation')
             ->maxLength('designation', 512)
-            ->requirePresence('designation', 'create')
+            // ->requirePresence('designation', 'create')
             ->notEmpty('designation');
 
         $validator
@@ -187,10 +187,10 @@ class WvUserTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['department_id'], 'Departments'));
-        $rules->add($rules->existsIn(['country_id'], 'Countries'));
-        $rules->add($rules->existsIn(['state_id'], 'States'));
-        $rules->add($rules->existsIn(['city_id'], 'Cities'));
+        $rules->add($rules->existsIn(['department_id'], 'WvMinistry'));
+        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
 
         return $rules;
     }
@@ -199,13 +199,20 @@ class WvUserTable extends Table
       if( !empty( $userData ) ){
         if( isset( $userData['password'] ) ){
           $users = TableRegistry::get('WvUser');
-          $entity = $users->newEntity( $userData );
-          $users->save( $entity );
+          $entity = $users->newEntity();
+          $entity = $users->patchEntity( $entity, $userData );
           if( $users->save( $entity ) ){
             return true;
           }
         }
       }
       return false;
+    }
+
+    public function checkPassword( $password, $storedPassword ){
+      $users = TableRegistry::get('WvUser');
+      $entity = $users->newEntity();
+      $response = $entity->_checkPassword( $password, $storedPassword );
+      return $response;
     }
 }

@@ -20,23 +20,29 @@ class WvUserController extends AppController
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
         $userData = array();
         $postKeys = array('email', 'password','firstName','lastName','latitude','longitude','gender','phone','certificate');
-        foreach( $postKeys as $postKey ){
-          if( isset( $this->request->data[ $postKey ] ) && !empty( $this->request->data[ $postKey ] ) ){
-            $newKey = strtolower( $postKey );
-            if( $postKey == 'certificate' ){
-              $file = $this->request->data[ $postKey ];
-              $filePath = 'img' . DS . 'upload' . DS . $file['name'];
-              $fileUrl = WWW_ROOT . $filePath;
-              if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
-                $userData[ $newKey ] = $filePath;
+        if ( !empty( $this->request->data ) ){
+          foreach( $postKeys as $postKey ){
+            if( isset( $this->request->data[ $postKey ] ) && !empty( $this->request->data[ $postKey ] ) ){
+              $newKey = strtolower( $postKey );
+              if( $postKey == 'certificate' ){
+                $file = $this->request->data[ $postKey ];
+                $filePath = 'img' . DS . 'upload' . DS . $file['name'];
+                $fileUrl = WWW_ROOT . $filePath;
+                if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
+                  $userData[ $newKey ] = $filePath;
+                }
+              } else {
+                $userData[ $newKey ] = $this->request->data[ $postKey ];
               }
-            } else {
-              $userData[ $newKey ] = $this->request->data[ $postKey ];
             }
           }
-        }
-        if( !empty( $userData ) && $this->WvUser->add( $userData ) ){
-          $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
+          if( !empty( $userData ) && $this->WvUser->add( $userData ) ){
+            $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
+          } else {
+            $response = array( 'error' => 1, 'message' => 'Registration Failed', 'data' => array() );
+          }
+        } else {
+          $response = array( 'error' => 1, 'message' => 'Registration Failed', 'data' => array() );
         }
         $this->response = $this->response->withType('application/json')
                                          ->withStringBody( json_encode( $response ) );
@@ -49,7 +55,7 @@ class WvUserController extends AppController
     public function login() {
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
         $user = $this->WvUser->find()->where([ 'email' => $_POST['username'] ])->toArray();
-        if( $user[0]->password == md5( $_POST['password'] ) ){
+        if( $this->WvUser->checkPassword( $user[0]->password, $_POST['password'] ) ){
           $response = array( 'error' => 0, 'message' => 'Login Successful', 'data' => $user );
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Login', 'data' => array() );
