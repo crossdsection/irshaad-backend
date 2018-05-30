@@ -2,8 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Firebase\JWT\JWT;
-use App\Model\Entity\WvUser;
+
 /**
  * WvUser Controller
  *
@@ -11,8 +10,10 @@ use App\Model\Entity\WvUser;
  *
  * @method \App\Model\Entity\WvUser[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class WvUserController extends AppController
-{
+class WvUserController extends AppController {
+
+    public $components = array('OAuth');
+
     /**
      * Signup API
      */
@@ -56,7 +57,8 @@ class WvUserController extends AppController
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
         $user = $this->WvUser->find()->where([ 'email' => $_POST['username'] ])->toArray();
         if( $this->WvUser->checkPassword( $user[0]->password, $_POST['password'] ) ){
-          $response = array( 'error' => 0, 'message' => 'Login Successful', 'data' => $user );
+          $response = $this->OAuth->getAccessToken( $user[0]->id );
+          $response = array( 'error' => 0, 'message' => 'Login Successful', 'data' => $response );
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Login', 'data' => array() );
         }

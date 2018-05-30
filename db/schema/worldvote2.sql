@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 24, 2018 at 01:21 PM
--- Server version: 10.2.14-MariaDB
+-- Generation Time: May 29, 2018 at 08:51 AM
+-- Server version: 10.2.14-MariaDB-log
 -- PHP Version: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -52984,15 +52984,15 @@ CREATE TABLE `wv_user` (
   `longitude` varchar(256) DEFAULT NULL,
   `profilepic` varchar(256) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `email_verified` tinyint(1) NOT NULL DEFAULT 0,
   `adhar_verified` int(10) NOT NULL DEFAULT 0,
   `authority_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 - Normal User, 1 - Authority ',
   `access_role_ids` varchar(1024) NOT NULL DEFAULT '[]' COMMENT 'Will contain all types of access roles for write and answer in JSON Array',
   `rwa_name` varchar(1024) DEFAULT NULL,
   `department_id` int(11) NOT NULL DEFAULT 0,
-  `designation` varchar(512) NOT NULL,
-  `certificate` varchar(512) NOT NULL,
+  `designation` varchar(512) DEFAULT NULL,
+  `certificate` varchar(512) DEFAULT NULL,
   `country_id` int(11) NOT NULL DEFAULT 0,
   `state_id` int(11) NOT NULL DEFAULT 0,
   `city_id` int(11) NOT NULL DEFAULT 0,
@@ -53005,10 +53005,11 @@ CREATE TABLE `wv_user` (
 --
 
 INSERT INTO `wv_user` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `phone`, `address`, `latitude`, `longitude`, `profilepic`, `status`, `active`, `email_verified`, `adhar_verified`, `authority_flag`, `access_role_ids`, `rwa_name`, `department_id`, `designation`, `certificate`, `country_id`, `state_id`, `city_id`, `created`, `modified`) VALUES
-(36, 'Bhawna', 'Pandey', NULL, 'bhawnapandey@greenusys.com', '202cb962ac59075b964b07152d234b70', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.3650466', '78.075757', NULL, 1, 0, 1, 0, 0, '[1]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
-(65, 'Ravi Ranjan', '', NULL, 'ravisingh4994@gmail.com', '', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.365015900000003', '78.0755332', NULL, 1, 1, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
-(66, 'Ravi Ranjan Singh', '', NULL, 'raviranjan.rrs49@gmail.com', '', NULL, '', '30.365007599999995', '78.075537', NULL, 1, 0, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
-(67, 'ravi', 'ranjan', NULL, 'r@r.com', '202cb962ac59075b964b07152d234b70', NULL, '', '', '', NULL, 1, 0, 0, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23');
+(36, 'Bhawna', 'Pandey', NULL, 'bhawnapandey@greenusys.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.3650466', '78.075757', NULL, 1, 0, 1, 0, 0, '[1]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
+(65, 'Ravi Ranjan', '', NULL, 'ravisingh4994@gmail.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.365015900000003', '78.0755332', NULL, 1, 1, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
+(66, 'Ravi Ranjan Singh', '', NULL, 'raviranjan.rrs49@gmail.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '', '30.365007599999995', '78.075537', NULL, 1, 0, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
+(67, 'ravi', 'ranjan', NULL, 'r@r.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '', '', '', NULL, 1, 0, 0, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
+(68, 'Piyush', 'Kumar', 'M', 'piyush@greenusys.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, NULL, '26.9124', '75.7873', NULL, 1, 1, 0, 0, 0, '[]', NULL, 0, NULL, 'img/upload/certi.jpg', 0, 0, 0, '2018-05-29 06:15:59', '2018-05-29 06:15:59');
 
 -- --------------------------------------------------------
 
@@ -53203,7 +53204,7 @@ ALTER TABLE `wv_state_reviews`
 -- AUTO_INCREMENT for table `wv_user`
 --
 ALTER TABLE `wv_user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `wv_votes_reviews`
