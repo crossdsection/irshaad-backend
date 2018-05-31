@@ -108,9 +108,28 @@ class WvOauthTable extends Table
     public function getUserToken( $userId ){
       $result = array( 'error' => 0, 'data' => array());
       if( $userId != 0 ){
-        $extractedData = $this->find()->where([ 'id' => $userId ])->toArray();
-        if( !empty( $extractedData ) ){
-
+        $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
+        if( !empty( $extractedData ) && strtotime( $extractedData[0]['expiration_time'] ) < time() ){
+          $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
+          $secretKey = Configure::read('jwt_secret_key');
+          $data = [
+             'created'  => $extractedData[0]['created'],         // Issued at: time when the token was generated
+             'access_token'  => $extractedData[0]['access_token'],          // Json Token Id: an unique identifier for the token
+             'provider_id'  => $extractedData[0]['provider_id'],       // Issuer
+             'expiration_time'  => $extractedData[0]['expiration_time'],           // Expire
+             'user_id' => $userId
+          ];
+          $bearerToken = JWT::encode(
+            $data,      //Data to be encoded in the JWT
+            $secretKey, // The signing key
+            'HS512'     // Algorithm used to sign the token, see https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40#section-3
+          );
+          $response = array(
+            'name' => $user[0]->firstname.' '.$user[0]->lastname,
+            'access_roles' => json_decode( $user[0]->access_role_ids ),
+            'bearerToken' => $bearerToken
+          );
+          $result['data'] = $response;
         } else {
           $result['error'] = 1;
         }
@@ -125,7 +144,7 @@ class WvOauthTable extends Table
       if( $userId != 0 ){
         $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
         $serverName = Configure::read('App.fullBaseUrl');
-        $secretKey = 'WorldVoting';
+        $secretKey = Configure::read('jwt_secret_key');
         $tokenId   = base64_encode( Security::randomBytes( 32 ) );
         $issuedAt = time();
         $expire = date($issuedAt + 600);

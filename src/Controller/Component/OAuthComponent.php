@@ -24,7 +24,8 @@ class OAuthComponent extends Component
         $this->Oauth = TableRegistry::get('WvOauth');
         $result = $this->Oauth->getUserToken( $userId );
         if( $result['error'] != 1 ){
-
+          $response['message'] = 'Access Token Generated';
+          $response['data'] = $result['data'];
         } else {
           $result = $this->Oauth->createUserToken( $userId );
           if( $result['error'] != 1 ){

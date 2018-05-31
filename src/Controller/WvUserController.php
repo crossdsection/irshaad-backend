@@ -54,7 +54,7 @@ class WvUserController extends AppController {
      * Login API
      */
     public function login() {
-        $response = array( 'error' => 1, 'message' => '', 'data' => array() );
+        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
         $user = $this->WvUser->find()->where([ 'email' => $_POST['username'] ])->toArray();
         if( $this->WvUser->checkPassword( $user[0]->password, $_POST['password'] ) ){
           $response = $this->OAuth->getAccessToken( $user[0]->id );
@@ -65,5 +65,12 @@ class WvUserController extends AppController {
         $this->response = $this->response->withType('application/json')
                                          ->withStringBody( json_encode( $response ) );
         return $this->response;
+    }
+
+    public function test(){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
     }
 }

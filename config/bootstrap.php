@@ -215,3 +215,9 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+
+/*
+ *JWT SECRET KEY CONFIG
+ */
+Configure::write('jwt_secret_key', 'WorldVoting');
