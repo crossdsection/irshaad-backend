@@ -5,7 +5,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Cake\Core\Configure;
 use Firebase\JWT\JWT;
-
+use Cake\Core\Exception\Exception;
+use Cake\Http\Exception\BadRequestException;
+use Cake\Http\Exception\UnauthorizedException;
 /**
  * Authorization middleware
  */
@@ -22,6 +24,13 @@ class AuthorizationMiddleware
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next)
     {
+      $response->cors($request)
+        ->allowMethods(['GET', 'POST'])
+        ->allowHeaders(['X-CSRF-Token'])
+        ->allowCredentials()
+        ->exposeHeaders(['Link'])
+        ->maxAge(300)
+        ->build();
       $flagAllow = false;
       $allowedConActions = array();
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'login' );
@@ -40,7 +49,11 @@ class AuthorizationMiddleware
                 try {
                     $secretKey = Configure::read('jwt_secret_key');
                     $token = JWT::decode($jwt, $secretKey, array('HS512'));
-                    return $next($request, $response);
+                    if( strtotime( $token->expiration_time ) >= time() ){
+                      return $next($request, $response);
+                    } else {
+                      throw new Exception(__('Token Expired'));
+                    }
                 } catch (Exception $e) {
                     throw new UnauthorizedException(__('Illegal Token'));
                 }
