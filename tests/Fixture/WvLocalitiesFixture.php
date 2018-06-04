@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * WvLocalityReviewsFixture
+ * WvLocalitiesFixture
  *
  */
-class WvLocalityReviewsFixture extends TestFixture
+class WvLocalitiesFixture extends TestFixture
 {
 
     /**
@@ -17,15 +17,12 @@ class WvLocalityReviewsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'locality' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'city_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        '_indexes' => [
-            'wv_locality_ibfk_1' => ['type' => 'index', 'columns' => ['city_id'], 'length' => []],
-        ],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-        ],
+        'active' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '1', 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => '', 'precision' => null],
+        'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => '', 'precision' => null],
         '_options' => [
             'engine' => 'InnoDB',
             'collation' => 'latin1_swedish_ci'
@@ -44,7 +41,10 @@ class WvLocalityReviewsFixture extends TestFixture
             [
                 'id' => 1,
                 'locality' => 'Lorem ipsum dolor sit amet',
-                'city_id' => 1
+                'city_id' => 1,
+                'active' => 1,
+                'created' => '2018-06-04 11:01:21',
+                'modified' => '2018-06-04 11:01:21'
             ],
         ];
         parent::init();

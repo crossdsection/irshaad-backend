@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\WvLocalityReviewsTable;
+use App\Model\Table\WvLocalitiesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\WvLocalityReviewsTable Test Case
+ * App\Model\Table\WvLocalitiesTable Test Case
  */
-class WvLocalityReviewsTableTest extends TestCase
+class WvLocalitiesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\WvLocalityReviewsTable
+     * @var \App\Model\Table\WvLocalitiesTable
      */
-    public $WvLocalityReviews;
+    public $WvLocalities;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class WvLocalityReviewsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.wv_locality_reviews',
+        'app.wv_localities',
         'app.cities'
     ];
 
@@ -36,8 +36,8 @@ class WvLocalityReviewsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvLocalityReviews') ? [] : ['className' => WvLocalityReviewsTable::class];
-        $this->WvLocalityReviews = TableRegistry::get('WvLocalityReviews', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvLocalities') ? [] : ['className' => WvLocalitiesTable::class];
+        $this->WvLocalities = TableRegistry::getTableLocator()->get('WvLocalities', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class WvLocalityReviewsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->WvLocalityReviews);
+        unset($this->WvLocalities);
 
         parent::tearDown();
     }

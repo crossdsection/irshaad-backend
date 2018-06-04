@@ -43,6 +43,10 @@ class WvUserTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('WvAccessRoles', [
+            'foreignKey' => 'access_role_ids',
+            'joinType' => 'INNER'
+        ]);
         $this->belongsTo('WvMinistry', [
             'foreignKey' => 'department_id',
             'joinType' => 'INNER'

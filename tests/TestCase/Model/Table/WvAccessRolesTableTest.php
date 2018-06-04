@@ -36,8 +36,8 @@ class WvAccessRolesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvAccessRoles') ? [] : ['className' => WvAccessRolesTable::class];
-        $this->WvAccessRoles = TableRegistry::get('WvAccessRoles', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvAccessRoles') ? [] : ['className' => WvAccessRolesTable::class];
+        $this->WvAccessRoles = TableRegistry::getTableLocator()->get('WvAccessRoles', $config);
     }
 
     /**

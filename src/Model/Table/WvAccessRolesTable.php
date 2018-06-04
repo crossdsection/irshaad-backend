@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -15,6 +16,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\WvAccessRole newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\WvAccessRole[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\WvAccessRole|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\WvAccessRole|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\WvAccessRole patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\WvAccessRole[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\WvAccessRole findOrCreate($search, callable $callback = null, $options = [])
@@ -89,5 +91,19 @@ class WvAccessRolesTable extends Table
         $rules->add($rules->existsIn(['area_level_id'], 'AreaLevels'));
 
         return $rules;
+    }
+
+    public function getAccessData( $roleIds ){
+      $data = array();
+      $accessRoles = $this->find('all')->where([ 'id IN' => $roleIds ])->toArray();
+      $accessLevels = array( '0' => 'r', '1' => 'w', '2' => 'a' );
+      $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvMinistries' );
+      foreach( $accessRoles as $accessRole ){
+        $areaLevel = $accessRole['area_level'];
+        $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );
+        $return = $areaModel->find()->where( [ 'id' => $accessRole['area_level_id'] ] )->toArray();
+        $data[] = array( 'area' => $return[0]->name, 'access_level' => $accessLevels[ $accessRole['access_level'] ]);
+      }
+      return $data;
     }
 }

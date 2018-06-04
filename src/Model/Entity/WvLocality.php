@@ -4,15 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * WvLocalityReview Entity
+ * WvLocality Entity
  *
  * @property int $id
  * @property string $locality
  * @property int $city_id
+ * @property bool $active
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\City $city
  */
-class WvLocalityReview extends Entity
+class WvLocality extends Entity
 {
 
     /**
@@ -25,8 +28,12 @@ class WvLocalityReview extends Entity
      * @var array
      */
     protected $_accessible = [
+        'id' => true,
         'locality' => true,
         'city_id' => true,
+        'active' => true,
+        'created' => true,
+        'modified' => true,
         'city' => true
     ];
 }

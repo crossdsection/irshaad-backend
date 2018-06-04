@@ -7,19 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * WvLocalityReviews Model
+ * WvLocalities Model
  *
  * @property \App\Model\Table\CitiesTable|\Cake\ORM\Association\BelongsTo $Cities
  *
- * @method \App\Model\Entity\WvLocalityReview get($primaryKey, $options = [])
- * @method \App\Model\Entity\WvLocalityReview newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\WvLocalityReview[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\WvLocalityReview|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\WvLocalityReview patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\WvLocalityReview[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\WvLocalityReview findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\WvLocality get($primaryKey, $options = [])
+ * @method \App\Model\Entity\WvLocality newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\WvLocality[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\WvLocality|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\WvLocality|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\WvLocality patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\WvLocality[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\WvLocality findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class WvLocalityReviewsTable extends Table
+class WvLocalitiesTable extends Table
 {
 
     /**
@@ -32,9 +35,9 @@ class WvLocalityReviewsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('wv_locality_reviews');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->setTable('wv_localities');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Cities', [
             'foreignKey' => 'city_id',
@@ -52,13 +55,19 @@ class WvLocalityReviewsTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->requirePresence('id', 'create')
+            ->notEmpty('id');
 
         $validator
             ->scalar('locality')
             ->maxLength('locality', 100)
             ->requirePresence('locality', 'create')
             ->notEmpty('locality');
+
+        $validator
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
 
         return $validator;
     }

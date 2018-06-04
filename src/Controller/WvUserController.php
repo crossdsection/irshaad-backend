@@ -67,8 +67,26 @@ class WvUserController extends AppController {
         return $this->response;
     }
 
-    public function test(){
+    public function getuserinfo(){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( isset( $_POST['userId'] ) && !empty( $_POST['userId'] ) ){
+        $user = $this->WvUser->find()->where([ 'id' => $_POST['userId'], 'status' => 1 ])->toArray();
+        $tmpResponse = array();
+        if( isset( $user[0]['firstname'] ) && isset( $user[0]['lastname'] ) ){
+          $tmpResponse['name'] = $user[0]['firstname'].' '.$user[0]['lastname'];
+        }
+        $directKeys = array( 'gender', 'email', 'phone', 'address', 'latitude', 'longitude' );
+        foreach( $directKeys as $key ){
+          if( isset( $user[0][ $key ] ) ){
+            $tmpResponse[ $key ] = $user[0][ $key ];
+          }
+        }
+        if( isset( $user[0]['access_role_ids'] ) ){
+          $accessRoles = $this->WvUser->WvAccessRoles->getAccessData( json_decode( $user[0]['access_role_ids'] ) );
+          $tmpResponse[ 'accessRoles' ] = $accessRoles;
+        }
+        $response['data'] = $tmpResponse;
+      }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
