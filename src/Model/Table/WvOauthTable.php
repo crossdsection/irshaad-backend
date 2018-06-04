@@ -109,14 +109,14 @@ class WvOauthTable extends Table
       $result = array( 'error' => 0, 'data' => array());
       if( $userId != 0 ){
         $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
-        if( !empty( $extractedData ) && strtotime( $extractedData[0]['expiration_time'] ) < time() ){
+        if( !empty( $extractedData ) && strtotime( $extractedData[0]['expiration_time'] ) > time() ){
           $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
           $secretKey = Configure::read('jwt_secret_key');
           $data = [
-             'created'  => $extractedData[0]['created'],         // Issued at: time when the token was generated
+             'issued_at'  => $extractedData[0]['issued_at'],         // Issued at: time when the token was generated
              'access_token'  => $extractedData[0]['access_token'],          // Json Token Id: an unique identifier for the token
              'provider_id'  => $extractedData[0]['provider_id'],       // Issuer
-             'expiration_time'  => $extractedData[0]['expiration_time'],           // Expire
+             'expiration_time'  => $extractedData[0]['expiration_time']->toUnixString(),           // Expire
              'user_id' => $userId
           ];
           $bearerToken = JWT::encode(
@@ -131,7 +131,7 @@ class WvOauthTable extends Table
           );
           $result['data'] = $response;
         } else {
-          $result['error'] = 1;
+          $result['error'] = -1;
         }
       } else {
         $result['error'] = 1;
@@ -147,9 +147,9 @@ class WvOauthTable extends Table
         $secretKey = Configure::read('jwt_secret_key');
         $tokenId   = base64_encode( Security::randomBytes( 32 ) );
         $issuedAt = time();
-        $expire = date($issuedAt + 600);
+        $expire = $issuedAt + 86400;
         $data = [
-           'created'  => $issuedAt,         // Issued at: time when the token was generated
+           'issued_at'  => $issuedAt,         // Issued at: time when the token was generated
            'access_token'  => $tokenId,          // Json Token Id: an unique identifier for the token
            'provider_id'  => $serverName,       // Issuer
            'expiration_time'  => $expire,           // Expire
@@ -182,6 +182,50 @@ class WvOauthTable extends Table
     }
 
     public function refreshAccessToken( $userId ){
-        return true;
+      $result = array( 'error' => 0, 'data' => array());
+      if( $userId != 0 ){
+        $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
+        $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
+
+        $serverName = Configure::read('App.fullBaseUrl');
+        $secretKey = Configure::read('jwt_secret_key');
+        $tokenId   = base64_encode( Security::randomBytes( 32 ) );
+        $issuedAt = time();
+        $expire = $issuedAt + 86400;
+
+        $data = [
+           'issued_at'  => $issuedAt,         // Issued at: time when the token was generated
+           'access_token'  => $tokenId,          // Json Token Id: an unique identifier for the token
+           'provider_id'  => $serverName,       // Issuer
+           'expiration_time'  => $expire,           // Expire
+           'user_id' => $userId
+        ];
+
+        $bearerToken = JWT::encode(
+          $data,      //Data to be encoded in the JWT
+          $secretKey, // The signing key
+          'HS512'     // Algorithm used to sign the token, see https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40#section-3
+        );
+
+        $saveData = $data;
+        $saveData['modified'] = $data['issued_at'];
+
+        $oAuth = TableRegistry::get('WvOauth');
+        $oEntity = $oAuth->get( $extractedData[0]->id );
+        $oEntity = $oAuth->patchEntity( $oEntity, $saveData );
+        if( $oAuth->save( $oEntity ) ){
+          $response = array(
+            'name' => $user[0]->firstname.' '.$user[0]->lastname,
+            'access_roles' => json_decode( $user[0]->access_role_ids ),
+            'bearerToken' => $bearerToken
+          );
+          $result['data'] = $response;
+        } else {
+          $result['error'] = 1;
+        }
+      } else {
+        $result['error'] = 1;
+      }
+      return $result;
     }
 }

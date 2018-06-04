@@ -49,7 +49,7 @@ class AuthorizationMiddleware
                 try {
                     $secretKey = Configure::read('jwt_secret_key');
                     $token = JWT::decode($jwt, $secretKey, array('HS512'));
-                    if( strtotime( $token->expiration_time ) >= time() ){
+                    if( $token->expiration_time >= time() ){
                       return $next($request, $response);
                     } else {
                       throw new Exception(__('Token Expired'));

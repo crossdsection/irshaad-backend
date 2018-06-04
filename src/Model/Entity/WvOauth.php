@@ -33,6 +33,7 @@ class WvOauth extends Entity
         'user_id' => true,
         'provider_id' => true,
         'access_token' => true,
+        'issued_at' => true,
         'expiration_time' => true,
         'created' => true,
         'modified' => true,
