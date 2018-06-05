@@ -10,6 +10,8 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property string $latitude
  * @property string $longitude
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\WvUser $wv_user
  */
@@ -29,6 +31,8 @@ class WvLoginRecord extends Entity
         'user_id' => true,
         'latitude' => true,
         'longitude' => true,
+        'created' => true,
+        'modified' => true,
         'wv_user' => true
     ];
 }

@@ -57,8 +57,24 @@ class WvUserController extends AppController {
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
         $user = $this->WvUser->find()->where([ 'email' => $_POST['username'] ])->toArray();
         if( $this->WvUser->checkPassword( $user[0]->password, $_POST['password'] ) ){
-          $response = $this->OAuth->getAccessToken( $user[0]->id );
-          $response = array( 'error' => 0, 'message' => 'Login Successful', 'data' => $response );
+          $res = $this->OAuth->getAccessToken( $user[0]->id );
+          if( $res['error'] == 0 ){
+             $latitude = 0;
+             $longitude = 0;
+             if( isset( $_POST['latitude'] ) && $_POST['latitude'] != 0 ){
+               $latitude = $_POST['latitude'];
+             }
+             if( isset( $_POST['longitude'] ) && $_POST['latitude'] != 0 ){
+               $longitude = $_POST['longitude'];
+             }
+             $userData = array(
+               'user_id'  => $user[0]->id,
+               'latitude' => $latitude,
+               'longitude'=> $longitude
+             );
+             $ret = $this->WvUser->WvLoginRecord->saveLog( $userData );
+          }
+          $response = array( 'error' => $res['error'], 'message' => $res['message'], 'data' => $res['data'] );
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Login', 'data' => array() );
         }

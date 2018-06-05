@@ -32,6 +32,7 @@ class OAuthComponent extends Component
           $response['message'] = 'Access Token Generated';
           $response['data'] = $result['data'];
         } else {
+          $response['error'] = 1;
           $response['message'] = 'Failed! Please Try Again.';
         }
       }

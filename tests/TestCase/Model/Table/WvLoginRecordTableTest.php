@@ -36,8 +36,8 @@ class WvLoginRecordTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvLoginRecord') ? [] : ['className' => WvLoginRecordTable::class];
-        $this->WvLoginRecord = TableRegistry::get('WvLoginRecord', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvLoginRecord') ? [] : ['className' => WvLoginRecordTable::class];
+        $this->WvLoginRecord = TableRegistry::getTableLocator()->get('WvLoginRecord', $config);
     }
 
     /**
