@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * WvUser Model
  *
- * @property |\Cake\ORM\Association\BelongsTo $WvMinistry
+ * @property |\Cake\ORM\Association\BelongsTo $WvDepartments
  * @property |\Cake\ORM\Association\BelongsTo $WvCountries
  * @property |\Cake\ORM\Association\BelongsTo $WvStates
  * @property |\Cake\ORM\Association\BelongsTo $WvCities
@@ -47,7 +47,7 @@ class WvUserTable extends Table
             'foreignKey' => 'access_role_ids',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('WvMinistry', [
+        $this->belongsTo('WvDepartments', [
             'foreignKey' => 'department_id',
             'joinType' => 'INNER'
         ]);
@@ -191,7 +191,7 @@ class WvUserTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['department_id'], 'WvMinistry'));
+        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
         $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
         $rules->add($rules->existsIn(['state_id'], 'WvStates'));
         $rules->add($rules->existsIn(['city_id'], 'WvCities'));

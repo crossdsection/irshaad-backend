@@ -4,21 +4,23 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * WvMinistry Entity
+ * WvDepartment Entity
  *
  * @property int $id
- * @property string $ministry_name
+ * @property string $name
  * @property int $country_id
  * @property int $state_id
  * @property int $city_id
- * @property bool $ministry_status
- * @property string $ministry_head_profilepic
+ * @property bool $status
+ * @property string $head_profilepic
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\Country $country
- * @property \App\Model\Entity\State $state
- * @property \App\Model\Entity\City $city
+ * @property \App\Model\Entity\WvCountry $wv_country
+ * @property \App\Model\Entity\WvState $wv_state
+ * @property \App\Model\Entity\WvCity $wv_city
  */
-class WvMinistry extends Entity
+class WvDepartment extends Entity
 {
 
     /**
@@ -31,14 +33,16 @@ class WvMinistry extends Entity
      * @var array
      */
     protected $_accessible = [
-        'ministry_name' => true,
+        'name' => true,
         'country_id' => true,
         'state_id' => true,
         'city_id' => true,
-        'ministry_status' => true,
-        'ministry_head_profilepic' => true,
-        'country' => true,
-        'state' => true,
-        'city' => true
+        'status' => true,
+        'head_profilepic' => true,
+        'created' => true,
+        'modified' => true,
+        'wv_country' => true,
+        'wv_state' => true,
+        'wv_city' => true
     ];
 }

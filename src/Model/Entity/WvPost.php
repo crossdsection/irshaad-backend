@@ -49,9 +49,7 @@ class WvPost extends Entity
      * @var array
      */
     protected $_accessible = [
-        'cat_id' => true,
-        'subcat_id' => true,
-        'ministry_id' => true,
+        'department_id' => true,
         'user_id' => true,
         'total_likes' => true,
         'total_comments' => true,
@@ -68,9 +66,6 @@ class WvPost extends Entity
         'state_id' => true,
         'city_id' => true,
         'locality_id' => true,
-        'cat' => true,
-        'subcat' => true,
-        'ministry' => true,
         'user' => true,
         'country' => true,
         'state' => true,

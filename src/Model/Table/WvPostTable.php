@@ -43,35 +43,27 @@ class WvPostTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Cats', [
-            'foreignKey' => 'cat_id',
+        $this->belongsTo('WvDepartments', [
+            'foreignKey' => 'department_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Subcats', [
-            'foreignKey' => 'subcat_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Ministries', [
-            'foreignKey' => 'ministry_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Users', [
+        $this->belongsTo('WvUsers', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Countries', [
+        $this->belongsTo('WvCountries', [
             'foreignKey' => 'country_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('States', [
+        $this->belongsTo('WvStates', [
             'foreignKey' => 'state_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Cities', [
+        $this->belongsTo('WvCities', [
             'foreignKey' => 'city_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Localities', [
+        $this->belongsTo('WvLocalities', [
             'foreignKey' => 'locality_id',
             'joinType' => 'INNER'
         ]);
@@ -162,14 +154,12 @@ class WvPostTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['cat_id'], 'Cats'));
-        $rules->add($rules->existsIn(['subcat_id'], 'Subcats'));
-        $rules->add($rules->existsIn(['ministry_id'], 'Ministries'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['country_id'], 'Countries'));
-        $rules->add($rules->existsIn(['state_id'], 'States'));
-        $rules->add($rules->existsIn(['city_id'], 'Cities'));
-        $rules->add($rules->existsIn(['locality_id'], 'Localities'));
+        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
+        $rules->add($rules->existsIn(['user_id'], 'WvUsers'));
+        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
+        $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
 
         return $rules;
     }

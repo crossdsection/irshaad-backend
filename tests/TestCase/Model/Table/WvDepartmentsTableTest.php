@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\WvMinistryTable;
+use App\Model\Table\WvDepartmentsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\WvMinistryTable Test Case
+ * App\Model\Table\WvDepartmentsTable Test Case
  */
-class WvMinistryTableTest extends TestCase
+class WvDepartmentsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\WvMinistryTable
+     * @var \App\Model\Table\WvDepartmentsTable
      */
-    public $WvMinistry;
+    public $WvDepartments;
 
     /**
      * Fixtures
@@ -24,10 +24,10 @@ class WvMinistryTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.wv_ministry',
-        'app.countries',
-        'app.states',
-        'app.cities'
+        'app.wv_departments',
+        'app.wv_countries',
+        'app.wv_states',
+        'app.wv_cities'
     ];
 
     /**
@@ -38,8 +38,8 @@ class WvMinistryTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvMinistry') ? [] : ['className' => WvMinistryTable::class];
-        $this->WvMinistry = TableRegistry::get('WvMinistry', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvDepartments') ? [] : ['className' => WvDepartmentsTable::class];
+        $this->WvDepartments = TableRegistry::getTableLocator()->get('WvDepartments', $config);
     }
 
     /**
@@ -49,7 +49,7 @@ class WvMinistryTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->WvMinistry);
+        unset($this->WvDepartments);
 
         parent::tearDown();
     }

@@ -4,18 +4,11 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * WvMinistryFixture
+ * WvDepartmentsFixture
  *
  */
-class WvMinistryFixture extends TestFixture
+class WvDepartmentsFixture extends TestFixture
 {
-
-    /**
-     * Table name
-     *
-     * @var string
-     */
-    public $table = 'wv_ministry';
 
     /**
      * Fields
@@ -25,12 +18,14 @@ class WvMinistryFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'ministry_name' => ['type' => 'string', 'length' => 256, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'name' => ['type' => 'string', 'length' => 256, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'country_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'state_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'city_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'ministry_status' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '0 for world & 1 for country & 2 for state & 3 for city', 'precision' => null],
-        'ministry_head_profilepic' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'status' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '0 for world & 1 for country & 2 for state & 3 for city', 'precision' => null],
+        'head_profilepic' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => '', 'precision' => null],
+        'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -51,12 +46,14 @@ class WvMinistryFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'ministry_name' => 'Lorem ipsum dolor sit amet',
+                'name' => 'Lorem ipsum dolor sit amet',
                 'country_id' => 1,
                 'state_id' => 1,
                 'city_id' => 1,
-                'ministry_status' => 1,
-                'ministry_head_profilepic' => 'Lorem ipsum dolor sit amet'
+                'status' => 1,
+                'head_profilepic' => 'Lorem ipsum dolor sit amet',
+                'created' => '2018-06-05 05:33:35',
+                'modified' => '2018-06-05 05:33:35'
             ],
         ];
         parent::init();

@@ -41,11 +41,11 @@ class WvAccessRolesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsTo('AreaLevels', [
-            'foreignKey' => 'area_level_id',
-            'joinType' => 'INNER'
-        ]);
+        //
+        // $this->belongsTo('AreaLevels', [
+        //     'foreignKey' => 'area_level_id',
+        //     'joinType' => 'INNER'
+        // ]);
     }
 
     /**
@@ -88,8 +88,6 @@ class WvAccessRolesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['area_level_id'], 'AreaLevels'));
-
         return $rules;
     }
 
@@ -97,7 +95,7 @@ class WvAccessRolesTable extends Table
       $data = array();
       $accessRoles = $this->find('all')->where([ 'id IN' => $roleIds ])->toArray();
       $accessLevels = array( '0' => 'r', '1' => 'w', '2' => 'a' );
-      $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvMinistries' );
+      $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvDepartment' );
       foreach( $accessRoles as $accessRole ){
         $areaLevel = $accessRole['area_level'];
         $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );

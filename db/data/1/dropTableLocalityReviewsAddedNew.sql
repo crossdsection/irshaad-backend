@@ -1,4 +1,4 @@
-DROP TABLE `wv_locality_reviews`
+DROP TABLE `wv_locality_reviews`;
 
 CREATE TABLE `wv_localities` (
   `id` int(11) NOT NULL,
