@@ -25,14 +25,12 @@ class WvPostTableTest extends TestCase
      */
     public $fixtures = [
         'app.wv_post',
-        'app.cats',
-        'app.subcats',
-        'app.ministries',
-        'app.users',
-        'app.countries',
-        'app.states',
-        'app.cities',
-        'app.localities'
+        'app.wv_departments',
+        'app.wv_users',
+        'app.wv_countries',
+        'app.wv_states',
+        'app.wv_cities',
+        'app.wv_localities'
     ];
 
     /**
@@ -43,8 +41,8 @@ class WvPostTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvPost') ? [] : ['className' => WvPostTable::class];
-        $this->WvPost = TableRegistry::get('WvPost', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvPost') ? [] : ['className' => WvPostTable::class];
+        $this->WvPost = TableRegistry::getTableLocator()->get('WvPost', $config);
     }
 
     /**

@@ -56,7 +56,6 @@ class AuthorizationMiddleware
                       throw new Exception(__('Token Expired'));
                     }
                 } catch (Exception $e) {
-                    pr( $e );exit;
                     throw new UnauthorizedException(__('Illegal Token'));
                 }
             } else {

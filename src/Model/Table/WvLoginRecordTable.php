@@ -99,4 +99,13 @@ class WvLoginRecordTable extends Table
       }
       return $return;
     }
+
+    public function getLastLogin( $userId = 0 ){
+      $res = array();
+      if( $userId != 0 ){
+        $loginLog = $this->find()->where([ 'user_id' => $userId ])->max('id')->toArray();
+        $res = $loginLog;
+      }
+      return $res;
+    }
 }

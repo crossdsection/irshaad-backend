@@ -51,15 +51,51 @@ class WvPostController extends AppController
      */
     public function add() {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $wvPost = $this->WvPost->newEntity();
       if ( $this->request->is('post') ) {
-          $wvPost = $this->WvPost->patchEntity($wvPost, $this->request->getData());
-          if ($this->WvPost->save($wvPost)) {
-              $this->Flash->success(__('The wv post has been saved.'));
-
-              return $this->redirect(['action' => 'index']);
+        $saveData = array(); $continue = false;
+        $importantKeys = array( 'department_id', 'country_id', 'state_id', 'city_id', 'locality_id' );
+        foreach( $importantKeys as $key ){
+          if( isset( $this->request->data[ $key ] ) && !empty( $this->request->data[ $key ] ) ){
+            $saveData[ $key ] = $this->request->data[ $key ];
+            $continue = true;
+          } else {
+            $saveData[ $key ] = 0;
           }
-          $this->Flash->error(__('The wv post could not be saved. Please, try again.'));
+        }
+        if( isset( $this->request->data[ 'title' ] ) && !empty( $this->request->data[ 'title' ] ) ){
+          $saveData[ 'title' ] = $this->request->data[ 'title' ];
+        } else {
+          $continue = false;
+        }
+        if( isset( $_POST[ 'userId' ] ) && !empty( $_POST[ 'userId' ] ) ){
+          $saveData[ 'user_id' ] = $_POST[ 'userId' ];
+          $tmp = $this->WvPost->WvUser->WvLoginRecord->getLastLogin( $_POST[ 'userId' ] );
+          $saveData[ 'latitude' ] = $tmp[ 'latitude' ];
+          $saveData[ 'longitude' ] = $tmp[ 'longitude' ];
+        } else {
+          $continue = false;
+        }
+        if( isset( $this->request->data[ 'details' ] ) && !empty( $this->request->data[ 'details' ] ) ){
+          $saveData[ 'details' ] = $this->request->data[ 'details' ];
+        }
+        if( isset( $this->request->data[ 'fileupload' ] ) && !empty( $this->request->data[ 'fileupload' ] ) ){
+          $file = $this->request->data[ 'fileupload' ];
+          $filePath = 'img' . DS . 'upload' . DS . $file['name'];
+          $fileUrl = WWW_ROOT . $filePath;
+          $fileArr = array(
+            'fileurl' => $filePath,
+            'filetype' => $file['type'],
+            'size' => $file['size']
+          );
+          if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
+            $saveData[ 'filejson' ] = json_encode( $fileArr );
+          }
+        }
+        if ( $this->WvPost->savePost( $saveData ) ) {
+          $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array() );
+        } else {
+          $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
+        }
       }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
