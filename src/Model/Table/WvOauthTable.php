@@ -130,8 +130,10 @@ class WvOauthTable extends Table
             'bearerToken' => $bearerToken
           );
           $result['data'] = $response;
-        } else {
+        } else if( !empty( $extractedData ) ) {
           $result['error'] = -1;
+        } else {
+          $result['error'] = 1;
         }
       } else {
         $result['error'] = 1;
