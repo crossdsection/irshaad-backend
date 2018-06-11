@@ -24,13 +24,6 @@ class AuthorizationMiddleware
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next)
     {
-      $response->cors($request)
-        ->allowMethods(['GET', 'POST'])
-        ->allowHeaders(['X-CSRF-Token'])
-        ->allowCredentials()
-        ->exposeHeaders(['Link'])
-        ->maxAge(300)
-        ->build();
       $flagAllow = false;
       $allowedConActions = array();
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'login' );

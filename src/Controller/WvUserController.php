@@ -55,26 +55,30 @@ class WvUserController extends AppController {
      */
     public function login() {
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-        $user = $this->WvUser->find()->where([ 'email' => $_POST['username'] ])->toArray();
-        if( $this->WvUser->checkPassword( $user[0]->password, $_POST['password'] ) ){
-          $res = $this->OAuth->getAccessToken( $user[0]->id );
-          if( $res['error'] == 0 ){
-             $latitude = 0;
-             $longitude = 0;
-             if( isset( $_POST['latitude'] ) && $_POST['latitude'] != 0 ){
-               $latitude = $_POST['latitude'];
-             }
-             if( isset( $_POST['longitude'] ) && $_POST['latitude'] != 0 ){
-               $longitude = $_POST['longitude'];
-             }
-             $userData = array(
-               'user_id'  => $user[0]->id,
-               'latitude' => $latitude,
-               'longitude'=> $longitude
-             );
-             $ret = $this->WvUser->WvLoginRecord->saveLog( $userData );
+        if( isset( $this->request->data['username'] ) && isset( $this->request->data['password'] ) ){
+          $user = $this->WvUser->find()->where([ 'email' => $this->request->data['username'] ])->toArray();
+          if( !empty( $user ) && $this->WvUser->checkPassword( $user[0]->password, $this->request->data['password'] ) ){
+            $res = $this->OAuth->getAccessToken( $user[0]->id );
+            if( $res['error'] == 0 ){
+               $latitude = 0;
+               $longitude = 0;
+               if( isset( $this->request->data['latitude'] ) && $this->request->data['latitude'] != 0 ){
+                 $latitude = $this->request->data['latitude'];
+               }
+               if( isset( $this->request->data['longitude'] ) && $this->request->data['latitude'] != 0 ){
+                 $longitude = $this->request->data['longitude'];
+               }
+               $userData = array(
+                 'user_id'  => $user[0]->id,
+                 'latitude' => $latitude,
+                 'longitude'=> $longitude
+               );
+               $ret = $this->WvUser->WvLoginRecord->saveLog( $userData );
+            }
+            $response = array( 'error' => $res['error'], 'message' => $res['message'], 'data' => $res['data'] );
+          } else {
+            $response = array( 'error' => 1, 'message' => 'Invalid Login', 'data' => array() );
           }
-          $response = array( 'error' => $res['error'], 'message' => $res['message'], 'data' => $res['data'] );
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Login', 'data' => array() );
         }
@@ -85,8 +89,8 @@ class WvUserController extends AppController {
 
     public function getuserinfo(){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      if( isset( $_POST['userId'] ) && !empty( $_POST['userId'] ) ){
-        $user = $this->WvUser->find()->where([ 'id' => $_POST['userId'], 'status' => 1 ])->toArray();
+      if( isset( $this->request->data['userId'] ) && !empty( $this->request->data['userId'] ) ){
+        $user = $this->WvUser->find()->where([ 'id' => $this->request->data['userId'], 'status' => 1 ])->toArray();
         $tmpResponse = array();
         if( isset( $user[0]['firstname'] ) && isset( $user[0]['lastname'] ) ){
           $tmpResponse['name'] = $user[0]['firstname'].' '.$user[0]['lastname'];

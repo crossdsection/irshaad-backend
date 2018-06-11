@@ -8,11 +8,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property int $ministry_id
- * @property int $country_jid
+ * @property int $department_id
+ * @property int $country_id
  * @property int $state_id
  * @property int $city_id
- * @property string $locality_name
+ * @property int $locality_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Ministry $ministry
@@ -33,11 +35,13 @@ class WvFavLocation extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
-        'ministry_id' => true,
-        'country_jid' => true,
+        'department_id' => true,
+        'country_id' => true,
         'state_id' => true,
         'city_id' => true,
-        'locality_name' => true,
+        'locality_id' => true,
+        'created' => true,
+        'modified' => true,
         'user' => true,
         'ministry' => true,
         'state' => true,

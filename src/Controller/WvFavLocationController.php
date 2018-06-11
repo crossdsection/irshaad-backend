@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * WvPost Controller
+ * WvFavLocation Controller
  *
- * @property \App\Model\Table\WvPostTable $WvPost
+ * @property \App\Model\Table\WvFavLocationTable $WvFavLocation
  *
- * @method \App\Model\Entity\WvPost[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\WvFavLocation[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class WvPostController extends AppController
+class WvFavLocationController extends AppController
 {
 
     /**
@@ -21,27 +21,27 @@ class WvPostController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['WvDepartments', 'WvUsers', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
+            'contain' => ['WvUsers', 'WvDepartments', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
         ];
-        $wvPost = $this->paginate($this->WvPost);
+        $wvFavLocation = $this->paginate($this->WvFavLocation);
 
-        $this->set(compact('wvPost'));
+        $this->set(compact('wvFavLocation'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Wv Post id.
+     * @param string|null $id Wv Fav Location id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $wvPost = $this->WvPost->get($id, [
-            'contain' => ['WvDepartments', 'WvUsers', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
+        $wvFavLocation = $this->WvFavLocation->get($id, [
+            'contain' => ['WvUsers', 'WvDepartments', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
         ]);
 
-        $this->set('wvPost', $wvPost);
+        $this->set('wvFavLocation', $wvFavLocation);
     }
 
     /**
@@ -49,7 +49,8 @@ class WvPostController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add() {
+    public function add()
+    {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if ( $this->request->is('post') ) {
         $saveData = array(); $continue = false;
@@ -91,10 +92,8 @@ class WvPostController extends AppController
             $saveData[ 'filejson' ] = json_encode( $fileArr );
           }
         }
-        if ( $continue ){
-          if ( $this->WvPost->savePost( $saveData ) ) {
-            $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array() );
-          } 
+        if ( $this->WvPost->savePost( $saveData ) ) {
+          $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array() );
         } else {
           $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
         }
@@ -107,48 +106,48 @@ class WvPostController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Wv Post id.
+     * @param string|null $id Wv Fav Location id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $wvPost = $this->WvPost->get($id, [
+        $wvFavLocation = $this->WvFavLocation->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $wvPost = $this->WvPost->patchEntity($wvPost, $this->request->getData());
-            if ($this->WvPost->save($wvPost)) {
-                $this->Flash->success(__('The wv post has been saved.'));
+            $wvFavLocation = $this->WvFavLocation->patchEntity($wvFavLocation, $this->request->getData());
+            if ($this->WvFavLocation->save($wvFavLocation)) {
+                $this->Flash->success(__('The wv fav location has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The wv post could not be saved. Please, try again.'));
+            $this->Flash->error(__('The wv fav location could not be saved. Please, try again.'));
         }
-        $wvDepartments = $this->WvPost->WvDepartments->find('list', ['limit' => 200]);
-        $wvUsers = $this->WvPost->WvUsers->find('list', ['limit' => 200]);
-        $wvCountries = $this->WvPost->WvCountries->find('list', ['limit' => 200]);
-        $wvStates = $this->WvPost->WvStates->find('list', ['limit' => 200]);
-        $wvCities = $this->WvPost->WvCities->find('list', ['limit' => 200]);
-        $wvLocalities = $this->WvPost->WvLocalities->find('list', ['limit' => 200]);
-        $this->set(compact('wvPost', 'wvDepartments', 'wvUsers', 'wvCountries', 'wvStates', 'wvCities', 'wvLocalities'));
+        $wvUsers = $this->WvFavLocation->WvUsers->find('list', ['limit' => 200]);
+        $wvDepartments = $this->WvFavLocation->WvDepartments->find('list', ['limit' => 200]);
+        $wvCountries = $this->WvFavLocation->WvCountries->find('list', ['limit' => 200]);
+        $wvStates = $this->WvFavLocation->WvStates->find('list', ['limit' => 200]);
+        $wvCities = $this->WvFavLocation->WvCities->find('list', ['limit' => 200]);
+        $wvLocalities = $this->WvFavLocation->WvLocalities->find('list', ['limit' => 200]);
+        $this->set(compact('wvFavLocation', 'wvUsers', 'wvDepartments', 'wvCountries', 'wvStates', 'wvCities', 'wvLocalities'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Wv Post id.
+     * @param string|null $id Wv Fav Location id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $wvPost = $this->WvPost->get($id);
-        if ($this->WvPost->delete($wvPost)) {
-            $this->Flash->success(__('The wv post has been deleted.'));
+        $wvFavLocation = $this->WvFavLocation->get($id);
+        if ($this->WvFavLocation->delete($wvFavLocation)) {
+            $this->Flash->success(__('The wv fav location has been deleted.'));
         } else {
-            $this->Flash->error(__('The wv post could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The wv fav location could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

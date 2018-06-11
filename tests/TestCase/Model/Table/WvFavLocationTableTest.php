@@ -39,8 +39,8 @@ class WvFavLocationTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvFavLocation') ? [] : ['className' => WvFavLocationTable::class];
-        $this->WvFavLocation = TableRegistry::get('WvFavLocation', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvFavLocation') ? [] : ['className' => WvFavLocationTable::class];
+        $this->WvFavLocation = TableRegistry::getTableLocator()->get('WvFavLocation', $config);
     }
 
     /**
