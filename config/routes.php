@@ -60,12 +60,12 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-    $routes->post(
+    $routes->connect(
         '/auth/login/*',
         ['controller' => 'WvUser', 'action' => 'login']
     );
 
-    $routes->post(
+    $routes->connect(
         '/auth/signup/*',
         ['controller' => 'WvUser', 'action' => 'signup']
     );

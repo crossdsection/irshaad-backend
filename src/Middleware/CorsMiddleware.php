@@ -19,6 +19,9 @@ class CorsMiddleware
      * @return \Psr\Http\Message\ResponseInterface A response
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next) {
+
+
+
       $response = $next($request, $response);
 
       $response = $response->withHeader('Access-Control-Allow-Origin', '*')
@@ -26,7 +29,7 @@ class CorsMiddleware
                           ->withHeader('Access-Control-Allow-Headers', 'Accept, Authorization, Cache-Control, Content-Type, X-Requested-With, x-csrf-token')
                           ->withHeader('Access-Control-Allow-Credentials', 'true')
                           ->withHeader('Access-Control-Max-Age', '3600');
-
+                          
       return $response;
     }
 }
