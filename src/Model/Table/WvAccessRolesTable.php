@@ -93,14 +93,16 @@ class WvAccessRolesTable extends Table
 
     public function getAccessData( $roleIds ){
       $data = array();
-      $accessRoles = $this->find('all')->where([ 'id IN' => $roleIds ])->toArray();
-      $accessLevels = array( '0' => 'r', '1' => 'w', '2' => 'a' );
-      $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvDepartment' );
-      foreach( $accessRoles as $accessRole ){
-        $areaLevel = $accessRole['area_level'];
-        $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );
-        $return = $areaModel->find()->where( [ 'id' => $accessRole['area_level_id'] ] )->toArray();
-        $data[] = array( 'area' => $return[0]->name, 'access_level' => $accessLevels[ $accessRole['access_level'] ]);
+      if( !empty( $roleIds  ) ){
+        $accessRoles = $this->find('all')->where([ 'id IN' => $roleIds ])->toArray();
+        $accessLevels = array( '0' => 'r', '1' => 'w', '2' => 'a' );
+        $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvDepartment' );
+        foreach( $accessRoles as $accessRole ){
+          $areaLevel = $accessRole['area_level'];
+          $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );
+          $return = $areaModel->find()->where( [ 'id' => $accessRole['area_level_id'] ] )->toArray();
+          $data[] = array( 'area' => $return[0]->name, 'access_level' => $accessLevels[ $accessRole['access_level'] ]);
+        }
       }
       return $data;
     }
