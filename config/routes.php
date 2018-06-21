@@ -70,6 +70,16 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'signup']
     );
 
+    $routes->post(
+        '/post/submit/*',
+        ['controller' => 'WvPost', 'action' => 'add']
+    );
+
+    $routes->post(
+        '/files/submit/*',
+        ['controller' => 'WvFileuploads', 'action' => 'add']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']

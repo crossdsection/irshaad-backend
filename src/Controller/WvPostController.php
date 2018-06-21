@@ -52,49 +52,45 @@ class WvPostController extends AppController
     public function add() {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if ( $this->request->is('post') ) {
+        $postData = $this->request->input('json_decode', true);
+        if( !empty( $postData ) ){
+          $postData['userId'] = $this->request->data['userId'];
+        } else {
+          $postData = $this->request->data;
+        }
         $saveData = array(); $continue = false;
         $importantKeys = array( 'department_id', 'country_id', 'state_id', 'city_id', 'locality_id' );
         foreach( $importantKeys as $key ){
-          if( isset( $this->request->data[ $key ] ) && !empty( $this->request->data[ $key ] ) ){
-            $saveData[ $key ] = $this->request->data[ $key ];
+          if( isset( $postData[ $key ] ) && !empty( $postData[ $key ] ) ){
+            $saveData[ $key ] = $postData[ $key ];
             $continue = true;
           } else {
             $saveData[ $key ] = 0;
           }
         }
-        if( isset( $this->request->data[ 'title' ] ) && !empty( $this->request->data[ 'title' ] ) ){
-          $saveData[ 'title' ] = $this->request->data[ 'title' ];
+        if( isset( $postData[ 'title' ] ) && !empty( $postData[ 'title' ] ) ){
+          $saveData[ 'title' ] = $postData[ 'title' ];
         } else {
           $continue = false;
         }
-        if( isset( $_POST[ 'userId' ] ) && !empty( $_POST[ 'userId' ] ) ){
-          $saveData[ 'user_id' ] = $_POST[ 'userId' ];
-          $tmp = $this->WvPost->WvUser->WvLoginRecord->getLastLogin( $_POST[ 'userId' ] );
+        if( isset( $postData[ 'userId' ] ) && !empty( $postData[ 'userId' ] ) ){
+          $saveData[ 'user_id' ] = $postData[ 'userId' ];
+          $tmp = $this->WvPost->WvUser->WvLoginRecord->getLastLogin( $postData[ 'userId' ] );
           $saveData[ 'latitude' ] = $tmp[ 'latitude' ];
           $saveData[ 'longitude' ] = $tmp[ 'longitude' ];
         } else {
           $continue = false;
         }
-        if( isset( $this->request->data[ 'details' ] ) && !empty( $this->request->data[ 'details' ] ) ){
-          $saveData[ 'details' ] = $this->request->data[ 'details' ];
+        if( isset( $postData[ 'details' ] ) && !empty( $postData[ 'details' ] ) ){
+          $saveData[ 'details' ] = $postData[ 'details' ];
         }
-        if( isset( $this->request->data[ 'fileupload' ] ) && !empty( $this->request->data[ 'fileupload' ] ) ){
-          $file = $this->request->data[ 'fileupload' ];
-          $filePath = 'img' . DS . 'upload' . DS . $file['name'];
-          $fileUrl = WWW_ROOT . $filePath;
-          $fileArr = array(
-            'fileurl' => $filePath,
-            'filetype' => $file['type'],
-            'size' => $file['size']
-          );
-          if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
-            $saveData[ 'filejson' ] = json_encode( $fileArr );
-          }
+        if( !empty( $postData[ 'filejson' ] ) ){
+          $saveData[ 'filejson' ] = $postData[ 'filejson' ];
         }
         if ( $continue ){
           if ( $this->WvPost->savePost( $saveData ) ) {
             $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array() );
-          } 
+          }
         } else {
           $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
         }
