@@ -148,11 +148,11 @@ class WvPostTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
-        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
-        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
-        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
-        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
+        // $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
+        // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        // $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        // $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        // $rules->add($rules->existsIn(['city_id'], 'WvCities'));
         // $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
 
         return $rules;
@@ -164,7 +164,8 @@ class WvPostTable extends Table
         $post = TableRegistry::get('WvPost');
         $entity = $post->newEntity();
         $entity = $post->patchEntity( $entity, $postData );
-        if( $post->save( $entity ) ){
+        $record = $post->save( $entity );
+        if( $record->id ){
           $return = true;
         }
       }

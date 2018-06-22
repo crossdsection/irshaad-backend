@@ -21,19 +21,23 @@ class WvUserController extends AppController {
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
         $userData = array();
         $postKeys = array('email', 'password','firstName','lastName','latitude','longitude','gender','phone','certificate');
-        if ( !empty( $this->request->data ) ){
+        $postData = $this->request->input('json_decode', true);
+        if( empty( $postData ) ){
+          $postData = $this->request->data;
+        }
+        if ( !empty( $postData ) ){
           foreach( $postKeys as $postKey ){
-            if( isset( $this->request->data[ $postKey ] ) && !empty( $this->request->data[ $postKey ] ) ){
+            if( isset( $postData[ $postKey ] ) && !empty( $postData[ $postKey ] ) ){
               $newKey = strtolower( $postKey );
               if( $postKey == 'certificate' ){
-                $file = $this->request->data[ $postKey ];
+                $file = $postData[ $postKey ];
                 $filePath = 'img' . DS . 'upload' . DS . $file['name'];
                 $fileUrl = WWW_ROOT . $filePath;
                 if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
                   $userData[ $newKey ] = $filePath;
                 }
               } else {
-                $userData[ $newKey ] = $this->request->data[ $postKey ];
+                $userData[ $newKey ] = $postData[ $postKey ];
               }
             }
           }
@@ -55,18 +59,22 @@ class WvUserController extends AppController {
      */
     public function login() {
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-        if( isset( $this->request->data['username'] ) && isset( $this->request->data['password'] ) ){
-          $user = $this->WvUser->find()->where([ 'email' => $this->request->data['username'] ])->toArray();
-          if( !empty( $user ) && $this->WvUser->checkPassword( $user[0]->password, $this->request->data['password'] ) ){
+        $postData = $this->request->input('json_decode', true);
+        if( empty( $postData ) ){
+          $postData = $this->request->data;
+        }
+        if( isset( $postData['username'] ) && isset( $postData['password'] ) ){
+          $user = $this->WvUser->find()->where([ 'email' => $postData['username'] ])->toArray();
+          if( !empty( $user ) && $this->WvUser->checkPassword( $user[0]->password, $postData['password'] ) ){
             $res = $this->OAuth->getAccessToken( $user[0]->id );
             if( $res['error'] == 0 ){
                $latitude = 0;
                $longitude = 0;
-               if( isset( $this->request->data['latitude'] ) && $this->request->data['latitude'] != 0 ){
-                 $latitude = $this->request->data['latitude'];
+               if( isset( $postData['latitude'] ) && $postData['latitude'] != 0 ){
+                 $latitude = $postData['latitude'];
                }
-               if( isset( $this->request->data['longitude'] ) && $this->request->data['latitude'] != 0 ){
-                 $longitude = $this->request->data['longitude'];
+               if( isset( $postData['longitude'] ) && $postData['latitude'] != 0 ){
+                 $longitude = $postData['longitude'];
                }
                $userData = array(
                  'user_id'  => $user[0]->id,
@@ -89,8 +97,12 @@ class WvUserController extends AppController {
 
     public function getuserinfo(){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      if( isset( $this->request->data['userId'] ) && !empty( $this->request->data['userId'] ) ){
-        $user = $this->WvUser->find()->where([ 'id' => $this->request->data['userId'], 'status' => 1 ])->toArray();
+      $postData = $this->request->input('json_decode', true);
+      if( empty( $postData ) ){
+        $postData = $this->request->data;
+      }
+      if( isset( $postData['userId'] ) && !empty( $postData['userId'] ) ){
+        $user = $this->WvUser->find()->where([ 'id' => $postData['userId'], 'status' => 1 ])->toArray();
         $tmpResponse = array();
         if( isset( $user[0]['firstname'] ) && isset( $user[0]['lastname'] ) ){
           $tmpResponse['name'] = $user[0]['firstname'].' '.$user[0]['lastname'];
