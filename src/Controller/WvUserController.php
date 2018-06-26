@@ -107,12 +107,13 @@ class WvUserController extends AppController {
         if( isset( $user[0]['firstname'] ) && isset( $user[0]['lastname'] ) ){
           $tmpResponse['name'] = $user[0]['firstname'].' '.$user[0]['lastname'];
         }
-        $directKeys = array( 'gender', 'email', 'phone', 'address', 'latitude', 'longitude' );
+        $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude' );
         foreach( $directKeys as $key ){
           if( isset( $user[0][ $key ] ) ){
             $tmpResponse[ $key ] = $user[0][ $key ];
           }
         }
+        $tmpResponse[ 'profilepic' ] = ( !isset( $tmpResponse[ 'profilepic' ] ) or $tmpResponse[ 'profilepic' ] == null or $tmpResponse[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $tmpResponse[ 'profilepic' ];
         if( isset( $user[0]['access_role_ids'] ) ){
           $accessRoles = $this->WvUser->WvAccessRoles->getAccessData( json_decode( $user[0]['access_role_ids'] ) );
           $tmpResponse[ 'accessRoles' ] = $accessRoles;
