@@ -110,7 +110,7 @@ class WvPostController extends AppController
     public function getfeed($id = null)
     {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $data = array( 'discussion' => array(), 'courts' => array(), 'news' => array() );
+      $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
       $wvPost = $this->WvPost->find('all', ['limit' => 200]);
       foreach ($wvPost as $key => $value) {
          $data[ $value->post_type ][] = $value;
