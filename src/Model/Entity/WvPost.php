@@ -22,6 +22,7 @@ use Cake\ORM\Entity;
  * @property string $state_id
  * @property string $city_id
  * @property string $locality_id
+ * @property string $post_type
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -60,6 +61,7 @@ class WvPost extends Entity
         'state_id' => true,
         'city_id' => true,
         'locality_id' => true,
+        'post_type' => true,
         'created' => true,
         'modified' => true,
         'wv_department' => true,

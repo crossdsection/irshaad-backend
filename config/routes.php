@@ -85,6 +85,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'getuserinfo']
     );
 
+    $routes->get(
+        '/post/get/*',
+        ['controller' => 'WvPost', 'action' => 'getfeed']
+    );
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

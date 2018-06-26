@@ -136,6 +136,11 @@ class WvPostTable extends Table
             ->requirePresence('longitude', 'create')
             ->notEmpty('longitude');
 
+        $validator
+            ->scalar('post_type')
+            ->maxLength('post_type', 100)
+            ->notEmpty('post_type');
+
         return $validator;
     }
 

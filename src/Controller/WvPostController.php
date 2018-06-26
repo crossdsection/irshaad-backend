@@ -107,27 +107,18 @@ class WvPostController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function getfeed($id = null)
     {
-        $wvPost = $this->WvPost->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $wvPost = $this->WvPost->patchEntity($wvPost, $this->request->getData());
-            if ($this->WvPost->save($wvPost)) {
-                $this->Flash->success(__('The wv post has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The wv post could not be saved. Please, try again.'));
-        }
-        $wvDepartments = $this->WvPost->WvDepartments->find('list', ['limit' => 200]);
-        $wvUsers = $this->WvPost->WvUsers->find('list', ['limit' => 200]);
-        $wvCountries = $this->WvPost->WvCountries->find('list', ['limit' => 200]);
-        $wvStates = $this->WvPost->WvStates->find('list', ['limit' => 200]);
-        $wvCities = $this->WvPost->WvCities->find('list', ['limit' => 200]);
-        $wvLocalities = $this->WvPost->WvLocalities->find('list', ['limit' => 200]);
-        $this->set(compact('wvPost', 'wvDepartments', 'wvUsers', 'wvCountries', 'wvStates', 'wvCities', 'wvLocalities'));
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $data = array( 'discussion' => array(), 'courts' => array(), 'news' => array() );
+      $wvPost = $this->WvPost->find('all', ['limit' => 200]);
+      foreach ($wvPost as $key => $value) {
+         $data[ $value->post_type ][] = $value;
+      }
+      $response['data'] = $data;
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
     }
 
     /**
