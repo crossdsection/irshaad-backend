@@ -54,14 +54,15 @@ class WvFileuploadsController extends AppController
           if( isset( $this->request->data['file'] ) && !empty( $this->request->data['file'] ) ){
             $file = $this->request->data['file'];
             $filePath = 'img' . DS . 'upload' . DS . $file['name'];
-            $fileUrl = 'webroot' . DS . $filePath;
+            $fileUrl = WWW_ROOT . DS . $filePath;
+            $localFileUrl = 'webroot' . DS . $filePath;
             $fileArr = array(
               'fileurl' => $filePath,
               'filetype' => $file['type'],
               'size' => $file['size']
             );
             if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
-              $fileData[] = array( 'filepath' => $fileUrl, 'filetype' => $file['type'] );
+              $fileData[] = array( 'filepath' => $localFileUrl, 'filetype' => $file['type'] );
             }
           }
           $lastInsertId = $this->WvFileuploads->saveFiles($fileData);

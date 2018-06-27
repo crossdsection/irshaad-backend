@@ -85,6 +85,9 @@ class WvPostController extends AppController
         if( isset( $postData[ 'details' ] ) && !empty( $postData[ 'details' ] ) ){
           $saveData[ 'details' ] = $postData[ 'details' ];
         }
+        if( isset( $postData[ 'postType' ] ) && !empty( $postData[ 'postType' ] ) ){
+          $saveData[ 'post_type' ] = $postData[ 'postType' ];
+        }
         if( !empty( $postData[ 'filejson' ] ) ){
           $saveData[ 'filejson' ] = json_encode( $postData[ 'filejson' ] );
         }
