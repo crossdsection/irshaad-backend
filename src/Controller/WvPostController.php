@@ -113,13 +113,15 @@ class WvPostController extends AppController
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
       $wvPost = $this->WvPost->find('all', ['limit' => 200]);
-      $fileuploadIds = array();
+      $fileuploadIds = array(); $userIds = array();
       if( !empty( $wvPost ) ){
         foreach ( $wvPost as $key => $value ) {
            $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
+           $userIds[] = $value->user_id;
         }
         $this->WvFileuploads = TableRegistry::get('WvFileuploads');
         $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
+        $userInfos = $this->WvPost->WvUser->getUserInfo( $userIds );
         if( !empty( $fileResponse['data']  ) ){
           foreach ( $wvPost as $key => $value ) {
             $fileJSON = json_decode( $value->filejson );
@@ -128,6 +130,8 @@ class WvPostController extends AppController
               $value['files'][] = $fileResponse['data'][ $id ];
             }
             unset( $value['filejson'] );
+            $value['user'] = $userInfos[ $value['user_id'] ];
+            unset( $value['user_id'] );
             $data[ $value->post_type ][] = $value;
           }
         }

@@ -221,4 +221,30 @@ class WvUserTable extends Table
       $response = $entity->_checkPassword( $password, $storedPassword );
       return $response;
     }
+
+    public function getUserInfo( $userIds = array() ){
+      $response = array();
+      if( !empty( $userIds ) ){
+        $users = $this->find()->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
+        foreach( $users as $index => $user ){
+          $tmpResponse = array();
+          if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
+            $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
+          }
+          $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude' );
+          foreach( $directKeys as $key ){
+            if( isset( $user[ $key ] ) ){
+              $tmpResponse[ $key ] = $user[ $key ];
+            }
+          }
+          $tmpResponse[ 'profilepic' ] = ( !isset( $tmpResponse[ 'profilepic' ] ) or $tmpResponse[ 'profilepic' ] == null or $tmpResponse[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $tmpResponse[ 'profilepic' ];
+          if( isset( $user['access_role_ids'] ) ){
+            $accessRoles = $this->WvAccessRoles->getAccessData( json_decode( $user['access_role_ids'] ) );
+            $tmpResponse[ 'accessRoles' ] = $accessRoles;
+          }
+          $response[ $user->id ] = $tmpResponse;
+        }
+      }
+      return $response;
+    }
 }

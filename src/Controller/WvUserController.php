@@ -96,32 +96,17 @@ class WvUserController extends AppController {
     }
 
     public function getuserinfo(){
-      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $postData = $this->request->input('json_decode', true);
-      if( empty( $postData ) ){
-        $postData = $this->request->data;
-      }
-      if( isset( $postData['userId'] ) && !empty( $postData['userId'] ) ){
-        $user = $this->WvUser->find()->where([ 'id' => $postData['userId'], 'status' => 1 ])->toArray();
-        $tmpResponse = array();
-        if( isset( $user[0]['firstname'] ) && isset( $user[0]['lastname'] ) ){
-          $tmpResponse['name'] = $user[0]['firstname'].' '.$user[0]['lastname'];
+        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+        $postData = $this->request->input('json_decode', true);
+        if( empty( $postData ) ){
+          $postData = $this->request->data;
         }
-        $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude' );
-        foreach( $directKeys as $key ){
-          if( isset( $user[0][ $key ] ) ){
-            $tmpResponse[ $key ] = $user[0][ $key ];
-          }
+        if( isset( $postData['userId'] ) && !empty( $postData['userId'] ) ){
+          $data = $this->WvUser->getUserInfo( $postData['userId'] );
+          $response['data'] = array_values( $data );
         }
-        $tmpResponse[ 'profilepic' ] = ( !isset( $tmpResponse[ 'profilepic' ] ) or $tmpResponse[ 'profilepic' ] == null or $tmpResponse[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $tmpResponse[ 'profilepic' ];
-        if( isset( $user[0]['access_role_ids'] ) ){
-          $accessRoles = $this->WvUser->WvAccessRoles->getAccessData( json_decode( $user[0]['access_role_ids'] ) );
-          $tmpResponse[ 'accessRoles' ] = $accessRoles;
-        }
-        $response['data'] = $tmpResponse;
-      }
-      $this->response = $this->response->withType('application/json')
-                                       ->withStringBody( json_encode( $response ) );
-      return $this->response;
+        $this->response = $this->response->withType('application/json')
+                                         ->withStringBody( json_encode( $response ) );
+        return $this->response;
     }
 }
