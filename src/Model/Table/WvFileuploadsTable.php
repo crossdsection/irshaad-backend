@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvFileuploads Model
@@ -80,5 +81,20 @@ class WvFileuploadsTable extends Table
         }
       }
       return $return;
+    }
+
+    public function getfileurls( $fileUploadIds = array() ){
+      $response = array( 'error' => 0, 'data' => array() );
+      if( !empty( $fileUploadIds ) ){
+        $data = array();
+        $wvFiles = $this->find( 'all', [
+          'fields' => [ 'id', 'filepath', 'filetype' ]
+        ])->where([ 'id IN' => $fileUploadIds ])->toArray();
+        foreach ( $wvFiles as $key => $file ) {
+          $data[ $file->id ] = array( 'filepath' => $file->filepath, 'filetype' => $file->filetype );
+        }
+        $response['data'] = $data;
+      }
+      return $response;
     }
 }

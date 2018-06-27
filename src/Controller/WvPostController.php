@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 /**
  * WvPost Controller
  *
@@ -112,10 +113,28 @@ class WvPostController extends AppController
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
       $wvPost = $this->WvPost->find('all', ['limit' => 200]);
-      foreach ($wvPost as $key => $value) {
-         $data[ $value->post_type ][] = $value;
+      $fileuploadIds = array();
+      if( !empty( $wvPost ) ){
+        foreach ( $wvPost as $key => $value ) {
+           $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
+        }
+        $this->WvFileuploads = TableRegistry::get('WvFileuploads');
+        $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
+        if( !empty( $fileResponse['data']  ) ){
+          foreach ( $wvPost as $key => $value ) {
+            $fileJSON = json_decode( $value->filejson );
+            $value['files'] = array();
+            foreach( $fileJSON as $key => $id ){
+              $value['files'][] = $fileResponse['data'][ $id ];
+            }
+            unset( $value['filejson'] );
+            $data[ $value->post_type ][] = $value;
+          }
+        }
+        $response['data'] = $data;
+      } else {
+        $response = array( 'error' => 0, 'message' => 'Your Feed is Empty', 'data' => array() );
       }
-      $response['data'] = $data;
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
