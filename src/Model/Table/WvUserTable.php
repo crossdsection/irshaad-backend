@@ -177,7 +177,7 @@ class WvUserTable extends Table
         $validator
             ->scalar('certificate')
             ->maxLength('certificate', 512)
-            ->requirePresence('certificate', 'create')
+            // ->requirePresence('certificate', 'create')
             ->notEmpty('certificate');
 
         return $validator;
