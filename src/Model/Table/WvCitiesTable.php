@@ -40,6 +40,8 @@ class WvCitiesTable extends Table
             'foreignKey' => 'state_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->hasMany('WvLocalities');
     }
 
     /**
@@ -73,7 +75,12 @@ class WvCitiesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        $rules->add($rules->existsIn(['city_id'], 'WvStates'));
 
         return $rules;
+    }
+
+    public function findCities(){
+      return true;
     }
 }

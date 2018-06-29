@@ -105,4 +105,8 @@ class WvFavLocationTable extends Table
 
         return $rules;
     }
+
+    public function addLocation(){
+      return true;
+    }
 }

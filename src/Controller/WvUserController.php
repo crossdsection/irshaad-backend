@@ -41,6 +41,26 @@ class WvUserController extends AppController {
               }
             }
           }
+          $localityCheck = false;
+          $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude' );
+          $localityData = array();
+          foreach ( $localityCheckArray as $key => $value ) {
+            if( isset( $postData[ $value ] ) && ( $postData[ $value ] != '' or $postData[ $value ] != 0 ) ){
+              $localityData[ $value ] = $postData[ $value ];
+              $localityCheck = true;
+            } else {
+              $localityCheck = false;
+              break;
+            }
+          }
+          if( $localityCheck ){
+            $response = $this->WvUser->WvCities->WvLocalities->findLocality( $localityData );
+            if( $response['error'] == 0 ){
+              $userData['city_id'] = $response['data']['city_id'];
+              $userData['state_id'] = $response['data']['city_id'];
+              $userData['country_id'] = $response['data']['country_id'];
+            }
+          }
           if( !empty( $userData ) && $this->WvUser->add( $userData ) ){
             $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
           } else {
@@ -82,6 +102,27 @@ class WvUserController extends AppController {
                  'longitude'=> $longitude
                );
                $ret = $this->WvUser->WvLoginRecord->saveLog( $userData );
+               $localityCheck = false;
+               $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude' );
+               $localityData = array();
+               foreach ( $localityCheckArray as $key => $value ) {
+                 if( isset( $postData[ $value ] ) && ( $postData[ $value ] != '' or $postData[ $value ] != 0 ) ){
+                   $localityData[ $value ] = $postData[ $value ];
+                   $localityCheck = true;
+                 } else {
+                   $localityCheck = false;
+                   break;
+                 }
+               }
+               if( $localityCheck ){
+                 $response = $this->WvUser->WvCities->WvLocalities->findLocality( $localityData );
+                 pr( $response );exit;
+                 if( $response['error'] == 0 ){
+                   $userData['city_id'] = $response['data']['city_id'];
+                   $userData['state_id'] = $response['data']['city_id'];
+                   $userData['country_id'] = $response['data']['country_id'];
+                 }
+               }
             }
             $response = array( 'error' => $res['error'], 'message' => $res['message'], 'data' => $res['data'] );
           } else {

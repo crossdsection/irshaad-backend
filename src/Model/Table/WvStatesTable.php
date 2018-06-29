@@ -76,4 +76,8 @@ class WvStatesTable extends Table
 
         return $rules;
     }
+
+    public function findStates(){
+      return true;
+    }
 }

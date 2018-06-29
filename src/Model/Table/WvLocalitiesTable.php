@@ -85,4 +85,24 @@ class WvLocalitiesTable extends Table
 
         return $rules;
     }
+
+    /*
+     * data['locality']
+     * data['city']
+     * data['latitude']
+     * data['longitude']
+     * response => ( 'locality_id', 'city_id', 'state_id', 'country_id' )
+     */
+    public function findLocality( $data ){
+      $data = $this->find('all')->where([ 'locality LIKE' => '%'.$data['locality'].'%' ]);
+      foreach ($data as $key => $value) {
+        pr( $value );
+      }
+      pr( $data );exit;
+      return true;
+    }
+
+    public function addLocality(){
+      return true;
+    }
 }
