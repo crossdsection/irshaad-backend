@@ -48,10 +48,10 @@ class WvCountriesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('sortname')
-            ->maxLength('sortname', 3)
-            ->requirePresence('sortname', 'create')
-            ->notEmpty('sortname');
+            ->scalar('country_code')
+            ->maxLength('country_code', 3)
+            ->requirePresence('country_code', 'create')
+            ->notEmpty('country_code');
 
         $validator
             ->scalar('name')
@@ -65,5 +65,22 @@ class WvCountriesTable extends Table
             ->notEmpty('phonecode');
 
         return $validator;
+    }
+
+    public function findCountryById( $countryIds, $data = array() ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $countryIds ) ){
+        $countryData = array();
+        $countries = $this->find('all')->where([ 'id IN' => $countryIds ])->toArray();
+        foreach ( $countries as $key => $value ) {
+          if ( !empty( $data ) && strpos( $value['name'], $data['country'] ) !== false ) {
+            $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value['country_code'] );
+          } else if( empty( $data ) ){
+            $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value['country_code'] );
+          }
+        }
+        $response['data'] = array( 'countries' => $countryData );
+      }
+      return $response;
     }
 }

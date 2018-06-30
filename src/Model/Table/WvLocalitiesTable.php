@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -39,7 +40,7 @@ class WvLocalitiesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Cities', [
+        $this->belongsTo('WvCities', [
             'foreignKey' => 'city_id',
             'joinType' => 'INNER'
         ]);
@@ -55,7 +56,7 @@ class WvLocalitiesTable extends Table
     {
         $validator
             ->integer('id')
-            ->requirePresence('id', 'create')
+            // ->requirePresence('id', 'create')
             ->notEmpty('id');
 
         $validator
@@ -66,7 +67,7 @@ class WvLocalitiesTable extends Table
 
         $validator
             ->boolean('active')
-            ->requirePresence('active', 'create')
+            // ->requirePresence('active', 'create')
             ->notEmpty('active');
 
         return $validator;
@@ -81,7 +82,7 @@ class WvLocalitiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['city_id'], 'Cities'));
+        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
 
         return $rules;
     }
@@ -91,18 +92,57 @@ class WvLocalitiesTable extends Table
      * data['city']
      * data['latitude']
      * data['longitude']
+     * data['country']
      * response => ( 'locality_id', 'city_id', 'state_id', 'country_id' )
      */
     public function findLocality( $data ){
-      $data = $this->find('all')->where([ 'locality LIKE' => '%'.$data['locality'].'%' ]);
-      foreach ($data as $key => $value) {
-        pr( $value );
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $data ) && isset( $data['locality'] ) && isset( $data['city'] ) && isset( $data['latitude'] ) && isset( $data['longitude'] ) ){
+        $localities = $this->find('all')->where([ 'locality LIKE' => '%'.$data['locality'].'%' ])->toArray();
+        $cityRes = $this->WvCities->findCities( $data );
+        if( empty( $localities ) && !empty( $cityRes['data'] ) ){
+          unset( $data['city'] );
+          $data['city_id'] = $cityRes['data']['cities'][0]['city_id'];
+          $returnId = $this->addLocality( $data );
+          if ( $returnId != 0 ){
+            $response['data'] = $cityRes['data'];
+            $response['data']['localities'] = array( array( 'locality_id' => $returnId, 'locality_name' => $data['locality'], 'city_id' => $data['city_id'], 'latitude' => $data['latitude'], 'longitude' => $data['latitude'] ) );
+          } else {
+            $response['error'] = 1;
+          }
+        } else {
+          $response['data'] = $cityRes['data'];
+          $response['data']['localities'] = array();
+          foreach ($localities as $key => $locality) {
+            $response['data']['localities'][] = array(
+              'locality_id' => $locality['id'], 'locality_name' => $locality['locality'], 'city_id' => $locality['city_id'],
+              'latitude' => $locality['latitude'], 'longitude' => $locality['latitude']
+            );
+          }
+        }
+      } else {
+        $response['error'] = 1;
       }
-      pr( $data );exit;
-      return true;
+      return $response;
     }
 
-    public function addLocality(){
-      return true;
+    /*
+     * data['locality']
+     * data['city_id']
+     * data['latitude']
+     * data['longitude']
+     */
+    public function addLocality( $data ){
+      $return = 0;
+      if( !empty( $data ) ){
+        $locality = TableRegistry::get('WvLocalities');
+        $entity = $locality->newEntity();
+        $entity = $locality->patchEntity( $entity, $data );
+        $record = $locality->save( $entity );
+        if( $record->id ){
+          $return = $record->id;
+        }
+      }
+      return $return;
     }
 }

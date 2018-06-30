@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * WvCountry Entity
  *
  * @property int $id
- * @property string $sortname
+ * @property string $country_code
  * @property string $name
  * @property int $phonecode
  */
@@ -24,7 +24,7 @@ class WvCountry extends Entity
      * @var array
      */
     protected $_accessible = [
-        'sortname' => true,
+        'country_code' => true,
         'name' => true,
         'phonecode' => true
     ];

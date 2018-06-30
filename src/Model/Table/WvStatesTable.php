@@ -77,7 +77,26 @@ class WvStatesTable extends Table
         return $rules;
     }
 
-    public function findStates(){
-      return true;
+    public function findStateById( $stateIds, $data = array() ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $stateIds ) ){
+        $statesData = array();
+        $countryData = array();
+        $states = $this->find('all')->where([ 'id IN' => $stateIds ])->toArray();
+        $countryIds = array();
+        foreach ($states as $key => $value) {
+          if ( !empty( $data ) && strpos( $value['name'], $data['state'] ) !== false ) {
+            $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
+            $countryIds[] = $value['country_id'];
+          } else if( empty( $data ) ){
+            $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
+            $countryIds[] = $value['country_id'];
+          }
+        }
+        $countryRes = $this->WvCountries->findCountryById( $countryIds, $data );
+        $response['data'] = $countryRes['data'];
+        $response['data']['states'] = $statesData;
+      }
+      return $response;
     }
 }

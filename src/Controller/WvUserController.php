@@ -103,7 +103,7 @@ class WvUserController extends AppController {
                );
                $ret = $this->WvUser->WvLoginRecord->saveLog( $userData );
                $localityCheck = false;
-               $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude' );
+               $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude', 'state', 'country' );
                $localityData = array();
                foreach ( $localityCheckArray as $key => $value ) {
                  if( isset( $postData[ $value ] ) && ( $postData[ $value ] != '' or $postData[ $value ] != 0 ) ){
@@ -115,12 +115,17 @@ class WvUserController extends AppController {
                  }
                }
                if( $localityCheck ){
-                 $response = $this->WvUser->WvCities->WvLocalities->findLocality( $localityData );
-                 pr( $response );exit;
-                 if( $response['error'] == 0 ){
-                   $userData['city_id'] = $response['data']['city_id'];
-                   $userData['state_id'] = $response['data']['city_id'];
-                   $userData['country_id'] = $response['data']['country_id'];
+                 $localeRes = $this->WvUser->WvCities->WvLocalities->findLocality( $localityData );
+                 if( $localeRes['error'] == 0 ){
+                   foreach ( $localeRes['data'] as $key => $locale ) {
+                     if( isset( $locale[0] ) && isset( $locale[0]['city_id'] ) )
+                      $userData['city_id'] = $locale[0]['city_id'];
+                     if( isset( $locale[0] ) && isset( $locale[0]['state_id'] ) )
+                      $userData['state_id'] = $locale[0]['state_id'];
+                     if( isset( $locale[0] ) && isset( $locale[0]['country_id'] ) )
+                      $userData['country_id'] = $locale[0]['country_id'];
+                   }
+                   $res['data']['locale'] = $localeRes['data'];
                  }
                }
             }

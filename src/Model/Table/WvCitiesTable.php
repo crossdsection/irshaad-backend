@@ -75,12 +75,36 @@ class WvCitiesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['state_id'], 'WvStates'));
-        $rules->add($rules->existsIn(['city_id'], 'WvStates'));
+        // $rules->add($rules->existsIn(['city_id'], 'WvStates'));
 
         return $rules;
     }
 
-    public function findCities(){
-      return true;
+    /*
+     * data['city']
+     * data['country']
+     * response => ( 'city_id', 'state_id', 'country_id' )
+     */
+    public function findCities( $data ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $data ) && isset( $data['city'] ) ){
+        $city = $this->find('all')->where([ 'name LIKE' => '%'.$data['city'].'%' ])->toArray();
+        if( !empty( $city ) ){
+          $stateIds = array();
+          foreach ( $city as $key => $value ) {
+            if ( !empty( $data ) && strpos( $value['name'], $data['city'] ) !== false ) {
+              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+              $stateIds[] = $value->state_id;
+            } else if( empty( $data ) ){
+              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+              $stateIds[] = $value->state_id;
+            }
+          }
+          $statesRes = $this->WvStates->findStateById( $stateIds, $data );
+          $response['data'] = $statesRes['data'];
+          $response['data']['cities'] = $cityData;
+        }
+      }
+      return $response;
     }
 }
