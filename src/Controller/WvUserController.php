@@ -143,12 +143,12 @@ class WvUserController extends AppController {
 
     public function getuserinfo(){
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-        $postData = $this->request->input('json_decode', true);
-        if( empty( $postData ) ){
-          $postData = $this->request->data;
+        $getData = $this->request->input('json_decode', true);
+        if( empty( $getData ) ){
+          $getData['userId'] = $_GET['userId'];
         }
-        if( isset( $postData['userId'] ) && !empty( $postData['userId'] ) ){
-          $data = $this->WvUser->getUserInfo( $postData['userId'] );
+        if( isset( $getData['userId'] ) && !empty( $getData['userId'] ) ){
+          $data = $this->WvUser->getUserInfo( $getData['userId'] );
           $response['data'] = array_values( $data );
         }
         $this->response = $this->response->withType('application/json')

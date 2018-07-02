@@ -125,18 +125,20 @@ class WvPostController extends AppController
         $this->WvFileuploads = TableRegistry::get('WvFileuploads');
         $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
         $userInfos = $this->WvPost->WvUser->getUserInfo( $userIds );
-        if( !empty( $fileResponse['data']  ) ){
-          foreach ( $wvPost as $key => $value ) {
+        foreach ( $wvPost as $key => $value ) {
+          if( !empty( $fileResponse['data']  ) ){
             $fileJSON = json_decode( $value->filejson );
             $value['files'] = array();
             foreach( $fileJSON as $key => $id ){
-              $value['files'][] = $fileResponse['data'][ $id ];
+              if( isset( $fileResponse['data'][ $id ] ) ){
+                $value['files'][] = $fileResponse['data'][ $id ];
+              }
             }
-            unset( $value['filejson'] );
-            $value['user'] = $userInfos[ $value['user_id'] ];
-            unset( $value['user_id'] );
-            $data[ $value->post_type ][] = $value;
           }
+          unset( $value['filejson'] );
+          $value['user'] = $userInfos[ $value['user_id'] ];
+          unset( $value['user_id'] );
+          $data[ $value->post_type ][] = $value;
         }
         $response['data'] = $data;
       } else {
