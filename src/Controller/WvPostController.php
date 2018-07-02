@@ -22,7 +22,7 @@ class WvPostController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['WvDepartments', 'WvUsers', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
+            'contain' => ['WvDepartments', 'WvUser', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
         ];
         $wvPost = $this->paginate($this->WvPost);
 
@@ -39,7 +39,7 @@ class WvPostController extends AppController
     public function view($id = null)
     {
         $wvPost = $this->WvPost->get($id, [
-            'contain' => ['WvDepartments', 'WvUsers', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
+            'contain' => ['WvDepartments', 'WvUser', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
         ]);
 
         $this->set('wvPost', $wvPost);
@@ -55,9 +55,9 @@ class WvPostController extends AppController
       if ( $this->request->is('post') ) {
         $postData = $this->request->input('json_decode', true);
         if( !empty( $postData ) ){
-          $postData['userId'] = $this->request->data['userId'];
+          $postData['userId'] = $_POST['userId'];
         } else {
-          $postData = $this->request->data;
+          $postData = $this->request->getData();
         }
         $saveData = array(); $continue = false;
         $importantKeys = array( 'department_id', 'country_id', 'state_id', 'city_id', 'locality_id' );

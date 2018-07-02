@@ -17,8 +17,7 @@ class WvPostControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.wv_post',
-        'app.wv_departments',
-        'app.wv_users',
+        'app.wv_user',
         'app.wv_countries',
         'app.wv_states',
         'app.wv_cities',

@@ -44,7 +44,7 @@ class AuthorizationMiddleware
                     $secretKey = Configure::read('jwt_secret_key');
                     $token = JWT::decode($jwt, $secretKey, array('HS512'));
                     if( $token->expiration_time >= time() ){
-                      $request->data['userId'] = $token->user_id;
+                      $_POST['userId'] = $token->user_id;
                       $response = $next($request, $response);
                     } else {
                       throw new Exception(__('Token Expired'));

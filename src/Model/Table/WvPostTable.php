@@ -97,7 +97,7 @@ class WvPostTable extends Table
 
         $validator
             ->scalar('title')
-            // ->maxLength('title', 100)
+            ->maxLength('title', 100)
             ->requirePresence('title', 'create')
             ->notEmpty('title');
 
@@ -121,8 +121,7 @@ class WvPostTable extends Table
         $validator
             ->scalar('location')
             ->maxLength('location', 100)
-            // ->requirePresence('location', 'create')
-            ->notEmpty('location');
+            ->allowEmpty('location');
 
         $validator
             ->scalar('latitude')
@@ -138,7 +137,7 @@ class WvPostTable extends Table
 
         $validator
             ->scalar('post_type')
-            ->maxLength('post_type', 100)
+            ->requirePresence('post_type', 'create')
             ->notEmpty('post_type');
 
         return $validator;

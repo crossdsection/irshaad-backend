@@ -25,8 +25,7 @@ class WvPostTableTest extends TestCase
      */
     public $fixtures = [
         'app.wv_post',
-        'app.wv_departments',
-        'app.wv_users',
+        'app.wv_user',
         'app.wv_countries',
         'app.wv_states',
         'app.wv_cities',
@@ -83,6 +82,16 @@ class WvPostTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test savePost method
+     *
+     * @return void
+     */
+    public function testSavePost()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

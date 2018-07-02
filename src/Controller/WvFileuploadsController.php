@@ -51,8 +51,8 @@ class WvFileuploadsController extends AppController
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
         if ($this->request->is('post')) {
           $fileData = array();
-          if( isset( $this->request->data['file'] ) && !empty( $this->request->data['file'] ) ){
-            $file = $this->request->data['file'];
+          if( !empty( $this->request->getData('file') ) ){
+            $file = $this->request->getData('file');
             $filePath = 'img' . DS . 'upload' . DS . $file['name'];
             $fileUrl = WWW_ROOT . DS . $filePath;
             $localFileUrl = 'webroot' . DS . $filePath;
