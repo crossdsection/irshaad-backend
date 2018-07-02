@@ -80,6 +80,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvFileuploads', 'action' => 'add']
     );
 
+    $routes->post(
+        '/comments/submit/*',
+        ['controller' => 'WvComments', 'action' => 'new']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']
