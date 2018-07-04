@@ -85,7 +85,7 @@ class WvCommentsTable extends Table
     {
         // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
         // $rules->add($rules->existsIn(['post_id'], 'WvPost'));
-        
+
         return $rules;
     }
 

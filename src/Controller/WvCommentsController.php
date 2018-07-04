@@ -35,13 +35,28 @@ class WvCommentsController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
-        $wvComment = $this->WvComments->get($id, [
-            'contain' => ['Users', 'Posts']
-        ]);
-
-        $this->set('wvComment', $wvComment);
+    public function get($postId = null) {
+      $postId = $this->request->getParam('postId');
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $wvComments = $this->WvComments->find('all', ['limit' => 200])->where([ 'post_id' => $postId ]);
+      $fileuploadIds = array(); $userIds = array(); $data = array();
+      if( !empty( $wvComments ) ){
+        foreach ( $wvComments as $key => $value ) {
+           $userIds[] = $value->user_id;
+        }
+        $userInfos = $this->WvComments->WvUser->getUserInfo( $userIds );
+        foreach ( $wvComments as $key => $value ) {
+          $value['user'] = $userInfos[ $value['user_id'] ];
+          unset( $value['user_id'] );
+          $data[] = $value;
+        }
+        $response['data'] = $data;
+      } else {
+        $response = array( 'error' => 0, 'message' => 'Invalid Param', 'data' => array() );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
     }
 
     /**
@@ -61,10 +76,10 @@ class WvCommentsController extends AppController
         $importantKeys = array( 'post_id', 'user_id', 'text');
         $saveData = array(); $continue = false;
         foreach ( $importantKeys as  $key ) {
-          if( isset( $postData[ $key ] ) && ( $postData[ $key ] != '' && $postData[ $key ] != 0 ) ){
+          try {
             $saveData[ $key ] = $postData[ $key ];
             $continue = true;
-          } else {
+          } catch (Exception $e) {
             $continue = false;
             break;
           }

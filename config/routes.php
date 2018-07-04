@@ -91,10 +91,19 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
-        '/post/get/*',
+        '/post/get',
         ['controller' => 'WvPost', 'action' => 'getfeed']
     );
 
+    $routes->get(
+        '/post/get/:id',
+        ['controller' => 'WvPost', 'action' => 'getpost']
+    );
+
+    $routes->get(
+        '/comments/get/:postId',
+        ['controller' => 'WvComments', 'action' => 'get']
+    );
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
