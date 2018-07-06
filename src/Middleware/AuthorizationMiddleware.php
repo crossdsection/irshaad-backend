@@ -38,26 +38,34 @@ class AuthorizationMiddleware
         $errorRes = array( 'error' => 1, 'message' => '' );
         $authHeader = $request->getHeader('authorization');
         if ($authHeader) {
-            list( $jwt ) = sscanf( $authHeader[0], ': Bearer %s');
+            list( $jwt ) = sscanf( $authHeader[0], ': Bearer %s' );
             if ( $jwt ) {
                 try {
-                    $secretKey = Configure::read('jwt_secret_key');
-                    $token = JWT::decode($jwt, $secretKey, array('HS512'));
+                    $secretKey = Configure::read( 'jwt_secret_key' );
+                    $token = JWT::decode( $jwt, $secretKey, array('HS512') );
                     if( $token->expiration_time >= time() ){
                       $_POST['userId'] = $token->user_id;
                       $_GET['userId'] = $token->user_id;
-                      $response = $next($request, $response);
+                      $response = $next( $request, $response );
                     } else {
-                      throw new Exception(__('Token Expired'));
+                      $error = new Exception(__('Token Expired'));
+                      $error->responseHeader('Access-Control-Allow-Origin','*');
+                      throw $error;
                     }
                 } catch (Exception $e) {
-                    throw new UnauthorizedException(__('Illegal Token'));
+                  $error = new UnauthorizedException(__('Illegal Token'));
+                  $error->responseHeader('Access-Control-Allow-Origin','*');
+                  throw $error;
                 }
             } else {
-                throw new BadRequestException(__('Bad request'));
+              $error = new BadRequestException(__('Bad request'));
+              $error->responseHeader('Access-Control-Allow-Origin','*');
+              throw $error;
             }
         } else {
-            throw new BadRequestException(__('Bad request'));
+          $error = new BadRequestException(__('Bad request'));
+          $error->responseHeader('Access-Control-Allow-Origin','*');
+          throw $error;
         }
       } else {
         $response = $next($request, $response);
