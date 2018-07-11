@@ -106,7 +106,7 @@ class WvLocalitiesTable extends Table
           $returnId = $this->addLocality( $data );
           if ( $returnId != 0 ){
             $response['data'] = $cityRes['data'];
-            $response['data']['localities'] = array( array( 'locality_id' => $returnId, 'locality_name' => $data['locality'], 'city_id' => $data['city_id'], 'latitude' => $data['latitude'], 'longitude' => $data['latitude'] ) );
+            $response['data']['localities'] = array( array( 'locality_id' => $returnId, 'locality_name' => $data['locality'], 'city_id' => $data['city_id'], 'latitude' => $data['latitude'], 'longitude' => $data['longitude'] ) );
           } else {
             $response['error'] = 1;
           }
@@ -116,7 +116,7 @@ class WvLocalitiesTable extends Table
           foreach ($localities as $key => $locality) {
             $response['data']['localities'][] = array(
               'locality_id' => $locality['id'], 'locality_name' => $locality['locality'], 'city_id' => $locality['city_id'],
-              'latitude' => $locality['latitude'], 'longitude' => $locality['latitude']
+              'latitude' => $locality['latitude'], 'longitude' => $locality['longitude']
             );
           }
         }

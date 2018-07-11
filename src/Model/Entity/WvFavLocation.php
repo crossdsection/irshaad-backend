@@ -16,10 +16,12 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Ministry $ministry
- * @property \App\Model\Entity\State $state
- * @property \App\Model\Entity\City $city
+ * @property \App\Model\Entity\WvUser $wv_user
+ * @property \App\Model\Entity\WvDepartment $wv_department
+ * @property \App\Model\Entity\WvCountry $wv_country
+ * @property \App\Model\Entity\WvState $wv_state
+ * @property \App\Model\Entity\WvCity $wv_city
+ * @property \App\Model\Entity\WvLocality $wv_locality
  */
 class WvFavLocation extends Entity
 {
@@ -42,9 +44,11 @@ class WvFavLocation extends Entity
         'locality_id' => true,
         'created' => true,
         'modified' => true,
-        'user' => true,
-        'ministry' => true,
-        'state' => true,
-        'city' => true
+        'wv_user' => true,
+        'wv_department' => true,
+        'wv_country' => true,
+        'wv_state' => true,
+        'wv_city' => true,
+        'wv_locality' => true
     ];
 }

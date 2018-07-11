@@ -85,6 +85,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvComments', 'action' => 'new']
     );
 
+    $routes->post(
+        '/favlocation/submit/*',
+        ['controller' => 'WvFavLocation', 'action' => 'add']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']

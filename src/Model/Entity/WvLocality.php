@@ -32,6 +32,8 @@ class WvLocality extends Entity
         'locality' => true,
         'city_id' => true,
         'active' => true,
+        'latitude' => true,
+        'longitude' => true,
         'created' => true,
         'modified' => true,
         'city' => true

@@ -4,16 +4,17 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
  * WvFavLocation Model
  *
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property |\Cake\ORM\Association\BelongsTo $User
  * @property |\Cake\ORM\Association\BelongsTo $Departments
  * @property |\Cake\ORM\Association\BelongsTo $Countries
- * @property \App\Model\Table\StatesTable|\Cake\ORM\Association\BelongsTo $States
- * @property \App\Model\Table\CitiesTable|\Cake\ORM\Association\BelongsTo $Cities
+ * @property |\Cake\ORM\Association\BelongsTo $States
+ * @property |\Cake\ORM\Association\BelongsTo $Cities
  * @property |\Cake\ORM\Association\BelongsTo $Localities
  *
  * @method \App\Model\Entity\WvFavLocation get($primaryKey, $options = [])
@@ -46,7 +47,7 @@ class WvFavLocationTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('WvUsers', [
+        $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
@@ -96,17 +97,27 @@ class WvFavLocationTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['department_id'], 'Departments'));
-        $rules->add($rules->existsIn(['country_id'], 'Countries'));
-        $rules->add($rules->existsIn(['state_id'], 'States'));
-        $rules->add($rules->existsIn(['city_id'], 'Cities'));
-        $rules->add($rules->existsIn(['locality_id'], 'Localities'));
+        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
+        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
+        $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
 
         return $rules;
     }
 
-    public function addLocation(){
-      return true;
+    public function add( $postData ){
+      $return = false;
+      if( !empty( $postData ) ){
+        $favLocal = TableRegistry::get('WvFavLocation');
+        $entity = $favLocal->newEntity();
+        $entity = $favLocal->patchEntity( $entity, $postData );
+        $record = $favLocal->save( $entity );
+        if( $record->id ){
+          $return = true;
+        }
+      }
+      return $return;
     }
 }

@@ -52,6 +52,48 @@ class WvFavLocationController extends AppController
     public function add()
     {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if ( $this->request->is('post') ) {
+        $postData = $this->request->input('json_decode', true);
+        if( !empty( $postData ) ){
+          $postData['userId'] = $_POST['userId'];
+        } else {
+          $postData = $this->request->getData();
+        }
+        $localityCheck = false;
+        $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude', 'state', 'country' );
+        $localityData = array();
+        foreach ( $localityCheckArray as $key => $value ) {
+          if( isset( $postData[ $value ] ) && ( $postData[ $value ] != '' or $postData[ $value ] != 0 ) ){
+            $localityData[ $value ] = $postData[ $value ];
+            $localityCheck = true;
+          } else {
+            $localityCheck = false;
+            break;
+          }
+        }
+        if( $localityCheck ){
+          $localeRes = $this->WvFavLocation->WvCities->WvLocalities->findLocality( $localityData );
+          $saveData = array();
+          if( $localeRes['error'] == 0 ){
+            foreach ( $localeRes['data'] as $key => $locale ) {
+              if( isset( $locale[0] ) && isset( $locale[0]['locality_id'] ) )
+               $saveData['locality_id'] = $locale[0]['locality_id'];
+              if( isset( $locale[0] ) && isset( $locale[0]['city_id'] ) )
+               $saveData['city_id'] = $locale[0]['city_id'];
+              if( isset( $locale[0] ) && isset( $locale[0]['state_id'] ) )
+               $saveData['state_id'] = $locale[0]['state_id'];
+              if( isset( $locale[0] ) && isset( $locale[0]['country_id'] ) )
+               $saveData['country_id'] = $locale[0]['country_id'];
+            }
+            $saveData['user_id'] = $postData['userId'];
+          }
+          if( $this->WvFavLocation->add( $saveData ) ){
+            $response = array( 'error' => 0, 'message' => 'Favourite Location Saved', 'data' => array() );
+          } else {
+            $response = array( 'error' => -1, 'message' => 'Please Try Again', 'data' => array() );
+          }
+        }
+      }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;

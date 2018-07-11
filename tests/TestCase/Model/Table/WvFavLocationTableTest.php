@@ -25,10 +25,12 @@ class WvFavLocationTableTest extends TestCase
      */
     public $fixtures = [
         'app.wv_fav_location',
-        'app.users',
-        'app.ministries',
-        'app.states',
-        'app.cities'
+        'app.wv_users',
+        'app.wv_departments',
+        'app.wv_countries',
+        'app.wv_states',
+        'app.wv_cities',
+        'app.wv_localities'
     ];
 
     /**
@@ -81,6 +83,16 @@ class WvFavLocationTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test addLocation method
+     *
+     * @return void
+     */
+    public function testAddLocation()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
