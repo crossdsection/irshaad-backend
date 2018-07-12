@@ -127,7 +127,7 @@ class WvFavLocationController extends AppController
          $ret = $this->WvFavLocation->retrieveAddresses( $search );
          $response['data'] = $ret['data'];
        } else {
-         $response = array( 'error' => 0, 'message' => 'Your Feed is Empty', 'data' => array() );
+         $response = array( 'error' => 0, 'message' => 'No Favourite Locations', 'data' => array() );
        }
        $this->response = $this->response->withType('application/json')
                                         ->withStringBody( json_encode( $response ) );
