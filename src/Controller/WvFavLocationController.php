@@ -106,28 +106,33 @@ class WvFavLocationController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
-        $wvFavLocation = $this->WvFavLocation->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $wvFavLocation = $this->WvFavLocation->patchEntity($wvFavLocation, $this->request->getData());
-            if ($this->WvFavLocation->save($wvFavLocation)) {
-                $this->Flash->success(__('The wv fav location has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The wv fav location could not be saved. Please, try again.'));
-        }
-        $wvUsers = $this->WvFavLocation->WvUsers->find('list', ['limit' => 200]);
-        $wvDepartments = $this->WvFavLocation->WvDepartments->find('list', ['limit' => 200]);
-        $wvCountries = $this->WvFavLocation->WvCountries->find('list', ['limit' => 200]);
-        $wvStates = $this->WvFavLocation->WvStates->find('list', ['limit' => 200]);
-        $wvCities = $this->WvFavLocation->WvCities->find('list', ['limit' => 200]);
-        $wvLocalities = $this->WvFavLocation->WvLocalities->find('list', ['limit' => 200]);
-        $this->set(compact('wvFavLocation', 'wvUsers', 'wvDepartments', 'wvCountries', 'wvStates', 'wvCities', 'wvLocalities'));
-    }
+     public function get()
+     {
+       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+       $wvFavLocations = $this->WvFavLocation->find('all', ['limit' => 200])->where(['user_id' => $_GET['userId']])->toArray();
+       if( !empty( $wvFavLocations ) ){
+         $search = array( 'localityIds' => array(), 'cityIds' => array(), 'stateIds' => array(), 'countryIds' => array() );
+         $data = array();
+         foreach ( $wvFavLocations as $key => $favLoc ) {
+           if( $favLoc->locality_id != 0 ){
+             $search['localityIds'][] = $favLoc->locality_id;
+           } else if( $favLoc->city_id != 0 ){
+             $search['cityIds'][] = $favLoc->city_id;
+           } else if( $favLoc->state_id != 0 ){
+             $search['stateIds'][] = $favLoc->state_id;
+           } else if( $favLoc->country_id != 0 ){
+             $search['countryIds'][] = $favLoc->country_id;
+           }
+         }
+         $ret = $this->WvFavLocation->retrieveAddresses( $search );
+         $response['data'] = $ret['data'];
+       } else {
+         $response = array( 'error' => 0, 'message' => 'Your Feed is Empty', 'data' => array() );
+       }
+       $this->response = $this->response->withType('application/json')
+                                        ->withStringBody( json_encode( $response ) );
+       return $this->response;
+     }
 
     /**
      * Delete method

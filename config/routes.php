@@ -109,6 +109,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         '/comments/get/:postId',
         ['controller' => 'WvComments', 'action' => 'get']
     );
+
+    $routes->get(
+        '/favlocation/get/',
+        ['controller' => 'WvFavLocation', 'action' => 'get']
+    );
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

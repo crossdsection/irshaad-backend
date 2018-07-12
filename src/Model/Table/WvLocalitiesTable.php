@@ -127,6 +127,31 @@ class WvLocalitiesTable extends Table
     }
 
     /*
+     * locality_id
+     * response => ( 'locality', 'city', 'state', 'country' )
+     */
+    public function findLocalityById( $localityIds ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $localityIds ) && isset( $localityIds ) ){
+        $localities = $this->find('all')->where([ 'id IN' => $localityIds ])->toArray();
+        $localityData = array();
+        if( !empty( $localities ) ){
+          $cityIds = array();
+          foreach ( $localities as $key => $value ) {
+            $localityData[] = array( 'locality_id' => $value['id'], 'locality_name' => $value['locality'], 'city_id' => $value->city_id );
+            $cityIds[] = $value->city_id;
+          }
+          $cityRes = $this->WvCities->findCitiesById( $cityIds );
+          $response['data'] = $cityRes['data'];
+          $response['data']['localities'] = $localityData;
+        }
+      } else {
+        $response['error'] = 1;
+      }
+      return $response;
+    }
+
+    /*
      * data['locality']
      * data['city_id']
      * data['latitude']

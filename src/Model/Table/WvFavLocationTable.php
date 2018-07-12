@@ -120,4 +120,62 @@ class WvFavLocationTable extends Table
       }
       return $return;
     }
+
+    public function traverseAndMatch( $data, $key, $value ){
+      $return = array();
+      foreach ( $data as $index => $singleton ) {
+        if( isset( $singleton[ $key ] ) && $singleton[ $key ] == $value ){
+          $return = $singleton;
+          break;
+        }
+      }
+      return $return;
+    }
+
+    public function retrieveAddresses( $search ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $search ) ){
+        $data = array();
+        if( !empty( $search['localityIds'] ) ){
+          $localityRes = $this->WvLocalities->findLocalityById( $search['localityIds'] );
+          if( $localityRes['error'] == 0 ){
+            foreach ( $localityRes['data']['localities'] as $key => $locale ) {
+              $city = $this->traverseAndMatch( $localityRes['data']['cities'], 'city_id', $locale['city_id'] );
+              $state = $this->traverseAndMatch( $localityRes['data']['states'], 'state_id', $city['state_id'] );
+              $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
+              $data[] = $locale['locality_name'].', '.$city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+            }
+          }
+        }
+        if( !empty( $search['cityIds'] ) ){
+          $cityRes = $this->WvCities->findCitiesById( $search['cityIds'] );
+          if( $cityRes['error'] == 0 ){
+            foreach ( $cityRes['data']['cities'] as $key => $city ) {
+              $state = $this->traverseAndMatch( $localityRes['data']['states'], 'state_id', $city['state_id'] );
+              $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
+              $data[] = $city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+            }
+          }
+        }
+        if( !empty( $search['stateIds'] ) ){
+          $stateRes = $this->WvStates->findStateById( $search['stateIds'] );
+          if( $stateRes['error'] == 0 ){
+            foreach ( $stateRes['data']['cities'] as $key => $state ) {
+              $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
+              $data[] = $state['state_name'].', '.$country['country_name'];
+            }
+          }
+        }
+        if( !empty( $search['countryIds'] ) ){
+          $countryRes = $this->WvCountries->findCountryById( $search['countryIds'] );
+          if( $stateRes['error'] == 0 ){
+            foreach ( $stateRes['data']['countries'] as $key => $country ) {
+              $data[] = $country['country_name'];
+            }
+          }
+        }
+        $response['data'] = $data;
+      }
+      return $response;
+    }
 }

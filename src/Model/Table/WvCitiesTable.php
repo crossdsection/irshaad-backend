@@ -107,4 +107,27 @@ class WvCitiesTable extends Table
       }
       return $response;
     }
+
+    public function findCitiesById( $cityIds, $data = array() ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $cityIds ) ){
+        $cities = $this->find('all')->where([ 'id IN' => $cityIds ])->toArray();
+        if( !empty( $cities ) ){
+          $stateIds = array();
+          foreach ( $cities as $key => $value ) {
+            if ( !empty( $data ) && strpos( $value['name'], $data['city'] ) !== false ) {
+              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+              $stateIds[] = $value->state_id;
+            } else if( empty( $data ) ){
+              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+              $stateIds[] = $value->state_id;
+            }
+          }
+          $statesRes = $this->WvStates->findStateById( $stateIds, $data );
+          $response['data'] = $statesRes['data'];
+          $response['data']['cities'] = $cityData;
+        }
+      }
+      return $response;
+    }
 }
