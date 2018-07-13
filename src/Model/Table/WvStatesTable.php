@@ -85,17 +85,36 @@ class WvStatesTable extends Table
         $states = $this->find('all')->where([ 'id IN' => $stateIds ])->toArray();
         $countryIds = array();
         foreach ($states as $key => $value) {
-          if ( !empty( $data ) && strpos( $value['name'], $data['state'] ) !== false ) {
-            $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
-            $countryIds[] = $value['country_id'];
-          } else if( empty( $data ) ){
-            $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
-            $countryIds[] = $value['country_id'];
-          }
+          $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
+          $countryIds[] = $value['country_id'];
         }
         $countryRes = $this->WvCountries->findCountryById( $countryIds, $data );
         $response['data'] = $countryRes['data'];
         $response['data']['states'] = $statesData;
+      }
+      return $response;
+    }
+
+    /*
+     * data['state']
+     * data['country']
+     * response => ( 'state_id', 'country_id' )
+     */
+    public function findStates( $data ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $data ) && isset( $data['state'] ) ){
+        $state = $this->find('all')->where([ 'name LIKE' => '%'.$data['state'].'%' ])->toArray();
+        if( !empty( $state ) ){
+          $countryIds = array();
+          $stateData = array();
+          foreach ( $state as $key => $value ) {
+            $stateData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value->country_id );
+            $countryIds[] = $value->country_id;
+          }
+          $countriesRes = $this->WvCountries->findCountryById( $countryIds, $data );
+          $response['data'] = $countriesRes['data'];
+          $response['data']['state'] = $stateData;
+        }
       }
       return $response;
     }

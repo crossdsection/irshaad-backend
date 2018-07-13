@@ -73,11 +73,7 @@ class WvCountriesTable extends Table
         $countryData = array();
         $countries = $this->find('all')->where([ 'id IN' => $countryIds ])->toArray();
         foreach ( $countries as $key => $value ) {
-          if ( !empty( $data ) && strpos( $value['name'], $data['country'] ) !== false ) {
-            $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value['country_code'] );
-          } else if( empty( $data ) ){
-            $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value['country_code'] );
-          }
+          $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value['country_code'] );
         }
         $response['data'] = array( 'countries' => $countryData );
       }

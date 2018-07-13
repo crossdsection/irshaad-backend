@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -89,21 +90,30 @@ class WvCitiesTable extends Table
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if( !empty( $data ) && isset( $data['city'] ) ){
         $city = $this->find('all')->where([ 'name LIKE' => '%'.$data['city'].'%' ])->toArray();
+        $cityData = array();
         if( !empty( $city ) ){
           $stateIds = array();
           foreach ( $city as $key => $value ) {
-            if ( !empty( $data ) && strpos( $value['name'], $data['city'] ) !== false ) {
-              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
-              $stateIds[] = $value->state_id;
-            } else if( empty( $data ) ){
-              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
-              $stateIds[] = $value->state_id;
-            }
+            $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+            $stateIds[] = $value->state_id;
           }
           $statesRes = $this->WvStates->findStateById( $stateIds, $data );
-          $response['data'] = $statesRes['data'];
-          $response['data']['cities'] = $cityData;
+        } else {
+          $statesRes = $this->WvStates->findStates( $data );
+          if( !empty( $statesRes['data'] ) ){
+            $countries = $statesRes['data']['countries'];
+            $states = $statesRes['data']['state'];
+            foreach ( $states as $key => $value ) {
+              if( strpos( $value['state_name'], $data['state'] ) !== false ){
+                $saveCity = array( 'name' => $data['city'], 'state_id' => $value['state_id'] );
+                $cityId = $this->addCities( $saveCity );
+                $cityData[] = array( 'city_id' => $cityId, 'city_name' => $data['city'], 'state_id' => $value['state_id'] );
+              }
+            }
+          }
         }
+        $response['data'] = $statesRes['data'];
+        $response['data']['cities'] = $cityData;
       }
       return $response;
     }
@@ -115,13 +125,8 @@ class WvCitiesTable extends Table
         if( !empty( $cities ) ){
           $stateIds = array();
           foreach ( $cities as $key => $value ) {
-            if ( !empty( $data ) && strpos( $value['name'], $data['city'] ) !== false ) {
-              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
-              $stateIds[] = $value->state_id;
-            } else if( empty( $data ) ){
-              $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
-              $stateIds[] = $value->state_id;
-            }
+            $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+            $stateIds[] = $value->state_id;
           }
           $statesRes = $this->WvStates->findStateById( $stateIds, $data );
           $response['data'] = $statesRes['data'];
@@ -129,5 +134,23 @@ class WvCitiesTable extends Table
         }
       }
       return $response;
+    }
+
+    /*
+     * data['name']
+     * data['state_id']
+     */
+    public function addCities( $data ){
+      $return = 0;
+      if( !empty( $data ) ){
+        $city = TableRegistry::get('WvCities');
+        $entity = $city->newEntity();
+        $entity = $city->patchEntity( $entity, $data );
+        $record = $city->save( $entity );
+        if( $record->id ){
+          $return = $record->id;
+        }
+      }
+      return $return;
     }
 }
