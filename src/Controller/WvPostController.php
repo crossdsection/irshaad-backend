@@ -115,7 +115,7 @@ class WvPostController extends AppController
     {
       $id = $this->request->getParam('id');
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $wvPost = $this->WvPost->find('all', ['limit' => 200])->where(['id' => $id]);
+      $wvPost = $this->WvPost->find('all')->where(['id' => $id]);
       $fileuploadIds = array(); $userIds = array(); $data = array();
       if( !empty( $wvPost ) ){
         foreach ( $wvPost as $key => $value ) {
@@ -125,6 +125,7 @@ class WvPostController extends AppController
         $this->WvFileuploads = TableRegistry::get('WvFileuploads');
         $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
         $userInfos = $this->WvPost->WvUser->getUserInfo( $userIds );
+        $postProperties = $this->WvPost->WvActivitylog->getProperties( $id );
         foreach ( $wvPost as $key => $value ) {
           if( !empty( $fileResponse['data']  ) ){
             $fileJSON = json_decode( $value->filejson );
@@ -135,6 +136,7 @@ class WvPostController extends AppController
               }
             }
           }
+          $value['props'] = $postProperties;
           unset( $value['filejson'] );
           $value['user'] = $userInfos[ $value['user_id'] ];
           unset( $value['user_id'] );

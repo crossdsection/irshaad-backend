@@ -141,10 +141,42 @@ class WvActivitylogTable extends Table
           }
         }
         foreach( $tableData as $key => $value ){
-          $data[ $value->post_id ]['upvotes'] = ( $value->upvote > 0 ) ? $data[ $value->post_id ]['upvotes'] + 1 : 0;
-          $data[ $value->post_id ]['downvotes'] = ( $value->downvotes > 0 ) ? $data[ $value->post_id ]['downvotes'] + 1 : 0;
-          $data[ $value->post_id ]['eyewitness'] = ( $value->eyewitness > 0 ) ? $data[ $value->post_id ]['eyewitness'] + 1 : 0;
+          if( $value->upvote > 0 )
+            $data[ $value->post_id ]['upvotes'] = $data[ $value->post_id ]['upvotes'] + 1;
+          if( $value->downvote > 0 )
+            $data[ $value->post_id ]['downvotes'] = $data[ $value->post_id ]['downvotes'] + 1;
+          if( $value->eyewitness > 0 )
+            $data[ $value->post_id ]['eyewitness'] = $data[ $value->post_id ]['eyewitness'] + 1;
         }
+      }
+      return $data;
+    }
+
+    public function getProperties( $postId ){
+      $data = array();
+      if( $postId != 0 && $postId != null ){
+        $tableData = $this->find('all')->where([ 'post_id' => $postId ])->toArray();
+        $data = array( 'upvotes' => array( 'count' => 0, 'users' => array() ),
+                       'downvotes' => array( 'count' => 0, 'users' => array() ),
+                       'eyewitness' => array( 'count' => 0, 'users' => array() ) );
+        $upvoteUserIds = array(); $downvoteUserIds = array(); $eyewitnessUserIds = array();
+        foreach( $tableData as $key => $value ){
+          if( $value->upvote > 0 ){
+            $data['upvotes']['count'] = $data['upvotes']['count'] + 1;
+            $upvoteUserIds[] = $value->user_id;
+          }
+          if( $value->downvote > 0 ){
+            $data['downvotes']['count'] = $data['downvotes']['count'] + 1;
+            $downvoteUserIds[] = $value->user_id;
+          }
+          if( $value->eyewitness > 0 ){
+            $data['eyewitness']['count'] = $data['eyewitness']['count'] + 1;
+            $eyewitnessUserIds[] = $value->user_id;
+          }
+        }
+        $data['upvotes']['users'] = $this->WvUser->getUserList( $upvoteUserIds );
+        $data['downvotes']['users'] = $this->WvUser->getUserList( $downvoteUserIds );
+        $data['eyewitness']['users'] = $this->WvUser->getUserList( $eyewitnessUserIds );
       }
       return $data;
     }

@@ -247,4 +247,21 @@ class WvUserTable extends Table
       }
       return $response;
     }
+
+    public function getUserList( $userIds = array() ){
+      $response = array();
+      if( !empty( $userIds ) ){
+        $users = $this->find('all', ['id','firstname','lastname'])->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
+        foreach( $users as $index => $user ){
+          $tmpResponse = array();
+          if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
+            $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
+          }
+          $tmpResponse[ 'profilepic' ] = ( !isset( $user[ 'profilepic' ] ) or $user[ 'profilepic' ] == null or $user[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $user[ 'profilepic' ];
+          $tmpResponse[ 'user_id' ] = $user->id;
+          $response[] = $tmpResponse;
+        }
+      }
+      return $response;
+    }
 }
