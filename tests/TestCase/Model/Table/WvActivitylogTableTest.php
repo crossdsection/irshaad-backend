@@ -25,8 +25,8 @@ class WvActivitylogTableTest extends TestCase
      */
     public $fixtures = [
         'app.wv_activitylog',
-        'app.wv_post',
-        'app.wv_user'
+        'app.users',
+        'app.posts'
     ];
 
     /**
@@ -37,8 +37,8 @@ class WvActivitylogTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvActivitylog') ? [] : ['className' => WvActivitylogTable::class];
-        $this->WvActivitylog = TableRegistry::get('WvActivitylog', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvActivitylog') ? [] : ['className' => WvActivitylogTable::class];
+        $this->WvActivitylog = TableRegistry::getTableLocator()->get('WvActivitylog', $config);
     }
 
     /**

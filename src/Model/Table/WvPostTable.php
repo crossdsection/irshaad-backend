@@ -71,6 +71,7 @@ class WvPostTable extends Table
             'foreignKey' => 'locality_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasOne('WvActivitylog');
     }
 
     /**
@@ -152,12 +153,12 @@ class WvPostTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        // $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
-        // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
-        // $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
-        // $rules->add($rules->existsIn(['state_id'], 'WvStates'));
-        // $rules->add($rules->existsIn(['city_id'], 'WvCities'));
-        // $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
+        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
+        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
+        $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
 
         return $rules;
     }

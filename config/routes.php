@@ -90,6 +90,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvFavLocation', 'action' => 'add']
     );
 
+    $routes->post(
+        '/activity/submit/*',
+        ['controller' => 'WvActivitylog', 'action' => 'add']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']

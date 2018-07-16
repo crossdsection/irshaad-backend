@@ -7,12 +7,19 @@ use Cake\ORM\Entity;
  * WvActivitylog Entity
  *
  * @property int $id
- * @property int $post_id
  * @property int $user_id
- * @property bool $action
+ * @property int $post_id
+ * @property bool $upvote
+ * @property bool $downvote
+ * @property bool $bookmark
+ * @property int $shares
+ * @property string $flag
+ * @property bool $eyewitness
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\WvPost $wv_post
- * @property \App\Model\Entity\WvUser $wv_user
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Post $post
  */
 class WvActivitylog extends Entity
 {
@@ -27,10 +34,17 @@ class WvActivitylog extends Entity
      * @var array
      */
     protected $_accessible = [
-        'post_id' => true,
         'user_id' => true,
-        'action' => true,
-        'wv_post' => true,
-        'wv_user' => true
+        'post_id' => true,
+        'upvote' => true,
+        'downvote' => true,
+        'bookmark' => true,
+        'shares' => true,
+        'flag' => true,
+        'eyewitness' => true,
+        'created' => true,
+        'modified' => true,
+        'user' => true,
+        'post' => true
     ];
 }
