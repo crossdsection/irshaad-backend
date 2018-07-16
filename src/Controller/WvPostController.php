@@ -182,6 +182,7 @@ class WvPostController extends AppController
         $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
         $userInfos = $this->WvPost->WvUser->getUserInfo( $userIds );
         $postProperties = $this->WvPost->WvActivitylog->getCumulativeResult( $postIds );
+        $postPolls = $this->WvPost->WvPolls->getPolls( $postIds );
         foreach ( $wvPost as $key => $value ) {
           if( !empty( $fileResponse['data']  ) ){
             $fileJSON = json_decode( $value->filejson );
@@ -192,8 +193,12 @@ class WvPostController extends AppController
               }
             }
           }
+          $value['props'] = array(); $value['polls'] = array();
           if( isset( $postProperties[ $value['id'] ] ) ){
             $value['props'] = $postProperties[ $value['id'] ];
+          }
+          if( isset( $postPolls[ $value['id'] ] ) ){
+            $value['polls'] = $postPolls[ $value['id'] ];
           }
           unset( $value['filejson'] );
           $value['user'] = $userInfos[ $value['user_id'] ];

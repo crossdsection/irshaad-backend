@@ -120,4 +120,18 @@ class WvPollsTable extends Table
       }
       return $return;
     }
+
+    public function getPolls( $postIds ){
+      $response = array();
+      if( !empty( $postIds ) ){
+        $pollsData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
+        foreach( $pollsData as $polls ){
+          if( !isset( $response[ $polls['post_id'] ]  ) ){
+            $response[ $polls['post_id'] ] = array();
+          }
+          $response[ $polls['post_id'] ][] = $polls['title'];
+        }
+      }
+      return $response;
+    }
 }
