@@ -14,37 +14,6 @@ class WvFavLocationController extends AppController
 {
 
     /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['WvUsers', 'WvDepartments', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
-        ];
-        $wvFavLocation = $this->paginate($this->WvFavLocation);
-
-        $this->set(compact('wvFavLocation'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Wv Fav Location id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $wvFavLocation = $this->WvFavLocation->get($id, [
-            'contain' => ['WvUsers', 'WvDepartments', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
-        ]);
-
-        $this->set('wvFavLocation', $wvFavLocation);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -133,24 +102,4 @@ class WvFavLocationController extends AppController
                                         ->withStringBody( json_encode( $response ) );
        return $this->response;
      }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Wv Fav Location id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $wvFavLocation = $this->WvFavLocation->get($id);
-        if ($this->WvFavLocation->delete($wvFavLocation)) {
-            $this->Flash->success(__('The wv fav location has been deleted.'));
-        } else {
-            $this->Flash->error(__('The wv fav location could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
 }

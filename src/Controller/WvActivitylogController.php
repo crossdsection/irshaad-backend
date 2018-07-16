@@ -12,38 +12,6 @@ use App\Controller\AppController;
  */
 class WvActivitylogController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Users', 'Posts']
-        ];
-        $wvActivitylog = $this->paginate($this->WvActivitylog);
-
-        $this->set(compact('wvActivitylog'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Wv Activitylog id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $wvActivitylog = $this->WvActivitylog->get($id, [
-            'contain' => ['Users', 'Posts']
-        ]);
-
-        $this->set('wvActivitylog', $wvActivitylog);
-    }
-
     /**
      * Add method
      *
@@ -104,25 +72,5 @@ class WvActivitylogController extends AppController
         $users = $this->WvActivitylog->Users->find('list', ['limit' => 200]);
         $posts = $this->WvActivitylog->Posts->find('list', ['limit' => 200]);
         $this->set(compact('wvActivitylog', 'users', 'posts'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Wv Activitylog id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $wvActivitylog = $this->WvActivitylog->get($id);
-        if ($this->WvActivitylog->delete($wvActivitylog)) {
-            $this->Flash->success(__('The wv activitylog has been deleted.'));
-        } else {
-            $this->Flash->error(__('The wv activitylog could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

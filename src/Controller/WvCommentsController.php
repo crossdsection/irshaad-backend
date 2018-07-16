@@ -12,22 +12,6 @@ use App\Controller\AppController;
  */
 class WvCommentsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Users', 'Posts']
-        ];
-        $wvComments = $this->paginate($this->WvComments);
-
-        $this->set(compact('wvComments'));
-    }
-
     /**
      * View method
      *
@@ -95,51 +79,5 @@ class WvCommentsController extends AppController
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Wv Comment id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $wvComment = $this->WvComments->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $wvComment = $this->WvComments->patchEntity($wvComment, $this->request->getData());
-            if ($this->WvComments->save($wvComment)) {
-                $this->Flash->success(__('The wv comment has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The wv comment could not be saved. Please, try again.'));
-        }
-        $users = $this->WvComments->Users->find('list', ['limit' => 200]);
-        $posts = $this->WvComments->Posts->find('list', ['limit' => 200]);
-        $this->set(compact('wvComment', 'users', 'posts'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Wv Comment id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $wvComment = $this->WvComments->get($id);
-        if ($this->WvComments->delete($wvComment)) {
-            $this->Flash->success(__('The wv comment has been deleted.'));
-        } else {
-            $this->Flash->error(__('The wv comment could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

@@ -13,38 +13,6 @@ use Cake\Utility\Hash;
  */
 class WvPostController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['WvDepartments', 'WvUser', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
-        ];
-        $wvPost = $this->paginate($this->WvPost);
-
-        $this->set(compact('wvPost'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Wv Post id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $wvPost = $this->WvPost->get($id, [
-            'contain' => ['WvDepartments', 'WvUser', 'WvCountries', 'WvStates', 'WvCities', 'WvLocalities']
-        ]);
-
-        $this->set('wvPost', $wvPost);
-    }
-
     /**
      * Add method
      *
@@ -212,25 +180,5 @@ class WvPostController extends AppController
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Wv Post id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $wvPost = $this->WvPost->get($id);
-        if ($this->WvPost->delete($wvPost)) {
-            $this->Flash->success(__('The wv post has been deleted.'));
-        } else {
-            $this->Flash->error(__('The wv post could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

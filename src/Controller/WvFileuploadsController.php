@@ -12,35 +12,6 @@ use App\Controller\AppController;
  */
 class WvFileuploadsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $wvFileuploads = $this->paginate($this->WvFileuploads);
-
-        $this->set(compact('wvFileuploads'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Wv Fileupload id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $wvFileupload = $this->WvFileuploads->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('wvFileupload', $wvFileupload);
-    }
-
     /**
      * Add method
      *
@@ -75,49 +46,5 @@ class WvFileuploadsController extends AppController
         $this->response = $this->response->withType('application/json')
                                          ->withStringBody( json_encode( $response ) );
         return $this->response;
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Wv Fileupload id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $wvFileupload = $this->WvFileuploads->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $wvFileupload = $this->WvFileuploads->patchEntity($wvFileupload, $this->request->getData());
-            if ($this->WvFileuploads->save($wvFileupload)) {
-                $this->Flash->success(__('The wv fileupload has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The wv fileupload could not be saved. Please, try again.'));
-        }
-        $this->set(compact('wvFileupload'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Wv Fileupload id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $wvFileupload = $this->WvFileuploads->get($id);
-        if ($this->WvFileuploads->delete($wvFileupload)) {
-            $this->Flash->success(__('The wv fileupload has been deleted.'));
-        } else {
-            $this->Flash->error(__('The wv fileupload could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }
