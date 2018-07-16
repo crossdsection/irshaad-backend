@@ -104,4 +104,20 @@ class WvPollsTable extends Table
       }
       return $return;
     }
+
+    /*
+     * data['poll_id']
+     */
+    public function newVote( $data ){
+      $return = false;
+      if( !empty( $data ) ){
+        $polls = TableRegistry::get('WvPolls');
+        $entity = $polls->get( $data['poll_id'] );
+        $entity->count++;
+        if( $polls->save( $entity ) ){
+          $return = true;
+        }
+      }
+      return $return;
+    }
 }

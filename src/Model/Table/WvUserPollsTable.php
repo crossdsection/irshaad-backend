@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -47,7 +48,7 @@ class WvUserPollsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('WvPoll', [
+        $this->belongsTo('WvPolls', [
             'foreignKey' => 'poll_id',
             'joinType' => 'INNER'
         ]);
@@ -69,18 +70,6 @@ class WvUserPollsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->scalar('latitude')
-            ->maxLength('latitude', 256)
-            ->requirePresence('latitude', 'create')
-            ->notEmpty('latitude');
-
-        $validator
-            ->scalar('longitude')
-            ->maxLength('longitude', 256)
-            ->requirePresence('longitude', 'create')
-            ->notEmpty('longitude');
-
         return $validator;
     }
 
@@ -94,9 +83,27 @@ class WvUserPollsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'WvUser'));
-        $rules->add($rules->existsIn(['poll_id'], 'WvPoll'));
+        $rules->add($rules->existsIn(['poll_id'], 'WvPolls'));
         $rules->add($rules->existsIn(['post_id'], 'WvPost'));
 
         return $rules;
+    }
+
+    public function saveUserPolls( $postData ){
+      $return = false;
+      if( !empty( $postData ) ){
+        $userPoll = TableRegistry::get('WvUserPolls');
+        $dataCheck = $this->find('all')->where([ 'user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
+        if( empty( $dataCheck ) ){
+          $entity = $userPoll->newEntity();
+          $entity = $userPoll->patchEntity( $entity, $postData );
+          $record = $userPoll->save( $entity );
+          $incrementCounter = $this->WvPolls->newVote( $postData );
+          if( isset( $record->id ) && $incrementCounter ){
+            $return = $record->id;
+          }
+        }
+      }
+      return $return;
     }
 }

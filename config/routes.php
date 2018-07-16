@@ -95,6 +95,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvActivitylog', 'action' => 'add']
     );
 
+    $routes->post(
+        '/polls/submit/*',
+        ['controller' => 'WvUserPolls', 'action' => 'add']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']
