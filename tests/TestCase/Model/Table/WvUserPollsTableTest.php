@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\WvVotesReviewsTable;
+use App\Model\Table\WvUserPollsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\WvVotesReviewsTable Test Case
+ * App\Model\Table\WvUserPollsTable Test Case
  */
-class WvVotesReviewsTableTest extends TestCase
+class WvUserPollsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\WvVotesReviewsTable
+     * @var \App\Model\Table\WvUserPollsTable
      */
-    public $WvVotesReviews;
+    public $WvUserPolls;
 
     /**
      * Fixtures
@@ -24,12 +24,10 @@ class WvVotesReviewsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.wv_votes_reviews',
+        'app.wv_user_polls',
         'app.users',
-        'app.ministries',
-        'app.countries',
-        'app.states',
-        'app.cities'
+        'app.polls',
+        'app.posts'
     ];
 
     /**
@@ -40,8 +38,8 @@ class WvVotesReviewsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WvVotesReviews') ? [] : ['className' => WvVotesReviewsTable::class];
-        $this->WvVotesReviews = TableRegistry::get('WvVotesReviews', $config);
+        $config = TableRegistry::getTableLocator()->exists('WvUserPolls') ? [] : ['className' => WvUserPollsTable::class];
+        $this->WvUserPolls = TableRegistry::getTableLocator()->get('WvUserPolls', $config);
     }
 
     /**
@@ -51,7 +49,7 @@ class WvVotesReviewsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->WvVotesReviews);
+        unset($this->WvUserPolls);
 
         parent::tearDown();
     }

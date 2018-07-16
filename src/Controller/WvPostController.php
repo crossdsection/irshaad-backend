@@ -87,12 +87,20 @@ class WvPostController extends AppController
         }
         if( isset( $postData[ 'postType' ] ) && !empty( $postData[ 'postType' ] ) ){
           $saveData[ 'post_type' ] = $postData[ 'postType' ];
+          if( $postData[ 'postType' ] == 'court' && !isset( $postData['polls'] ) ){
+            $continue = false;
+          }
         }
         if( !empty( $postData[ 'filejson' ] ) ){
           $saveData[ 'filejson' ] = json_encode( $postData[ 'filejson' ] );
         }
         if ( $continue ){
-          if ( $this->WvPost->savePost( $saveData ) ) {
+          $returnId = $this->WvPost->savePost( $saveData );
+          if ( $returnId ) {
+            if( $saveData[ 'post_type' ] == 'court' ){
+              $data = array( 'post_id' => $returnId, 'polls' => $postData['polls'] );
+              $return = $this->WvPost->WvPolls->savePolls( $data );
+            }
             $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array() );
           }
         } else {
