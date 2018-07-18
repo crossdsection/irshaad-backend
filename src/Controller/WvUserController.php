@@ -171,7 +171,7 @@ class WvUserController extends AppController {
       }
       if( isset( $postData['userIds'] ) && isset( $postData['access'] ) && !empty( $postData['access'] ) ){
         $userData = $this->WvUser->getUserList( $postData['userIds'], array( 'id', 'access_role_ids' ) );
-        $accessData = $this->WvUser->WvAccessRoles->retrieveAccessRoleIds( $postData['access']['location'], $postData['access']['accessLevel'] );
+        $accessData = $this->WvUser->WvAccessRoles->retrieveAccessRoleIds( $postData['access']['location'], array( $postData['access']['accessLevel'] ) );
         $accessRoleIds = Hash::extract( $accessData, '{n}.id' );
         foreach( $userData as $key => $user ){
           $accessIds = json_decode( $userData[ $key ]['access_role_ids'] );

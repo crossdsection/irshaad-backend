@@ -116,7 +116,8 @@ class WvOauthTable extends Table
              'access_token'  => $extractedData[0]['access_token'],          // Json Token Id: an unique identifier for the token
              'provider_id'  => $extractedData[0]['provider_id'],       // Issuer
              'expiration_time'  => $extractedData[0]['expiration_time']->toUnixString(),           // Expire
-             'user_id' => $userId
+             'user_id' => $userId,
+             'access_roles' => json_decode( $user[0]->access_role_ids ),
           ];
           $bearerToken = JWT::encode(
             $data,      //Data to be encoded in the JWT
@@ -125,7 +126,6 @@ class WvOauthTable extends Table
           );
           $response = array(
             'name' => $user[0]->firstname.' '.$user[0]->lastname,
-            'access_roles' => json_decode( $user[0]->access_role_ids ),
             'bearerToken' => $bearerToken
           );
           $result['data'] = $response;
@@ -154,7 +154,8 @@ class WvOauthTable extends Table
            'access_token'  => $tokenId,          // Json Token Id: an unique identifier for the token
            'provider_id'  => $serverName,       // Issuer
            'expiration_time'  => $expire,           // Expire
-           'user_id' => $userId
+           'user_id' => $userId,
+           'access_roles' => json_decode( $user[0]->access_role_ids ),
         ];
 
         $bearerToken = JWT::encode(
@@ -169,7 +170,6 @@ class WvOauthTable extends Table
         if( $oAuth->save( $oEntity ) ){
           $response = array(
             'name' => $user[0]->firstname.' '.$user[0]->lastname,
-            'access_roles' => json_decode( $user[0]->access_role_ids ),
             'bearerToken' => $bearerToken
           );
           $result['data'] = $response;
@@ -199,7 +199,8 @@ class WvOauthTable extends Table
            'access_token'  => $tokenId,          // Json Token Id: an unique identifier for the token
            'provider_id'  => $serverName,       // Issuer
            'expiration_time'  => $expire,           // Expire
-           'user_id' => $userId
+           'user_id' => $userId,
+           'access_roles' => json_decode( $user[0]->access_role_ids ),
         ];
 
         $bearerToken = JWT::encode(
@@ -217,7 +218,6 @@ class WvOauthTable extends Table
         if( $oAuth->save( $oEntity ) ){
           $response = array(
             'name' => $user[0]->firstname.' '.$user[0]->lastname,
-            'access_roles' => json_decode( $user[0]->access_role_ids ),
             'bearerToken' => $bearerToken
           );
           $result['data'] = $response;
@@ -232,7 +232,7 @@ class WvOauthTable extends Table
 
     public function validateToken( $token ){
       $result = false;
-      if( !empty( $token ) && isset( $token->user_id ) && isset( $token->access_token ) ){
+      if( !empty( $token ) && isset( $token->user_id ) && isset( $token->access_token ) && isset( $token->access_roles ) ){
         $extractedData = $this->find()->where([ 'user_id' => $token->user_id, 'access_token' => $token->access_token ])->toArray();
         if( !empty( $extractedData ) && $token->expiration_time >= time() ){
           return true;

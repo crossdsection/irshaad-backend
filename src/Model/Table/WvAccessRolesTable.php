@@ -89,8 +89,8 @@ class WvAccessRolesTable extends Table
       $data = array();
       if( !empty( $roleIds  ) ){
         $accessRoles = $this->find('all')->where([ 'id IN' => $roleIds ])->toArray();
-        $accessLevels = array( '0' => 'r', '1' => 'w', '2' => 'a' );
-        $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'province'  => 'WvStates', 'department'  => 'WvDepartment' );
+        $accessLevels = array( '1' => 'w', '2' => 'a' );
+        $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'state'  => 'WvStates', 'department'  => 'WvDepartment' );
         foreach( $accessRoles as $accessRole ){
           $areaLevel = $accessRole['area_level'];
           $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );
@@ -106,7 +106,7 @@ class WvAccessRolesTable extends Table
      * data[ city_id ]
      * data[ state_id ]
      */
-    public function retrieveAccessRoleIds( $data, $accessLevel ){
+    public function retrieveAccessRoleIds( $data, $accessLevel = array( 1, 2 ) ){
       $response = array();
       if( !empty( $data  ) ){
         $locationKeyMap = array(
@@ -117,7 +117,9 @@ class WvAccessRolesTable extends Table
         $conditions = array( 'OR' => array() );
         foreach( $data as $key => $ids ){
           $areaLevel = $locationKeyMap[ $key ];
-          $conditions['OR'][] = array( 'area_level' => $areaLevel, 'area_level_id IN' => $ids, 'access_level' => $accessLevel );
+          if( !empty( $ids ) ){
+            $conditions['OR'][] = array( 'area_level' => $areaLevel, 'area_level_id IN' => $ids, 'access_level IN' => $accessLevel );
+          }
         }
         $accessRoles = $this->find('all')
                             ->where( $conditions )
@@ -127,7 +129,7 @@ class WvAccessRolesTable extends Table
           $dataKey = $locationKeyMap[ $access['area_level'] ];
           if( in_array( $access['area_level_id'], $data[ $dataKey ] ) ){
             $accessRolesFound[] = array( 'id' => $access['id'], 'area_level' => $access['area_level'],
-                                 'area_level_id' => $access['area_level_id'] );
+                                 'area_level_id' => $access['area_level_id'], 'access_level' => $access['access_level'] );
             $data[ $dataKey ] = array_diff( $data[ $dataKey ], array( $access['area_level_id'] ) );
           }
         }
@@ -141,9 +143,8 @@ class WvAccessRolesTable extends Table
      * data[ country_id ]
      * data[ city_id ]
      * data[ state_id ]
-     * data[ access_level ]
      */
-    public function addAccess( $data, $accessLevel ){
+    public function addAccess( $data, $accessLevel = array( 1, 2 ) ){
       $response = array();
       if( !empty( $data ) ){
         $accessData = array();
@@ -155,7 +156,9 @@ class WvAccessRolesTable extends Table
         foreach( $data as $key => $access ){
           $areaLevel = $locationKeyMap[ $key ];
           foreach( $access as $locationIds ){
-            $accessData[] = array( 'area_level' => $areaLevel, 'area_level_id' => $locationIds, 'access_level' => $accessLevel );
+            foreach ( $accessLevel as $key => $access ) {
+              $accessData[] = array( 'area_level' => $areaLevel, 'area_level_id' => $locationIds, 'access_level' => $access );
+            }
           }
         }
         $accessRoles = TableRegistry::get('WvAccessRoles');
@@ -164,7 +167,7 @@ class WvAccessRolesTable extends Table
         if( !empty( $result ) ){
           foreach( $result as $data ){
             $response[] = array( 'id' => $data['id'], 'area_level' => $data['area_level'],
-                                 'area_level_id' => $data['area_level_id'] );
+                                 'area_level_id' => $data['area_level_id'], 'access_level' => $data['access_level'] );
           }
         }
       }

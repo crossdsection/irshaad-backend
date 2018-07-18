@@ -263,7 +263,7 @@ class WvUserTable extends Table
             else
               $tmpResponse[ $stringKey ] = $user[ $stringKey ];
           }
-          $response[] = $tmpResponse;
+          $response[ $user->id ] = $tmpResponse;
         }
       }
       return $response;

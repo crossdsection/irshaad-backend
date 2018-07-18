@@ -36,9 +36,9 @@ class AuthorizationMiddleware
         }
       }
       $oauth = TableRegistry::get('WvOauth');
-      if( !$flagAllow ){
+      $authHeader = $request->getHeader('authorization');
+      if( !$flagAllow || $authHeader ){
         $errorRes = array( 'error' => 1, 'message' => '' );
-        $authHeader = $request->getHeader('authorization');
         if ($authHeader) {
             list( $jwt ) = sscanf( $authHeader[0], ': Bearer %s' );
             if ( $jwt ) {
@@ -47,7 +47,9 @@ class AuthorizationMiddleware
                     $token = JWT::decode( $jwt, $secretKey, array('HS512') );
                     if( $oauth->validateToken( $token ) ){
                       $_POST['userId'] = $token->user_id;
+                      $_POST['accessRoleIds'] = $token->access_roles;
                       $_GET['userId'] = $token->user_id;
+                      $_GET['accessRoleIds'] = $token->access_roles;
                       $response = $next( $request, $response );
                     } else {
                       $error = new Exception(__('Token Expired'));
