@@ -100,6 +100,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUserPolls', 'action' => 'add']
     );
 
+    $routes->post(
+        '/user/access/*',
+        ['controller' => 'WvUser', 'action' => 'updateaccess']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']

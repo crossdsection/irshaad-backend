@@ -248,18 +248,41 @@ class WvUserTable extends Table
       return $response;
     }
 
-    public function getUserList( $userIds = array() ){
+    public function getUserList( $userIds = array(), $userKeys = array( 'id', 'profilepic', 'firstname', 'lastname' ) ){
       $response = array();
       if( !empty( $userIds ) ){
-        $users = $this->find('all', ['id','firstname','lastname'])->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
+        $users = $this->find('all')->select( $userKeys )->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
         foreach( $users as $index => $user ){
           $tmpResponse = array();
           if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
             $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
           }
-          $tmpResponse[ 'profilepic' ] = ( !isset( $user[ 'profilepic' ] ) or $user[ 'profilepic' ] == null or $user[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $user[ 'profilepic' ];
-          $tmpResponse[ 'user_id' ] = $user->id;
+          foreach( $userKeys as $stringKey ){
+            if( $stringKey == 'profilepic' )
+              $tmpResponse[ 'profilepic' ] = ( $user[ 'profilepic' ] == null or $user[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $user[ 'profilepic' ];
+            else
+              $tmpResponse[ $stringKey ] = $user[ $stringKey ];
+          }
           $response[] = $tmpResponse;
+        }
+      }
+      return $response;
+    }
+
+    public function updateUser( $userDatas ){
+      $response = array();
+      if( !empty( $userDatas ) ){
+        $users = TableRegistry::get('WvUser');
+        foreach( $userDatas as $user ){
+          $entity = $users->get( $user['id'] );
+          foreach( $user as $key => $value ){
+            if( $key != 'id' ){
+              $entity->{$key} = $value;
+            }
+          }
+          if( $users->save( $entity ) ){
+            $response[] = $user['id'];
+          }
         }
       }
       return $response;

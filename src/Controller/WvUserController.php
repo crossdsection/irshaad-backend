@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Hash;
 
 /**
  * WvUser Controller
@@ -160,5 +161,44 @@ class WvUserController extends AppController {
         $this->response = $this->response->withType('application/json')
                                          ->withStringBody( json_encode( $response ) );
         return $this->response;
+    }
+
+    public function updateaccess(){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $postData = $this->request->input('json_decode', true);
+      if( empty( $postData ) ){
+        $postData = $this->request->data;
+      }
+      if( isset( $postData['userIds'] ) && isset( $postData['access'] ) && !empty( $postData['access'] ) ){
+        $userData = $this->WvUser->getUserList( $postData['userIds'], array( 'id', 'access_role_ids' ) );
+        $accessData = $this->WvUser->WvAccessRoles->retrieveAccessRoleIds( $postData['access']['location'], $postData['access']['accessLevel'] );
+        $accessRoleIds = Hash::extract( $accessData, '{n}.id' );
+        foreach( $userData as $key => $user ){
+          $accessIds = json_decode( $userData[ $key ]['access_role_ids'] );
+          $accessIds = array_merge( $accessIds, $accessRoleIds );
+          $userData[ $key ]['access_role_ids'] = json_encode( $accessIds );
+        }
+        $usersUpdated = $this->WvUser->updateUser( $userData );
+        $userCount = count( $usersUpdated );
+        if( $userCount > 0 ){
+          $response = array( 'error' => 0, 'message' => $userCount.' users access have been updated.', 'data' => array() );
+        } else {
+          $response = array( 'error' => 0, 'message' => 'Update Failed.', 'data' => array() );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
+    public function updateuserinfo(){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $postData = $this->request->input('json_decode', true);
+      if( empty( $postData ) ){
+        $postData = $this->request->data;
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
     }
 }

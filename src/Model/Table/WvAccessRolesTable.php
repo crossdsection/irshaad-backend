@@ -61,12 +61,6 @@ class WvAccessRolesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 1024)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        $validator
             ->scalar('area_level')
             ->requirePresence('area_level', 'create')
             ->notEmpty('area_level');
@@ -105,5 +99,75 @@ class WvAccessRolesTable extends Table
         }
       }
       return $data;
+    }
+
+    /*
+     * data[ country_id ]
+     * data[ city_id ]
+     * data[ state_id ]
+     */
+    public function retrieveAccessRoleIds( $data, $accessLevel ){
+      $response = array();
+      if( !empty( $data  ) ){
+        $locationKeyMap = array(
+          'country_id' => 'country', 'country' => 'country_id',
+          'state_id' => 'state', 'state' => 'state_id',
+          'city_id' => 'city', 'city' => 'city_id'
+        );
+        $conditions = array( 'OR' => array() );
+        foreach( $data as $key => $ids ){
+          $areaLevel = $locationKeyMap[ $key ];
+          $conditions['OR'][] = array( 'area_level' => $areaLevel, 'area_level_id IN' => $ids, 'access_level' => $accessLevel );
+        }
+        $accessRoles = $this->find('all')
+                            ->where( $conditions )
+                            ->toArray();
+        $accessRolesFound = array(); $accessRoleNotFound = array();
+        foreach( $accessRoles as $key => $access ){
+          $dataKey = $locationKeyMap[ $access['area_level'] ];
+          if( in_array( $access['area_level_id'], $data[ $dataKey ] ) ){
+            $accessRolesFound[] = array( 'id' => $access['id'], 'area_level' => $access['area_level'],
+                                 'area_level_id' => $access['area_level_id'] );
+            $data[ $dataKey ] = array_diff( $data[ $dataKey ], array( $access['area_level_id'] ) );
+          }
+        }
+        $returnData = $this->addAccess( $data, $accessLevel );
+        $response = array_merge( $accessRolesFound, $returnData );
+      }
+      return $response;
+    }
+
+    /*
+     * data[ country_id ]
+     * data[ city_id ]
+     * data[ state_id ]
+     * data[ access_level ]
+     */
+    public function addAccess( $data, $accessLevel ){
+      $response = array();
+      if( !empty( $data ) ){
+        $accessData = array();
+        $locationKeyMap = array(
+          'country_id' => 'country', 'country' => 'country_id',
+          'state_id' => 'state', 'state' => 'state_id',
+          'city_id' => 'city', 'city' => 'city_id'
+        );
+        foreach( $data as $key => $access ){
+          $areaLevel = $locationKeyMap[ $key ];
+          foreach( $access as $locationIds ){
+            $accessData[] = array( 'area_level' => $areaLevel, 'area_level_id' => $locationIds, 'access_level' => $accessLevel );
+          }
+        }
+        $accessRoles = TableRegistry::get('WvAccessRoles');
+        $accessData = $accessRoles->newEntities( $accessData );
+        $result = $accessRoles->saveMany( $accessData );
+        if( !empty( $result ) ){
+          foreach( $result as $data ){
+            $response[] = array( 'id' => $data['id'], 'area_level' => $data['area_level'],
+                                 'area_level_id' => $data['area_level_id'] );
+          }
+        }
+      }
+      return $response;
     }
 }

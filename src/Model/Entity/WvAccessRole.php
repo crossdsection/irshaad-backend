@@ -28,7 +28,6 @@ class WvAccessRole extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
         'area_level' => true,
         'area_level_id' => true,
         'access_level' => true,
