@@ -8,12 +8,13 @@ use Firebase\JWT\JWT;
 use Cake\Core\Exception\Exception;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\UnauthorizedException;
+
+use Cake\ORM\TableRegistry;
 /**
  * Authorization middleware
  */
 class AuthorizationMiddleware
 {
-
     /**
      * Invoke method.
      *
@@ -34,6 +35,7 @@ class AuthorizationMiddleware
           $flagAllow = true;
         }
       }
+      $oauth = TableRegistry::get('WvOauth');
       if( !$flagAllow ){
         $errorRes = array( 'error' => 1, 'message' => '' );
         $authHeader = $request->getHeader('authorization');
@@ -43,7 +45,7 @@ class AuthorizationMiddleware
                 try {
                     $secretKey = Configure::read( 'jwt_secret_key' );
                     $token = JWT::decode( $jwt, $secretKey, array('HS512') );
-                    if( $token->expiration_time >= time() ){
+                    if( $oauth->validateToken( $token ) ){
                       $_POST['userId'] = $token->user_id;
                       $_GET['userId'] = $token->user_id;
                       $response = $next( $request, $response );

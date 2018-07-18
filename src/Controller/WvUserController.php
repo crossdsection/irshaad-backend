@@ -175,7 +175,7 @@ class WvUserController extends AppController {
         $accessRoleIds = Hash::extract( $accessData, '{n}.id' );
         foreach( $userData as $key => $user ){
           $accessIds = json_decode( $userData[ $key ]['access_role_ids'] );
-          $accessIds = array_merge( $accessIds, $accessRoleIds );
+          $accessIds = array_unique( array_merge( $accessIds, $accessRoleIds ) );
           $userData[ $key ]['access_role_ids'] = json_encode( $accessIds );
         }
         $usersUpdated = $this->WvUser->updateUser( $userData );

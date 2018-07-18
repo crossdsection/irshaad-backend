@@ -229,4 +229,15 @@ class WvOauthTable extends Table
       }
       return $result;
     }
+
+    public function validateToken( $token ){
+      $result = false;
+      if( !empty( $token ) && isset( $token->user_id ) && isset( $token->access_token ) ){
+        $extractedData = $this->find()->where([ 'user_id' => $token->user_id, 'access_token' => $token->access_token ])->toArray();
+        if( !empty( $extractedData ) && $token->expiration_time >= time() ){
+          return true;
+        }
+      }
+      return $result;
+    }
 }
