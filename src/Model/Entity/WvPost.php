@@ -48,8 +48,8 @@ class WvPost extends Entity
     protected $_accessible = [
         'department_id' => true,
         'user_id' => true,
-        'total_likes' => true,
-        'total_comments' => true,
+        'total_upvotes' => true,
+        'total_score' => true,
         'title' => true,
         'details' => true,
         'filejson' => true,

@@ -66,33 +66,33 @@ class WvActivitylogTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->boolean('upvote')
-            ->requirePresence('upvote', 'create')
+            // ->boolean('upvote')
+            // ->requirePresence('upvote', 'create')
             ->notEmpty('upvote');
 
         $validator
-            ->boolean('downvote')
-            ->requirePresence('downvote', 'create')
+            // ->boolean('downvote')
+            // ->requirePresence('downvote', 'create')
             ->notEmpty('downvote');
 
         $validator
-            ->boolean('bookmark')
-            ->requirePresence('bookmark', 'create')
+            // ->boolean('bookmark')
+            // ->requirePresence('bookmark', 'create')
             ->notEmpty('bookmark');
 
         $validator
-            ->integer('shares')
-            ->requirePresence('shares', 'create')
+            // ->integer('shares')
+            // ->requirePresence('shares', 'create')
             ->notEmpty('shares');
 
         $validator
-            ->scalar('flag')
-            ->requirePresence('flag', 'create')
+            // ->scalar('flag')
+            // ->requirePresence('flag', 'create')
             ->notEmpty('flag');
 
         $validator
-            ->boolean('eyewitness')
-            ->requirePresence('eyewitness', 'create')
+            // ->boolean('eyewitness')
+            // ->requirePresence('eyewitness', 'create')
             ->notEmpty('eyewitness');
 
         return $validator;
@@ -184,11 +184,18 @@ class WvActivitylogTable extends Table
     public function compareAndReturn( $postData, $currentState ){
       $data = array();
       if( !empty( $postData ) && !empty( $currentState ) ){
+        $upvote = $currentState->upvote;
         if( $postData['upvote'] < 0 || $postData['downvote'] > 0 ){
-          $currentState->upvote = 0;
+          $upvote = 0;
         } else if ( $postData['upvote'] > 0 ) {
-          $currentState->upvote = 1;
+          $upvote = 1;
         }
+        if( $currentState->upvote < $upvote ){
+          $res = $this->WvPost->changeUpvotes( $currentState->post_id, 1 );
+        } elseif ( $currentState->upvote > $upvote ){
+          $res = $this->WvPost->changeUpvotes( $currentState->post_id, -1 );
+        }
+        $currentState->upvote = $upvote;
         if( $postData['upvote'] > 0 || $postData['downvote'] < 0 ){
           $currentState->downvote = 0;
         } else if ( $postData['downvote'] > 0 ) {

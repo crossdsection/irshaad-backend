@@ -111,11 +111,33 @@ class WvPostController extends AppController
     public function getfeed($id = null)
     {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $wvPost = $this->WvPost->find('all', ['limit' => 200]);
-      if( !empty( $wvPost ) ){
-        $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+      if( isset( $_GET['page'] ) ){
+        $query = $this->WvPost->find('all'); $orderBy = array();
+        $wvPost = $query->page( $_GET['page'] );
+        if( isset( $_GET['count'] ) ){
+          $wvPost = $query->limit( $_GET['count'] );
+        } else {
+          $wvPost = $query->limit( 10 );
+        }
+        if( isset( $_GET['posttype'] ) ){
+          $wvPost = $query->where( [ 'post_type' => $_GET['posttype'] ] );
+        }
+        if( isset( $_GET['most_upvoted'] ) && $_GET['most_upvoted'] == 1 ){
+          $orderBy[] = 'total_upvotes DESC';
+        }
+        if( isset( $_GET['sort_datetime'] ) && $_GET['sort_datetime'] == 1 ){
+          $orderBy[] = 'created ASC';
+        } else {
+          $orderBy[] = 'created DESC';
+        }
+        $wvPost = $query->order( $orderBy );
+        if( !empty( $wvPost ) ){
+          $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+        } else {
+          $response = array( 'error' => 0, 'message' => 'Your Feed is Empty.', 'data' => array() );
+        }
       } else {
-        $response = array( 'error' => 0, 'message' => 'Your Feed is Empty', 'data' => array() );
+        $response = array( 'error' => 1, 'message' => 'Invalid Request.', 'data' => array() );
       }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );

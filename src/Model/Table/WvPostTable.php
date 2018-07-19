@@ -89,14 +89,12 @@ class WvPostTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('total_likes')
-            // ->requirePresence('total_likes', 'create')
-            ->notEmpty('total_likes');
+            ->integer('total_upvotes');
+            // ->notEmpty('total_upvotes');
 
         $validator
-            ->integer('total_comments')
-            // ->requirePresence('total_comments', 'create')
-            ->notEmpty('total_comments');
+            ->integer('total_score');
+            // ->notEmpty('total_score');
 
         $validator
             ->scalar('title')
@@ -182,7 +180,7 @@ class WvPostTable extends Table
     public function retrievePostDetailed( $wvPost ){
       $fileuploadIds = array(); $userIds = array(); $postIds = array();
       $localityIds = array(); $localityCityMap = array();
-      $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
+      // $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
       if( !empty( $wvPost ) ){
         $accessRoleIds = array();
         if( isset( $_POST['accessRoleIds'] ) )
@@ -264,9 +262,22 @@ class WvPostTable extends Table
           unset( $value['filejson'] );
           $value['user'] = $userInfos[ $value['user_id'] ];
           unset( $value['user_id'] );
-          $data[ $value->post_type ][] = $value;
+          $data[] = $value;
         }
       }
       return $data;
+    }
+
+    public function changeUpvotes( $postId = null, $change = null ){
+      $response = false;
+      if( $postId != null && $change != null ){
+        $post = TableRegistry::get('WvPost');
+        $entity = $post->get( $postId );
+        $entity->total_upvotes = $entity->total_upvotes + $change;
+        if( $post->save( $entity ) ){
+          $response = true;
+        }
+      }
+      return $response;
     }
 }

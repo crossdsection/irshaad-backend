@@ -31,6 +31,9 @@ class WvActivitylogController extends AppController
           $wvActivity = $this->WvActivitylog->find('all')->where(['user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
           if( empty( $wvActivity ) ){
             $saveData = $postData;
+            if( $saveData['upvote'] > 0 ){
+              $res = $this->WvActivitylog->WvPost->changeUpvotes( $saveData['post_id'], 1 );
+            }
           } else {
             $saveData = $this->WvActivitylog->compareAndReturn( $postData, $wvActivity[0] );
           }
