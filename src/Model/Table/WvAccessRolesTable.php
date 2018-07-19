@@ -124,15 +124,19 @@ class WvAccessRolesTable extends Table
         $accessRoles = $this->find('all')
                             ->where( $conditions )
                             ->toArray();
-        $accessRolesFound = array(); $accessRoleNotFound = array();
+        $accessRolesFound = array();
+        $accessRoleKeysFound = array( 'city_id' => array(), 'country_id' => array(), 'state_id' => array());
         foreach( $accessRoles as $key => $access ){
           $dataKey = $locationKeyMap[ $access['area_level'] ];
           if( in_array( $access['area_level_id'], $data[ $dataKey ] ) ){
             $accessRolesFound[] = array( 'id' => $access['id'], 'area_level' => $access['area_level'],
                                  'area_level_id' => $access['area_level_id'], 'access_level' => $access['access_level'] );
-            $data[ $dataKey ] = array_diff( $data[ $dataKey ], array( $access['area_level_id'] ) );
+            $accessRoleKeysFound[ $dataKey ][] = $access['area_level_id'];
           }
         }
+        $data['country_id'] = array_diff( $data['country_id'], $accessRoleKeysFound['country_id'] );
+        $data['state_id'] = array_diff( $data['state_id'], $accessRoleKeysFound['state_id'] );
+        $data['city_id'] = array_diff( $data['city_id'], $accessRoleKeysFound['city_id'] );
         $returnData = $this->addAccess( $data, $accessLevel );
         $response = array_merge( $accessRolesFound, $returnData );
       }

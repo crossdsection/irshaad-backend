@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvPost Model
@@ -45,7 +46,7 @@ class WvPostTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
+        $this->addBehavior('ArrayOps');
 
         $this->belongsTo('WvDepartments', [
             'foreignKey' => 'department_id',
@@ -176,5 +177,96 @@ class WvPostTable extends Table
         }
       }
       return $return;
+    }
+
+    public function retrievePostDetailed( $wvPost ){
+      $fileuploadIds = array(); $userIds = array(); $postIds = array();
+      $localityIds = array(); $localityCityMap = array();
+      $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
+      if( !empty( $wvPost ) ){
+        $accessRoleIds = array();
+        if( isset( $_POST['accessRoleIds'] ) )
+          $accessRoleIds = $_POST['accessRoleIds'];
+        $locationTag = array( 'city_id' => array(), 'state_id' => array(), 'country_id' => array());
+        foreach ( $wvPost as $key => $value ) {
+          $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
+          $userIds[] = $value->user_id;
+          $postIds[] = $value->id;
+          if( $value->locality_id != 0 )
+            $localityIds[] = $value->locality_id;
+          if( $value->city_id != 0 )
+            $locationTag['city_id'][] = $value->city_id;
+          if( $value->state_id != 0 )
+            $locationTag['state_id'][] = $value->state_id;
+          if( $value->country_id != 0 )
+            $locationTag['country_id'][] = $value->country_id;
+        }
+        $this->WvFileuploads = TableRegistry::get('WvFileuploads');
+        $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
+        $userInfos = $this->WvUser->getUserList( $userIds );
+        $postProperties = $this->WvActivitylog->getCumulativeResult( $postIds );
+        $postPolls = $this->WvPolls->getPolls( $postIds );
+        if( !empty( $localityIds ) ){
+          $localityRes = $this->WvLocalities->findLocalityById( $localityIds );
+          if( !empty( $localityRes['data']['cities'] )){
+            $localityCityMap = Hash::combine( $localityRes['data']['localities'], '{n}.locality_id', '{n}.city_id' );
+            $cityIds = Hash::extract( $localityRes['data']['cities'], '{n}.city_id' );
+            $locationTag['city_id'] = array_merge( $cityIds, $locationTag['city_id'] );
+          }
+        }
+        if( !empty( $locationTag['city_id'] ) || !empty( $locationTag['state_id'] ) || !empty( $locationTag['country_id'] ) ){
+          $locationTag['city_id'] = array_unique( $locationTag['city_id'] );
+          $locationTag['state_id'] = array_unique( $locationTag['state_id'] );
+          $locationTag['country_id'] = array_unique( $locationTag['country_id'] );
+          $accessData = $this->WvUser->WvAccessRoles->retrieveAccessRoleIds( $locationTag );
+          $accessData = $this->array_group_by( $accessData, 'area_level', 'area_level_id');
+        }
+        foreach ( $wvPost as $key => $value ) {
+          $accessRoleId = 0;
+          if( $value->locality_id != 0 ){
+            $cityId = $localityCityMap[ $value->locality_id ];
+            $accessRoleArr = $accessData['city'][ $cityId ];
+          } else if( $value->city_id != 0 ){
+            $accessRoleArr = $accessData['city'][ $value->city_id ];
+          } else if( $value->state_id != 0 ){
+            $accessRoleArr = $accessData['state'][ $value->state_id ];
+          } else if( $value->country_id != 0 ){
+            $accessRoleArr = $accessData['country'][ $value->country_id ];
+          }
+          $permission = array( 'enable' => 0, 'authority' => 0 );
+          foreach( $accessRoleArr as $accessRole ){
+            if( $accessRole['id'] != 0 && in_array( $accessRole['id'], $accessRoleIds ) ){
+              if( $accessRole['access_level'] >= 1 )
+                $permission['enable'] = 1;
+              if( $accessRole['access_level'] == 2 ){
+                $permission['authority'] = 1;
+                break;
+              }
+            }
+          }
+          if( !empty( $fileResponse['data']  ) ){
+            $fileJSON = json_decode( $value->filejson );
+            $value['files'] = array();
+            foreach( $fileJSON as $key => $id ){
+              if( isset( $fileResponse['data'][ $id ] ) ){
+                $value['files'][] = $fileResponse['data'][ $id ];
+              }
+            }
+          }
+          $value['props'] = array(); $value['polls'] = array();
+          if( isset( $postProperties[ $value['id'] ] ) ){
+            $value['props'] = $postProperties[ $value['id'] ];
+          }
+          if( isset( $postPolls[ $value['id'] ] ) ){
+            $value['polls'] = $postPolls[ $value['id'] ];
+          }
+          $value['permissions'] = $permission;
+          unset( $value['filejson'] );
+          $value['user'] = $userInfos[ $value['user_id'] ];
+          unset( $value['user_id'] );
+          $data[ $value->post_type ][] = $value;
+        }
+      }
+      return $data;
     }
 }

@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-use Cake\Utility\Hash;
 /**
  * WvPost Controller
  *
@@ -13,9 +12,6 @@ use Cake\Utility\Hash;
  */
 class WvPostController extends AppController
 {
-
-    public $components = array('ArrayGroup');
-
     /**
      * Add method
      *
@@ -95,33 +91,8 @@ class WvPostController extends AppController
       $id = $this->request->getParam('id');
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $wvPost = $this->WvPost->find('all')->where(['id' => $id]);
-      $fileuploadIds = array(); $userIds = array(); $data = array();
       if( !empty( $wvPost ) ){
-        foreach ( $wvPost as $key => $value ) {
-           $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
-           $userIds[] = $value->user_id;
-        }
-        $this->WvFileuploads = TableRegistry::get('WvFileuploads');
-        $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
-        $userInfos = $this->WvPost->WvUser->getUserInfo( $userIds );
-        $postProperties = $this->WvPost->WvActivitylog->getProperties( $id );
-        foreach ( $wvPost as $key => $value ) {
-          if( !empty( $fileResponse['data']  ) ){
-            $fileJSON = json_decode( $value->filejson );
-            $value['files'] = array();
-            foreach( $fileJSON as $key => $id ){
-              if( isset( $fileResponse['data'][ $id ] ) ){
-                $value['files'][] = $fileResponse['data'][ $id ];
-              }
-            }
-          }
-          $value['props'] = $postProperties;
-          unset( $value['filejson'] );
-          $value['user'] = $userInfos[ $value['user_id'] ];
-          unset( $value['user_id'] );
-          $data[] = $value;
-        }
-        $response['data'] = $data;
+        $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
       } else {
         $response = array( 'error' => 0, 'message' => 'Invalid Param', 'data' => array() );
       }
@@ -140,88 +111,9 @@ class WvPostController extends AppController
     public function getfeed($id = null)
     {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
       $wvPost = $this->WvPost->find('all', ['limit' => 200]);
-      $fileuploadIds = array(); $userIds = array(); $postIds = array();
-      $localityIds = array(); $localityCityMap = array();
       if( !empty( $wvPost ) ){
-        $accessRoleIds = array();
-        if( isset( $_POST['accessRoleIds'] ) )
-          $accessRoleIds = $_POST['accessRoleIds'];
-        $locationTag = array( 'city_id' => array(), 'state_id' => array(), 'country_id' => array());
-        foreach ( $wvPost as $key => $value ) {
-          $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
-          $userIds[] = $value->user_id;
-          $postIds[] = $value->id;
-          if( $value->locality_id != 0 )
-            $localityIds[] = $value->locality_id;
-          if( $value->city_id != 0 )
-            $locationTag['city_id'][] = $value->city_id;
-          if( $value->state_id != 0 )
-            $locationTag['state_id'][] = $value->state_id;
-          if( $value->country_id != 0 )
-            $locationTag['country_id'][] = $value->country_id;
-        }
-        $this->WvFileuploads = TableRegistry::get('WvFileuploads');
-        $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
-        $userInfos = $this->WvPost->WvUser->getUserList( $userIds );
-        $postProperties = $this->WvPost->WvActivitylog->getCumulativeResult( $postIds );
-        $postPolls = $this->WvPost->WvPolls->getPolls( $postIds );
-        if( !empty( $localityIds ) ){
-          $localityRes = $this->WvPost->WvLocalities->findLocalityById( $localityIds );
-          if( !empty( $localityRes['data']['cities'] )){
-            $localityCityMap = Hash::combine( $localityRes['data']['localities'], '{n}.locality_id', '{n}.city_id' );
-            $cityIds = Hash::extract( $localityRes['data']['cities'], '{n}.city_id' );
-            $locationTag['city_id'] = array_merge( $cityIds, $locationTag['city_id'] );
-          }
-        }
-        if( !empty( $locationTag['city_id'] ) || !empty( $locationTag['state_id'] ) || !empty( $locationTag['country_id'] ) ){
-          $locationTag['city_id'] = array_unique( $locationTag['city_id'] );
-          $locationTag['state_id'] = array_unique( $locationTag['state_id'] );
-          $locationTag['country_id'] = array_unique( $locationTag['country_id'] );
-          $accessData = $this->WvPost->WvUser->WvAccessRoles->retrieveAccessRoleIds( $locationTag );
-          $accessData = $this->ArrayGroup->array_group_by( $accessData, 'area_level', 'area_level_id');
-        }
-        foreach ( $wvPost as $key => $value ) {
-          $accessRoleId = 0;
-          if( $value->locality_id != 0 ){
-            $cityId = $localityCityMap[ $value->locality_id ];
-            $accessRole = $accessData['city'][ $cityId ][0];
-          } else if( $value->city_id != 0 ){
-            $accessRole = $accessData['city'][ $value->city_id ][0];
-          } else if( $value->state_id != 0 ){
-            $accessRole = $accessData['state'][ $value->state_id ][0];
-          } else if( $value->country_id != 0 ){
-            $accessRole = $accessData['country'][ $value->country_id ][0];
-          }
-          $permission = array( 'enable' => 0, 'authority' => 0 );
-          if( !empty( $accessRole ) && $accessRole['id'] != 0 && in_array( $accessRole['id'], $accessRoleIds ) ){
-            $permission['enable'] = ( $accessRole['access_level'] >= 1 ) ? 1 : 0;
-            $permission['authority'] = ( $accessRole['access_level'] == 2 ) ? 1 : 0;
-          }
-          if( !empty( $fileResponse['data']  ) ){
-            $fileJSON = json_decode( $value->filejson );
-            $value['files'] = array();
-            foreach( $fileJSON as $key => $id ){
-              if( isset( $fileResponse['data'][ $id ] ) ){
-                $value['files'][] = $fileResponse['data'][ $id ];
-              }
-            }
-          }
-          $value['props'] = array(); $value['polls'] = array();
-          if( isset( $postProperties[ $value['id'] ] ) ){
-            $value['props'] = $postProperties[ $value['id'] ];
-          }
-          if( isset( $postPolls[ $value['id'] ] ) ){
-            $value['polls'] = $postPolls[ $value['id'] ];
-          }
-          $value['permissions'] = $permission;
-          unset( $value['filejson'] );
-          $value['user'] = $userInfos[ $value['user_id'] ];
-          unset( $value['user_id'] );
-          $data[ $value->post_type ][] = $value;
-        }
-        $response['data'] = $data;
+        $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
       } else {
         $response = array( 'error' => 0, 'message' => 'Your Feed is Empty', 'data' => array() );
       }

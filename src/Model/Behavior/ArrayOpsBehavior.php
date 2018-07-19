@@ -1,13 +1,13 @@
 <?php
-namespace App\Controller\Component;
+namespace App\Model\Behavior;
 
-use Cake\Controller\Component;
-use Cake\Controller\ComponentRegistry;
+use Cake\ORM\Behavior;
+use Cake\ORM\Table;
 
 /**
- * ArrayGroup component
+ * ArrayOps behavior
  */
-class ArrayGroupComponent extends Component
+class ArrayOpsBehavior extends Behavior
 {
 
     /**
