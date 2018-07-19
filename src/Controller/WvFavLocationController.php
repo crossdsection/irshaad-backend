@@ -55,6 +55,10 @@ class WvFavLocationController extends AppController
                $saveData['country_id'] = $locale[0]['country_id'];
             }
             $saveData['user_id'] = $postData['userId'];
+            if( isset( $postData[ 'latitude' ] ) )
+              $saveData[ 'latitude' ] = $postData[ 'latitude' ];
+            if( isset( $postData[ 'longitude' ] ) )
+              $saveData[ 'longitude' ] = $postData[ 'longitude' ];
           }
           if( $this->WvFavLocation->add( $saveData ) ){
             $response = array( 'error' => 0, 'message' => 'Favourite Location Saved', 'data' => array() );
@@ -84,13 +88,13 @@ class WvFavLocationController extends AppController
          $data = array();
          foreach ( $wvFavLocations as $key => $favLoc ) {
            if( $favLoc->locality_id != 0 ){
-             $search['localityIds'][] = $favLoc->locality_id;
+             $search['localityIds'][ $favLoc->locality_id ] = array( 'locality_id' => $favLoc->locality_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude );
            } else if( $favLoc->city_id != 0 ){
-             $search['cityIds'][] = $favLoc->city_id;
+             $search['cityIds'][ $favLoc->city_id ] = array( 'city_id' => $favLoc->city_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude );
            } else if( $favLoc->state_id != 0 ){
-             $search['stateIds'][] = $favLoc->state_id;
+             $search['stateIds'][ $favLoc->state_id ] = array( 'state_id' => $favLoc->state_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude );
            } else if( $favLoc->country_id != 0 ){
-             $search['countryIds'][] = $favLoc->country_id;
+             $search['countryIds'][ $favLoc->country_id ] = array( 'country_id' => $favLoc->country_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude );
            }
          }
          $ret = $this->WvFavLocation->retrieveAddresses( $search );

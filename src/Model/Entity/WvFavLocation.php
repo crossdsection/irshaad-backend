@@ -49,6 +49,8 @@ class WvFavLocation extends Entity
         'wv_country' => true,
         'wv_state' => true,
         'wv_city' => true,
-        'wv_locality' => true
+        'wv_locality' => true,
+        'latitude' => true,
+        'longitude' => true
     ];
 }

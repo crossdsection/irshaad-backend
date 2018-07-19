@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvFavLocation Model
@@ -137,32 +138,41 @@ class WvFavLocationTable extends Table
       if( !empty( $search ) ){
         $data = array();
         if( !empty( $search['localityIds'] ) ){
-          $localityRes = $this->WvLocalities->findLocalityById( $search['localityIds'] );
+          $localityIds = Hash::extract( $search['localityIds'], '{n}.locality_id' );
+          $localityRes = $this->WvLocalities->findLocalityById( $localityIds );
           if( $localityRes['error'] == 0 ){
             foreach ( $localityRes['data']['localities'] as $key => $locale ) {
+              $localityId = $locale['locality_id'];
               $city = $this->traverseAndMatch( $localityRes['data']['cities'], 'city_id', $locale['city_id'] );
               $state = $this->traverseAndMatch( $localityRes['data']['states'], 'state_id', $city['state_id'] );
               $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
-              $data[] = $locale['locality_name'].', '.$city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+              $address = $locale['locality_name'].', '.$city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+              $data[] = array( 'address_string' => $address, 'latitude' => $search['localityIds'][ $localityId ]['latitude'], 'longitude' => $search['localityIds'][ $localityId ]['longitude'] );
             }
           }
         }
         if( !empty( $search['cityIds'] ) ){
-          $cityRes = $this->WvCities->findCitiesById( $search['cityIds'] );
+          $cityIds = Hash::extract( $search['cityIds'], '{n}.city_id' );
+          $cityRes = $this->WvCities->findCitiesById( $cityIds );
           if( $cityRes['error'] == 0 ){
             foreach ( $cityRes['data']['cities'] as $key => $city ) {
+              $cityId = $city['city_id'];
               $state = $this->traverseAndMatch( $localityRes['data']['states'], 'state_id', $city['state_id'] );
               $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
-              $data[] = $city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+              $address = $city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
+              $data[] = array( 'address_string' => $address, 'latitude' => $search['cityIds'][ $cityId ]['latitude'], 'longitude' => $search['cityIds'][ $cityId ]['longitude'] );
             }
           }
         }
         if( !empty( $search['stateIds'] ) ){
-          $stateRes = $this->WvStates->findStateById( $search['stateIds'] );
+          $stateIds = Hash::extract( $search['stateIds'], '{n}.state_id' );
+          $stateRes = $this->WvStates->findStateById( $stateIds );
           if( $stateRes['error'] == 0 ){
             foreach ( $stateRes['data']['cities'] as $key => $state ) {
+              $stateId = $state['state_id'];
               $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
-              $data[] = $state['state_name'].', '.$country['country_name'];
+              $address = $state['state_name'].', '.$country['country_name'];
+              $data[] = array( 'address_string' => $address, 'latitude' => $search['stateIds'][ $stateId ]['latitude'], 'longitude' => $search['stateIds'][ $stateId ]['longitude'] );
             }
           }
         }
