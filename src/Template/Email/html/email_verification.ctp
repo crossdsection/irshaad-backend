@@ -182,7 +182,7 @@
                 <tr>
                   <td class="content-cell">
                     <h1>Verify your email address</h1>
-                    <p>Thanks for signing up for Canvas! We're excited to have you as an early user.</p>
+                    <p>Thanks for signing up for World Voting! We're excited to have you as an early user.</p>
                     <!-- Action -->
                     <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                       <tr>
