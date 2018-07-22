@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Utility\Hash;
-
+use Cake\Routing\Router;
 /**
  * WvUser Controller
  *
@@ -21,8 +21,8 @@ class WvUserController extends AppController {
     public function signup() {
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
         $userData = array();
-        $postKeys = array('email', 'password','firstName','lastName','latitude','longitude','gender','phone','certificate');
-        $postData = $this->request->input('json_decode', true);
+        $postKeys = array( 'email', 'password', 'firstName', 'lastName', 'latitude', 'longitude', 'gender', 'phone', 'certificate' );
+        $postData = $this->request->input( 'json_decode', true );
         if( empty( $postData ) ){
           $postData = $this->request->data;
         }
@@ -68,10 +68,19 @@ class WvUserController extends AppController {
               $res['data']['locale'] = $localeRes['data'];
             }
           }
-          if( !empty( $userData ) && $this->WvUser->add( $userData ) ){
-            $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
+          if( !empty( $userData ) ){
+            $returnId = $this->WvUser->add( $userData );
+            if( $returnId ){
+              $response = $this->WvUser->WvEmailVerification->add( $returnId );
+              $baseUrl = Router::fullBaseUrl().'email/verify?token='.$response->token;
+              $emailData = array( 'action_url' => $baseUrl, 'code' => $response->code );
+              $result = $this->_sendMail( array( $userData['email'] ), 'Verification Email', 'emailVerification', $emailData );
+              $response = array( 'error' => 0, 'message' => 'Registration Successful', 'data' => array() );
+            } else {
+              $response = array( 'error' => 1, 'message' => 'Registration Failed', 'data' => array() );
+            }
           } else {
-            $response = array( 'error' => 1, 'message' => 'Registration Failed', 'data' => array() );
+            $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
           }
         } else {
           $response = array( 'error' => 1, 'message' => 'Registration Failed', 'data' => array() );

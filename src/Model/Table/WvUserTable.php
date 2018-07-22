@@ -64,7 +64,7 @@ class WvUserTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasOne('WvLoginRecord');
-
+        $this->hasOne('WvEmailVerification');
     }
 
     /**
@@ -202,17 +202,19 @@ class WvUserTable extends Table
     }
 
     public function add( $userData = array() ){
+      $response = false;
       if( !empty( $userData ) ){
         if( isset( $userData['password'] ) ){
           $users = TableRegistry::get('WvUser');
           $entity = $users->newEntity();
           $entity = $users->patchEntity( $entity, $userData );
-          if( $users->save( $entity ) ){
-            return true;
+          $record = $users->save( $entity );
+          if( isset( $record->id ) ){
+            $response = $record->id;
           }
         }
       }
-      return false;
+      return $response;
     }
 
     public function checkPassword( $password, $storedPassword ){

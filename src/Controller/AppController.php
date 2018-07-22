@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
+use Cake\Mailer\Email;
 /**
  * Application Controller
  *
@@ -42,5 +43,21 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+    }
+
+    function _sendMail( $to, $subject, $template, $data = array() ) {
+        $this->Email = new Email();
+        $result = $this->Email->to( $to )
+                              ->subject( $subject )
+                              ->viewVars( $data )
+                              ->template( $template )
+                              ->emailFormat( 'html' ) //Send as 'html', 'text' or 'both' (default is 'text')
+                              ->send();
+        if( isset( $result['headers'] ) ){
+          return true;
+        }
+        return false;
+        // $this->Email->bcc = array('secret@example.com'); // copies
+        // $this->Email->replyTo = 'noreply@domain.com';
     }
 }

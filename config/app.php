@@ -49,7 +49,7 @@ return [
         'webroot' => 'webroot',
         'wwwRoot' => WWW_ROOT,
         //'baseUrl' => env('SCRIPT_NAME'),
-        'fullBaseUrl' => false,
+        'fullBaseUrl' => 'http://localhost/worlvoting/',
         'imageBaseUrl' => 'img/',
         'cssBaseUrl' => 'css/',
         'jsBaseUrl' => 'js/',
@@ -194,22 +194,23 @@ return [
      * appropriate file to src/Mailer/Transport. Transports should be named
      * 'YourTransport.php', where 'Your' is the name of the transport.
      */
-    'EmailTransport' => [
-        'default' => [
-            'className' => 'Mail',
-            /*
-             * The following keys are used in SMTP transports:
-             */
-            'host' => 'localhost',
-            'port' => 25,
-            'timeout' => 30,
-            'username' => null,
-            'password' => null,
-            'client' => null,
-            'tls' => null,
-            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
-        ],
-    ],
+     'EmailTransport' => [
+         'default' => [
+             'className' => 'Smtp',
+             /*
+              * The following keys are used in SMTP transports:
+              */
+             'host' => 'smtp.gmail.com',
+             'port' => 587,
+             'timeout' => 30,
+             'username' => 'theutopiaacademy@gmail.com',
+             'password' => 'UtopianThinking',
+             'client' => null,
+             'tls' => true,
+             'log' => true
+             // 'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+         ],
+     ],
 
     /**
      * Email delivery profiles
