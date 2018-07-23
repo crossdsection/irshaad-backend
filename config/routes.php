@@ -121,6 +121,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
+        '/user/logout/*',
+        ['controller' => 'WvUser', 'action' => 'logout']
+    );
+
+    $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']
     );

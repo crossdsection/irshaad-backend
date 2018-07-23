@@ -38,4 +38,17 @@ class OAuthComponent extends Component
       }
       return $response;
     }
+
+    public function removeToken( $userId = 0 ){
+      $response = array( 'error' => 0, 'message' => 'Invalid Request', 'data' => array() );
+      if( $userId != 0 ){
+        $this->Oauth = TableRegistry::get('WvOauth');
+        $result = $this->Oauth->deleteUserToken( $userId );
+        if( $result )
+          $response = array( 'error' => 0, 'message' => 'Logout Successful', 'data' => array() );
+        else
+          $response = array( 'error' => 1, 'message' => 'Logout Failed', 'data' => array() );
+      }
+      return $response;
+    }
 }

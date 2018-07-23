@@ -240,4 +240,15 @@ class WvOauthTable extends Table
       }
       return $result;
     }
+
+    public function deleteUserToken( $userId ){
+      $result = false;
+      if( $userId != 0 ){
+        $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
+        $oAuth = TableRegistry::get('WvOauth');
+        $entity = $oAuth->get( $extractedData[0]->id );
+        $result = $oAuth->delete( $entity );
+      }
+      return $result;
+    }
 }

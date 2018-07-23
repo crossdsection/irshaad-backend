@@ -157,6 +157,20 @@ class WvUserController extends AppController {
         return $this->response;
     }
 
+    public function logout(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $userId = null;
+      if( isset( $_GET['userId'] ) ){
+        $userId = $_GET['userId'];
+      }
+      if( $userId != null ){
+        $response = $this->OAuth->removeToken( $userId );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
     public function getuserinfo(){
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
         $getData = $this->request->input('json_decode', true);
