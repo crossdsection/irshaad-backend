@@ -203,8 +203,19 @@ class WvUserController extends AppController {
     public function updateuserinfo(){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $postData = $this->request->input('json_decode', true);
-      if( empty( $postData ) ){
+      if( !empty( $postData ) ){
+        $postData['id'] = $_POST['userId'];
+      } else {
         $postData = $this->request->data;
+      }
+      if( !empty( $postData ) ){
+        $updatedUser = $this->WvUser->updateUser( array( $postData ) );
+        $userCount = count( $updatedUser );
+        if( $userCount > 0 ){
+          $response = array( 'error' => 0, 'message' => 'User has been updated.', 'data' => array() );
+        } else {
+          $response = array( 'error' => 0, 'message' => 'Update Failed.', 'data' => array() );
+        }
       }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
@@ -219,7 +230,7 @@ class WvUserController extends AppController {
       } else {
         $postData = $this->request->getData();
       }
-      if( !empty( $postData )){
+      if( !empty( $postData ) ){
         $countKeysPassed = 0;
         $keyChecks = array( 'userId', 'token', 'code' );
         foreach( $keyChecks as $key ){
@@ -229,6 +240,29 @@ class WvUserController extends AppController {
         }
         if( $countKeysPassed >= 2 ){
           $response = $this->WvUser->WvEmailVerification->verify( $postData );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
+    public function forgotpassword(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $postData = $this->request->input('json_decode', true);
+      if( empty( $postData ) ){
+        $postData = $this->request->getData();
+      }
+      if( !empty( $postData ) && isset( $postData['email'] ) ){
+        $users = $this->WvUser->find('all')->where([ 'email' => $postData['email'] ])->toArray();
+        if( $users ){
+          $response = $this->WvUser->WvEmailVerification->add( $users[0]->id );
+          $baseUrl = Router::fullBaseUrl().'auth/resetpassword?token='.$response->token;
+          $emailData = array( 'action_url' => $baseUrl, 'code' => $response->code );
+          $result = $this->_sendMail( array( $postData['email'] ), 'Reset Password', 'forgotPassword', $emailData );
+          $response = array( 'error' => 0, 'message' => 'Reset Code Sent' );
+        } else {
+          $response = array( 'error' => 1, 'message' => 'User Not Found' );
         }
       }
       $this->response = $this->response->withType('application/json')

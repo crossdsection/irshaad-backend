@@ -29,6 +29,7 @@ class AuthorizationMiddleware
       $allowedConActions = array();
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'login' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'signup' );
+      $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'forgotpassword' );
       $allowedConActions[] = array( 'controller' => 'WvPost', 'action' => 'getfeed' );
       foreach( $allowedConActions as $conActions ){
         if( $conActions['controller'] == $request->getParam('controller') && $conActions['action'] == $request->getParam('action') ){

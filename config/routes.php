@@ -71,6 +71,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->post(
+        '/auth/recover',
+        ['controller' => 'WvUser', 'action' => 'forgotpassword']
+    );
+
+    $routes->post(
         '/post/submit/*',
         ['controller' => 'WvPost', 'action' => 'add']
     );
@@ -103,6 +108,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->post(
         '/user/access/*',
         ['controller' => 'WvUser', 'action' => 'updateaccess']
+    );
+
+    $routes->post(
+        '/user/update/*',
+        ['controller' => 'WvUser', 'action' => 'updateuserinfo']
     );
 
     $routes->post(
