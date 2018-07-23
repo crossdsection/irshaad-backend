@@ -58,6 +58,7 @@ class WvUser extends Entity
         'longitude' => true,
         'profilepic' => true,
         'status' => true,
+        'date_of_birth' => true,
         'active' => true,
         'email_verified' => true,
         'adhar_verified' => true,

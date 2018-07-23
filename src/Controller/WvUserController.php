@@ -42,6 +42,9 @@ class WvUserController extends AppController {
               }
             }
           }
+          if( isset( $postData['birthDate'] ) ){
+            $userData['date_of_birth'] = date( 'Y-m-d', strtotime( $postData['birthDate'] ) );
+          }
           $localityCheck = false;
           $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude', 'state', 'country' );
           $localityData = array();
