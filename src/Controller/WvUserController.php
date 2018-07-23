@@ -210,4 +210,29 @@ class WvUserController extends AppController {
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
     }
+
+    public function emailVerification(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $postData = $this->request->input('json_decode', true);
+      if( !empty( $postData ) ){
+        $postData['userId'] = $_POST['userId'];
+      } else {
+        $postData = $this->request->getData();
+      }
+      if( !empty( $postData )){
+        $countKeysPassed = 0;
+        $keyChecks = array( 'userId', 'token', 'code' );
+        foreach( $keyChecks as $key ){
+          if( isset( $postData[ $key ] ) && !empty( $postData[ $key ] ) ){
+            $countKeysPassed++;
+          }
+        }
+        if( $countKeysPassed >= 2 ){
+          $response = $this->WvUser->WvEmailVerification->verify( $postData );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
 }

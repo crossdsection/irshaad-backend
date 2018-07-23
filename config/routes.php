@@ -105,6 +105,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'updateaccess']
     );
 
+    $routes->post(
+        '/user/verify/*',
+        ['controller' => 'WvUser', 'action' => 'email_verification']
+    );
+
     $routes->get(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']

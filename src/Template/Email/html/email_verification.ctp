@@ -193,7 +193,7 @@
                             <w:anchorlock/>
                             <center style="color:#ffffff;font-family:sans-serif;font-size:15px;">Verify Email</center>
                           </v:roundrect><![endif]-->
-                            <a href="" class="button button--blue">Verify Email</a>
+                            <a href="<?php echo $action_url ?>" class="button button--blue" target="_blank">Verify Email</a>
                           </div>
                         </td>
                       </tr>

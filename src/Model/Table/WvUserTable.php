@@ -233,7 +233,7 @@ class WvUserTable extends Table
           if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
             $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
           }
-          $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude' );
+          $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude', 'email_verified' );
           foreach( $directKeys as $key ){
             if( isset( $user[ $key ] ) ){
               $tmpResponse[ $key ] = $user[ $key ];

@@ -100,6 +100,7 @@ class WvEmailVerificationTable extends Table
         return $rules;
     }
 
+
     public function add( $userId = null ){
       $response = null;
       if( $userId != null ){
@@ -113,6 +114,44 @@ class WvEmailVerificationTable extends Table
         $entity = $emailVerification->patchEntity( $entity, $data );
         $record = $emailVerification->save( $entity );
         $response = $record;
+      }
+      return $response;
+    }
+
+    /*
+     * data[ code ]
+     * data[ token ]
+     * data[ userId ]
+     */
+    public function verify( $data = array() ){
+      $response = array( 'error' => 1, 'message' => 'Verification Failed' );
+      if( !empty( $data ) ){
+        $emailVerification = TableRegistry::get('WvEmailVerification');
+        $found = $emailVerification->find()->where( [ 'user_id' => $data['userId'], 'status' => 1 ] )->toArray();
+        if( $found != null ){
+          $userVerified = false;
+          if( isset( $data['token'] ) && $data['token'] == $found[0]->token ){
+            $userVerified = true;
+          }
+          if( isset( $data['code'] ) && $data['code'] == $found[0]->code ){
+            $userVerified = true;
+          }
+          if( $userVerified ){
+            $user = $this->WvUser->getUserList( $data['userId'], array( 'id', 'email_verified' ) );
+            $user[ $data['userId'] ]['email_verified'] = 1;
+            $usersUpdated = $this->WvUser->updateUser( $user );
+            if( !empty( $usersUpdated ) ){
+              $entity = $emailVerification->get( $found[0]->id );
+              $entity->status = 0;
+              if( $emailVerification->save( $entity ) ){
+                $response = array( 'error' => 0, 'message' => 'Verification Successful' );
+                return $response;
+              }
+            }
+          }
+        } else {
+          $response = array( 'error' => 1, 'message' => 'No Tokens Available.' );
+        }
       }
       return $response;
     }
