@@ -157,7 +157,7 @@ class WvUserController extends AppController {
         return $this->response;
     }
 
-    public function logout(){
+    public function logout() {
       $response = array( 'error' => 1, 'message' => 'Invalid Request' );
       $userId = null;
       if( isset( $_GET['userId'] ) ){
@@ -171,7 +171,7 @@ class WvUserController extends AppController {
       return $this->response;
     }
 
-    public function getuserinfo(){
+    public function getuserinfo() {
         $response = array( 'error' => 0, 'message' => '', 'data' => array() );
         $getData = $this->request->input('json_decode', true);
         if( empty( $getData ) ){
@@ -186,7 +186,7 @@ class WvUserController extends AppController {
         return $this->response;
     }
 
-    public function updateaccess(){
+    public function updateaccess() {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $postData = $this->request->input('json_decode', true);
       if( empty( $postData ) ){
@@ -214,7 +214,7 @@ class WvUserController extends AppController {
       return $this->response;
     }
 
-    public function updateuserinfo(){
+    public function updateuserinfo() {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       $postData = $this->request->input('json_decode', true);
       if( !empty( $postData ) ){
@@ -236,17 +236,15 @@ class WvUserController extends AppController {
       return $this->response;
     }
 
-    public function emailVerification(){
-      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+    public function emailVerification() {
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
       $postData = $this->request->input('json_decode', true);
-      if( !empty( $postData ) ){
-        $postData['userId'] = $_POST['userId'];
-      } else {
+      if( empty( $postData ) ){
         $postData = $this->request->getData();
       }
       if( !empty( $postData ) ){
         $countKeysPassed = 0;
-        $keyChecks = array( 'userId', 'token', 'code' );
+        $keyChecks = array( 'email', 'token', 'code' );
         foreach( $keyChecks as $key ){
           if( isset( $postData[ $key ] ) && !empty( $postData[ $key ] ) ){
             $countKeysPassed++;
@@ -254,6 +252,10 @@ class WvUserController extends AppController {
         }
         if( $countKeysPassed >= 2 ){
           $response = $this->WvUser->WvEmailVerification->verify( $postData );
+          if( $response['error'] == 0 ){
+            $res = $this->OAuth->getAccessToken( $response['data'][0] );
+            $response['data'] = $res['data'];
+          }
         }
       }
       $this->response = $this->response->withType('application/json')
@@ -261,7 +263,7 @@ class WvUserController extends AppController {
       return $this->response;
     }
 
-    public function forgotpassword(){
+    public function forgotpassword() {
       $response = array( 'error' => 1, 'message' => 'Invalid Request' );
       $postData = $this->request->input('json_decode', true);
       if( empty( $postData ) ){
