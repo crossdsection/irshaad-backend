@@ -206,4 +206,15 @@ class WvFavLocationTable extends Table
       }
       return $response;
     }
+
+    public function remove( $favLocalId ){
+      $ret = false;
+      if( !empty( $favLocalId ) ){
+        $favLoc = $this->find()->where([ 'id IN' => $favLocalId ]);
+        if( !empty( $favLoc ) ){
+          $ret = $this->deleteAll( [ 'id IN' => $favLocalId ] );
+        }
+      }
+      return $ret;
+    }
 }

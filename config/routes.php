@@ -120,6 +120,16 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'email_verification']
     );
 
+    $routes->post(
+        '/user/changepicture/*',
+        ['controller' => 'WvUser', 'action' => 'changeProfilePicture']
+    );
+
+    $routes->post(
+        '/favlocation/remove/*',
+        ['controller' => 'WvFavLocation', 'action' => 'delete']
+    );
+
     $routes->get(
         '/auth/logout/*',
         ['controller' => 'WvUser', 'action' => 'logout']

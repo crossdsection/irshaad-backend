@@ -180,7 +180,7 @@ class WvPostTable extends Table
     public function retrievePostDetailed( $wvPost ){
       $fileuploadIds = array(); $userIds = array(); $postIds = array();
       $localityIds = array(); $localityCityMap = array();
-      // $data = array( 'discussion' => array(), 'court' => array(), 'news' => array() );
+      $data = array();
       if( !empty( $wvPost ) ){
         $accessRoleIds = array();
         if( isset( $_POST['accessRoleIds'] ) )

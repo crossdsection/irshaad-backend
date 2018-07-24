@@ -30,6 +30,7 @@ class WvCommentsController extends AppController
         }
         $userInfos = $this->WvComments->WvUser->getUserInfo( $userIds );
         foreach ( $wvComments as $key => $value ) {
+          unset( $userInfos[ $value['user_id'] ]['accessRoles'] );
           $value['user'] = $userInfos[ $value['user_id'] ];
           unset( $value['user_id'] );
           $data[] = $value;
