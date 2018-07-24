@@ -115,9 +115,7 @@ class WvFavLocationTable extends Table
         $entity = $favLocal->newEntity();
         $entity = $favLocal->patchEntity( $entity, $postData );
         $record = $favLocal->save( $entity );
-        if( $record->id ){
-          $return = true;
-        }
+        return $record;
       }
       return $return;
     }
@@ -133,6 +131,23 @@ class WvFavLocationTable extends Table
       return $return;
     }
 
+    public function buildDataForSearch( $wvFavLocations ){
+      $search = array( 'localityIds' => array(), 'cityIds' => array(), 'stateIds' => array(), 'countryIds' => array() );
+      if( !empty( $wvFavLocations ) ){
+        foreach ( $wvFavLocations as $key => $favLoc ) {
+          if( $favLoc->level == 'locality' ){
+            $search['localityIds'][ $favLoc->locality_id ] = array( 'locality_id' => $favLoc->locality_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
+          } else if( $favLoc->level == 'city' ){
+            $search['cityIds'][ $favLoc->city_id ] = array( 'city_id' => $favLoc->city_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
+          } else if( $favLoc->level == 'state' ){
+            $search['stateIds'][ $favLoc->state_id ] = array( 'state_id' => $favLoc->state_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
+          } else if( $favLoc->level == 'country' ){
+            $search['countryIds'][ $favLoc->country_id ] = array( 'country_id' => $favLoc->country_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
+          }
+        }
+      }
+      return $search;
+    }
     public function retrieveAddresses( $search ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if( !empty( $search ) ){

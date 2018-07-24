@@ -62,8 +62,11 @@ class WvFavLocationController extends AppController
             if( isset( $postData[ 'level' ] ) )
               $saveData[ 'level' ] = $postData[ 'level' ];
           }
-          if( $this->WvFavLocation->add( $saveData ) ){
-            $response = array( 'error' => 0, 'message' => 'Favourite Location Saved', 'data' => array() );
+          $return = $this->WvFavLocation->add( $saveData );
+          if( $return ){
+            $search = $this->WvFavLocation->buildDataForSearch( array( $return ) );
+            $result = $this->WvFavLocation->retrieveAddresses( $search );
+            $response = array( 'error' => 0, 'message' => 'Favourite Location Saved', 'data' => $result['data'] );
           } else {
             $response = array( 'error' => -1, 'message' => 'Please Try Again', 'data' => array() );
           }
@@ -86,19 +89,7 @@ class WvFavLocationController extends AppController
        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
        $wvFavLocations = $this->WvFavLocation->find('all', ['limit' => 200])->where(['user_id' => $_GET['userId']])->toArray();
        if( !empty( $wvFavLocations ) ){
-         $search = array( 'localityIds' => array(), 'cityIds' => array(), 'stateIds' => array(), 'countryIds' => array() );
-         $data = array();
-         foreach ( $wvFavLocations as $key => $favLoc ) {
-           if( $favLoc->level == 'locality' ){
-             $search['localityIds'][ $favLoc->locality_id ] = array( 'locality_id' => $favLoc->locality_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
-           } else if( $favLoc->level == 'city' ){
-             $search['cityIds'][ $favLoc->city_id ] = array( 'city_id' => $favLoc->city_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
-           } else if( $favLoc->level == 'state' ){
-             $search['stateIds'][ $favLoc->state_id ] = array( 'state_id' => $favLoc->state_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
-           } else if( $favLoc->level == 'country' ){
-             $search['countryIds'][ $favLoc->country_id ] = array( 'country_id' => $favLoc->country_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level );
-           }
-         }
+         $search = $this->WvFavLocation->buildDataForSearch( $wvFavLocations );
          $ret = $this->WvFavLocation->retrieveAddresses( $search );
          $response['data'] = $ret['data'];
        } else {
