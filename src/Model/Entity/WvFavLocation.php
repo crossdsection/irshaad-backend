@@ -50,6 +50,7 @@ class WvFavLocation extends Entity
         'wv_state' => true,
         'wv_city' => true,
         'wv_locality' => true,
+        'level' => true,
         'latitude' => true,
         'longitude' => true
     ];
