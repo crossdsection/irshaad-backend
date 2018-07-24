@@ -47,11 +47,12 @@ class AppController extends Controller
 
     function _sendMail( $to, $subject, $template, $data = array() ) {
         $this->Email = new Email();
-        $result = $this->Email->to( $to )
-                              ->subject( $subject )
-                              ->viewVars( $data )
-                              ->template( $template )
-                              ->emailFormat( 'html' ) //Send as 'html', 'text' or 'both' (default is 'text')
+        $this->Email->setTransport('ssl');
+        $result = $this->Email->setTo( $to )
+                              ->setSubject( $subject )
+                              ->setViewVars( $data )
+                              ->setTemplate( $template )
+                              ->setEmailFormat( 'html' ) //Send as 'html', 'text' or 'both' (default is 'text')
                               ->send();
         if( isset( $result['headers'] ) ){
           return true;

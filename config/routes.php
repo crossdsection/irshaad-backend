@@ -121,7 +121,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
-        '/user/logout/*',
+        '/auth/logout/*',
         ['controller' => 'WvUser', 'action' => 'logout']
     );
 

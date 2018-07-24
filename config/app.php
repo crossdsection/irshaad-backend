@@ -195,23 +195,27 @@ return [
      * 'YourTransport.php', where 'Your' is the name of the transport.
      */
      'EmailTransport' => [
-         'default' => [
-             'className' => 'Smtp',
-             /*
-              * The following keys are used in SMTP transports:
-              */
-             'host' => 'smtp.gmail.com',
-             'port' => 587,
-             'timeout' => 30,
-             'username' => 'theutopiaacademy@gmail.com',
-             'password' => 'UtopianThinking',
-             'client' => null,
-             'tls' => true,
-             'log' => true
-             // 'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
-         ],
-     ],
-
+        'default' => [
+            'className' => 'Smtp',
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'timeout' => 30,
+            'username' => 'theutopiaacademy@gmail.com',
+            'password' => 'UtopianThinking',
+            'client' => null,
+            'tls' => true,
+            'log' => true
+        ],
+        'ssl' => [
+            'className' => 'Smtp',
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => 465,
+            'timeout' => 30,
+            'username' => 'theutopiaacademy@gmail.com',
+            'password' => 'UtopianThinking',
+            'ssl' => true
+        ],
+    ],
     /**
      * Email delivery profiles
      *
