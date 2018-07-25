@@ -20,7 +20,7 @@ class WvFavLocationController extends AppController
      */
     public function add()
     {
-      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
       if ( $this->request->is('post') ) {
         $postData = $this->request->input('json_decode', true);
         if( !empty( $postData ) ){
