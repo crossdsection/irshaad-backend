@@ -104,13 +104,13 @@ class WvFavLocationController extends AppController
        $response = array( 'error' => 1, 'message' => 'Request Failed', 'data' => array() );
        $postData = $this->request->input('json_decode', true);
        if( !empty( $postData ) ){
-         $postData['userId'] = $_POST['userId'];
+         $postData['user_id'] = $_POST['userId'];
        } else {
          $postData = $this->request->getData();
        }
-       if( isset( $postData['favLocationId'] ) ){
-         if( $this->WvFavLocation->remove( array( $postData['favLocationId'] ) ) ){
-           $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+       if( isset( $postData['latitude'] ) && isset( $postData['longitude'] ) && isset( $postData['level'] ) && $postData['latitude'] != 0 && $postData['longitude'] != 0 ){
+         if( $this->WvFavLocation->remove( array( $postData ) ) ){
+           $response = array( 'error' => 0, 'message' => 'Location Deleted Successfully.', 'data' => array() );
          }
        }
        $this->response = $this->response->withType('application/json')

@@ -207,12 +207,15 @@ class WvFavLocationTable extends Table
       return $response;
     }
 
-    public function remove( $favLocalId ){
+    public function remove( $conditions ){
       $ret = false;
-      if( !empty( $favLocalId ) ){
-        $favLoc = $this->find()->where([ 'id IN' => $favLocalId ]);
-        if( !empty( $favLoc ) ){
-          $ret = $this->deleteAll( [ 'id IN' => $favLocalId ] );
+      if( !empty( $conditions ) ){
+        $favLoc = $this->find( 'all', [
+          'fields' => [ 'id' ]
+        ])->where( $conditions )->toArray();
+        $favLocIds = Hash::extract( $favLoc, '{n}.id');
+        if( !empty( $favLocIds ) ){
+          $ret = $this->deleteAll([ 'id IN' => $favLocIds ]);
         }
       }
       return $ret;
