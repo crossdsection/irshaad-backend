@@ -151,6 +151,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
+        '/countries/get/*',
+        ['controller' => 'WvCountries', 'action' => 'get']
+    );
+
+    $routes->get(
         '/post/get/:id',
         ['controller' => 'WvPost', 'action' => 'getpost']
     );
