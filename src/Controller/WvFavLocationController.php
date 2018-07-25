@@ -28,20 +28,17 @@ class WvFavLocationController extends AppController
         } else {
           $postData = $this->request->getData();
         }
-        $localityCheck = false;
-        $localityCheckArray = array( 'locality', 'city', 'latitude', 'longitude', 'state', 'country' );
-        $localityData = array();
-        foreach ( $localityCheckArray as $key => $value ) {
-          if( isset( $postData[ $value ] ) && ( $postData[ $value ] != '' or $postData[ $value ] != 0 ) ){
-            $localityData[ $value ] = $postData[ $value ];
-            $localityCheck = true;
-          } else {
-            $localityCheck = false;
-            break;
+        if( isset( $postData['longitude'] ) && isset( $postData['latitude'] ) ){
+          $localeRes = array( 'error' => 1 );
+          if( !empty( $postData['locality'] ) ){
+            $localeRes = $this->WvFavLocation->WvCities->WvLocalities->findLocality( $postData );
+          } else if( !empty( $postData['city'] ) ){
+            $localeRes = $this->WvFavLocation->WvCities->findCities( $postData );
+          } else if( !empty( $postData['state'] ) ){
+            $localeRes = $this->WvFavLocation->WvStates->findStates( $postData );
+          } else if( !empty( $postData['country'] ) || !empty( $postData['country_code'] ) ){
+            $localeRes = $this->WvFavLocation->WvCountries->findCountry( $postData );
           }
-        }
-        if( $localityCheck ){
-          $localeRes = $this->WvFavLocation->WvCities->WvLocalities->findLocality( $localityData );
           $saveData = array();
           if( $localeRes['error'] == 0 ){
             foreach ( $localeRes['data'] as $key => $locale ) {

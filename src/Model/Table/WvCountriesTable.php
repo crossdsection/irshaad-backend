@@ -79,4 +79,23 @@ class WvCountriesTable extends Table
       }
       return $response;
     }
+
+    /*
+     * data['country']
+     * response => ( 'country_id' )
+     */
+    public function findCountry( $data ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      if( !empty( $data ) && isset( $data['country_code'] ) ){
+        $country = $this->find('all')->where([ 'country_code' => $data['country_code'] ])->toArray();
+        if( !empty( $country ) ){
+          $countryData = array();
+          foreach ( $country as $key => $value ) {
+            $countryData[] = array( 'country_id' => $value['id'], 'country_name' => $value['name'], 'country_code' => $value->country_code );
+          }
+          $response['data']['countries'] = $countryData;
+        }
+      }
+      return $response;
+    }
 }
