@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -114,8 +115,41 @@ class WvStatesTable extends Table
           $countriesRes = $this->WvCountries->findCountryById( $countryIds, $data );
           $response['data'] = $countriesRes['data'];
           $response['data']['state'] = $stateData;
+        } else {
+          $countryRes = $this->WvCountries->findCountry( $data );
+          if( !empty( $countryRes['data'] ) ){
+            $countries = $countryRes['data']['countries'];
+            foreach ( $countries as $key => $value ) {
+              if( strpos( $value['country_name'], $data['country'] ) !== false ){
+                $saveState = array( 'name' => $data['state'], 'country_id' => $value['country_id'] );
+                $stateId = $this->addState( $saveState );
+                $stateData[] = array( 'state_id' => $stateId, 'state_name' => $data['state'], 'country_id' => $value['country_id'] );
+              }
+            }
+          }
+          $response['data'] = $countryRes['data'];
+          $response['data']['state'] = $stateData;
         }
       }
       return $response;
     }
+
+    /*
+     * data['name']
+     * data['state_id']
+     */
+    public function addState( $data ){
+      $return = 0;
+      if( !empty( $data ) ){
+        $state = TableRegistry::get('WvStates');
+        $entity = $state->newEntity();
+        $entity = $state->patchEntity( $entity, $data );
+        $record = $state->save( $entity );
+        if( $record->id ){
+          $return = $record->id;
+        }
+      }
+      return $return;
+    }
+
 }

@@ -29,6 +29,10 @@ class WvFavLocationController extends AppController
           $postData = $this->request->getData();
         }
         if( isset( $postData['longitude'] ) && isset( $postData['latitude'] ) ){
+          if( isset( $postData['countryShortName'] ) ){
+            $postData['country_code'] = $postData['countryShortName'];
+            unset( $postData['countryShortName'] );
+          }
           $localeRes = array( 'error' => 1 );
           if( !empty( $postData['locality'] ) ){
             $localeRes = $this->WvFavLocation->WvCities->WvLocalities->findLocality( $postData );
