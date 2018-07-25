@@ -117,4 +117,22 @@ class WvFavLocationController extends AppController
                                         ->withStringBody( json_encode( $response ) );
        return $this->response;
      }
+
+     public function checkExist(){
+       $response = array( 'error' => 1, 'message' => 'Request Failed', 'data' => array() );
+       $getData = $this->request->getQuery();
+       if( !empty( $getData ) ){
+         $getData['user_id'] = $_GET['userId'];
+       }
+       if( isset( $getData['latitude'] ) && isset( $getData['longitude'] ) && $getData['latitude'] != 0 && $getData['longitude'] != 0 ){
+         if( $this->WvFavLocation->exist( $getData ) ){
+           $response = array( 'error' => 0, 'message' => 'Exists', 'data' => array() );
+         } else {
+           $response = array( 'error' => 0, 'message' => 'Does Not Exists', 'data' => array() );
+         }
+       }
+       $this->response = $this->response->withType('application/json')
+                                        ->withStringBody( json_encode( $response ) );
+       return $this->response;
+     }
 }

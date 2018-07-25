@@ -220,4 +220,13 @@ class WvFavLocationTable extends Table
       }
       return $ret;
     }
+
+    public function exist( $conditions ){
+      $ret = false;
+      if( !empty( $conditions ) ){
+        $favLocT = TableRegistry::get('WvFavLocation');
+        return $favLocT->exists( $conditions );
+      }
+      return $ret;
+    }
 }
