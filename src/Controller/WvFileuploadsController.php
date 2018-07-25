@@ -12,6 +12,8 @@ use App\Controller\AppController;
  */
 class WvFileuploadsController extends AppController
 {
+    public $components = array('Files');
+
     /**
      * Add method
      *
@@ -23,22 +25,14 @@ class WvFileuploadsController extends AppController
         if ($this->request->is('post')) {
           $fileData = array();
           if( !empty( $this->request->getData('file') ) ){
-            $file = $this->request->getData('file');
-            $filePath = 'img' . DS . 'upload' . DS . $file['name'];
-            $fileUrl = WWW_ROOT . DS . $filePath;
-            $localFileUrl = 'webroot' . DS . $filePath;
-            $fileArr = array(
-              'fileurl' => $filePath,
-              'filetype' => $file['type'],
-              'size' => $file['size']
-            );
-            if( move_uploaded_file( $file['tmp_name'], $fileUrl ) ){
-              $fileData[] = array( 'filepath' => $localFileUrl, 'filetype' => $file['type'] );
+            $result = $this->Files->saveFile( $this->request->getData('file') );
+            if( $result ){
+              $fileData[] = $result;
             }
           }
           $lastInsertId = $this->WvFileuploads->saveFiles($fileData);
           if ( $lastInsertId != 0 ) {
-            $response = array( 'error' => 0, 'message' => 'Post Submitted', 'data' => array( $lastInsertId ) );
+            $response = array( 'error' => 0, 'message' => 'File Uploaded', 'data' => array( $lastInsertId ) );
           } else {
             $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
           }

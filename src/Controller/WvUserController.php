@@ -13,7 +13,7 @@ use Cake\Routing\Router;
  */
 class WvUserController extends AppController {
 
-    public $components = array('OAuth');
+    public $components = array('OAuth', 'Files');
 
     /**
      * Signup API
@@ -282,6 +282,32 @@ class WvUserController extends AppController {
           $response = array( 'error' => 0, 'message' => 'Reset Code Sent' );
         } else {
           $response = array( 'error' => 1, 'message' => 'User Not Found' );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
+    public function changeProfilePicture(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
+      if ($this->request->is('post')) {
+        $userId = null;
+        if( isset( $_POST['userId'] ) ){
+          $userId = $_POST['userId'];
+        }
+        $userData = array( $userId => array( 'id' => $userId ) );
+        if( !empty( $this->request->getData('profile') ) ){
+          $result = $this->Files->saveFile( $this->request->getData('profile') );
+          if( $result ){
+            $userData[ $userId ] = array( 'id' => $userId, 'profilepic' => $result['filepath'] );
+          }
+          $usersUpdated = $this->WvUser->updateUser( $userData );
+          if ( !empty( $usersUpdated ) ) {
+            $response = array( 'error' => 0, 'message' => 'Profile Pic Changed', 'data' => array() );
+          } else {
+            $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
+          }
         }
       }
       $this->response = $this->response->withType('application/json')
