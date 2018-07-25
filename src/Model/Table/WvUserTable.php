@@ -63,6 +63,10 @@ class WvUserTable extends Table
             'foreignKey' => 'city_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('WvFavLocation', [
+            'foreignKey' => 'default_location_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasOne('WvLoginRecord');
         $this->hasOne('WvEmailVerification');
     }

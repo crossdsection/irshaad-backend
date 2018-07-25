@@ -37,7 +37,6 @@ class WvFavLocation extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
-        'department_id' => true,
         'country_id' => true,
         'state_id' => true,
         'city_id' => true,

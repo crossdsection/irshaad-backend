@@ -56,6 +56,7 @@ class WvUser extends Entity
         'address' => true,
         'latitude' => true,
         'longitude' => true,
+        'default_location_id' => true,
         'profilepic' => true,
         'status' => true,
         'date_of_birth' => true,

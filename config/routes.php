@@ -130,6 +130,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvFavLocation', 'action' => 'delete']
     );
 
+    $routes->post(
+        '/favlocation/default/*',
+        ['controller' => 'WvFavLocation', 'action' => 'setDefault']
+    );
+
     $routes->get(
         '/auth/logout/*',
         ['controller' => 'WvUser', 'action' => 'logout']

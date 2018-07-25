@@ -24,11 +24,17 @@ class WvFavLocationController extends AppController
       if ( $this->request->is('post') ) {
         $postData = $this->request->input('json_decode', true);
         if( !empty( $postData ) ){
-          $postData['userId'] = $_POST['userId'];
+          $postData['user_id'] = $_POST['userId'];
         } else {
           $postData = $this->request->getData();
         }
+        $favLocationCheck = array();
         if( isset( $postData['longitude'] ) && isset( $postData['latitude'] ) ){
+          $favLocationCheck = array( 'latitude' => $postData['latitude'], 'longitude' => $postData['longitude'], 'user_id' => $postData['user_id'], 'level' => $postData['level'] );
+        }
+        if( $this->WvFavLocation->exist( $favLocationCheck ) ){
+          $response = array( 'error' => 1, 'message' => 'Favourite Location Exists.', 'data' => array() );
+        } else if( isset( $postData['longitude'] ) && isset( $postData['latitude'] ) ){
           if( isset( $postData['countryShortName'] ) ){
             $postData['country_code'] = $postData['countryShortName'];
             unset( $postData['countryShortName'] );
@@ -55,7 +61,7 @@ class WvFavLocationController extends AppController
               if( isset( $locale[0] ) && isset( $locale[0]['country_id'] ) )
                $saveData['country_id'] = $locale[0]['country_id'];
             }
-            $saveData['user_id'] = $postData['userId'];
+            $saveData['user_id'] = $postData['user_id'];
             if( isset( $postData[ 'latitude' ] ) )
               $saveData[ 'latitude' ] = $postData[ 'latitude' ];
             if( isset( $postData[ 'longitude' ] ) )
@@ -88,9 +94,10 @@ class WvFavLocationController extends AppController
      public function get()
      {
        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+       $userData = $this->WvFavLocation->WvUser->getUserList( array( $_GET['userId'] ), array( 'id', 'default_location_id' ) );
        $wvFavLocations = $this->WvFavLocation->find('all', ['limit' => 200])->where(['user_id' => $_GET['userId']])->toArray();
        if( !empty( $wvFavLocations ) ){
-         $search = $this->WvFavLocation->buildDataForSearch( $wvFavLocations );
+         $search = $this->WvFavLocation->buildDataForSearch( $wvFavLocations, $userData[ $_GET['userId'] ] );
          $ret = $this->WvFavLocation->retrieveAddresses( $search );
          $response['data'] = $ret['data'];
        } else {
@@ -130,6 +137,29 @@ class WvFavLocationController extends AppController
            $response = array( 'error' => 0, 'message' => 'Exists', 'data' => array() );
          } else {
            $response = array( 'error' => 0, 'message' => 'Does Not Exists', 'data' => array() );
+         }
+       }
+       $this->response = $this->response->withType('application/json')
+                                        ->withStringBody( json_encode( $response ) );
+       return $this->response;
+     }
+
+     public function setDefault(){
+       $response = array( 'error' => 1, 'message' => 'Request Failed', 'data' => array() );
+       $postData = $this->request->input('json_decode', true);
+       if( !empty( $postData ) ){
+         $postData['user_id'] = $_POST['userId'];
+       } else {
+         $postData = $this->request->getData();
+       }
+       if( isset( $postData['latitude'] ) && isset( $postData['longitude'] ) && $postData['latitude'] != 0 && $postData['longitude'] != 0 ){
+         $record = $this->WvFavLocation->find()->where( $postData )->toArray();
+         if( !empty( $record ) && $record[0]->id ){
+           $user = array( 'id' => $postData['user_id'], 'default_location_id' => $record[0]->id );
+           $usersUpdated = $this->WvFavLocation->WvUser->updateUser( array( $user ) );
+           if ( !empty( $usersUpdated ) ) {
+             $response = array( 'error' => 0, 'message' => 'Default Location Set', 'data' => array() );
+           }
          }
        }
        $this->response = $this->response->withType('application/json')
