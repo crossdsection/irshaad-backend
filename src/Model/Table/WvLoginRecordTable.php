@@ -41,6 +41,7 @@ class WvLoginRecordTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', ['field' => array( 'user_id' ) ]);
 
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
@@ -100,9 +101,9 @@ class WvLoginRecordTable extends Table
       return $return;
     }
 
-    public function getLastLogin( $userId = 0 ){
+    public function getLastLogin( $userId = null ){
       $res = array();
-      if( $userId != 0 ){
+      if( $userId != null ){
         $loginLog = $this->find()->where([ 'user_id' => $userId ])->max('id')->toArray();
         $res = $loginLog;
       }

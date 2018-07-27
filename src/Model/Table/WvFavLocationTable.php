@@ -47,6 +47,7 @@ class WvFavLocationTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', ['field' => array( 'user_id', 'city_id', 'department_id', 'locality_id', 'country_id', 'state_id', 'locality_id' ) ]);
 
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
@@ -132,12 +133,12 @@ class WvFavLocationTable extends Table
       return $return;
     }
 
-    public function buildDataForSearch( $wvFavLocations, $user ){
+    public function buildDataForSearch( $wvFavLocations, $user = array() ){
       $search = array( 'localityIds' => array(), 'cityIds' => array(), 'stateIds' => array(), 'countryIds' => array() );
       if( !empty( $wvFavLocations ) ){
         foreach ( $wvFavLocations as $key => $favLoc ) {
           $isDefault = false;
-          if( $user['default_location_id'] == $favLoc->id ){
+          if( !empty( $user ) && $user['default_location_id'] == $favLoc->id ){
             $isDefault = true;
           }
           if( $favLoc->level == 'locality' ){
@@ -158,7 +159,8 @@ class WvFavLocationTable extends Table
       if( !empty( $search ) ){
         $data = array();
         if( !empty( $search['localityIds'] ) ){
-          $localityIds = Hash::extract( $search['localityIds'], '{n}.locality_id' );
+          $tmpArray = array_values( $search['localityIds'] );
+          $localityIds = Hash::extract( $tmpArray, '{n}.locality_id' );
           $localityRes = $this->WvLocalities->findLocalityById( $localityIds );
           if( $localityRes['error'] == 0 ){
             foreach ( $localityRes['data']['localities'] as $key => $locale ) {
@@ -176,7 +178,8 @@ class WvFavLocationTable extends Table
           }
         }
         if( !empty( $search['cityIds'] ) ){
-          $cityIds = Hash::extract( $search['cityIds'], '{n}.city_id' );
+          $tmpArray = array_values( $search['cityIds'] );
+          $cityIds = Hash::extract( $tmpArray, '{n}.city_id' );
           $cityRes = $this->WvCities->findCitiesById( $cityIds );
           if( $cityRes['error'] == 0 ){
             foreach ( $cityRes['data']['cities'] as $key => $city ) {
@@ -193,7 +196,8 @@ class WvFavLocationTable extends Table
           }
         }
         if( !empty( $search['stateIds'] ) ){
-          $stateIds = Hash::extract( $search['stateIds'], '{n}.state_id' );
+          $tmpArray = array_values( $search['stateIds'] );
+          $stateIds = Hash::extract( $tmpArray, '{n}.state_id' );
           $stateRes = $this->WvStates->findStateById( $stateIds );
           if( $stateRes['error'] == 0 ){
             foreach ( $stateRes['data']['states'] as $key => $state ) {

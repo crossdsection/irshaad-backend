@@ -43,7 +43,8 @@ class WvEmailVerificationTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('GenericOps');
-
+        $this->addBehavior('HashId', ['field' => array( 'user_id' ) ]);
+        
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'

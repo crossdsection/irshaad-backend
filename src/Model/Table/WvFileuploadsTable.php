@@ -40,6 +40,7 @@ class WvFileuploadsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId');
     }
 
     /**

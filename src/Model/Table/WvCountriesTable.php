@@ -33,6 +33,7 @@ class WvCountriesTable extends Table
         $this->setTable('wv_countries');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+        $this->addBehavior('HashId');
     }
 
     /**

@@ -42,6 +42,7 @@ class WvDepartmentsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', [ 'field' => array( 'state_id', 'country_id', 'city_id' ) ]);
 
         $this->belongsTo('Countries', [
             'foreignKey' => 'country_id'

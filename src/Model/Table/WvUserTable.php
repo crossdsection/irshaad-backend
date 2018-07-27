@@ -42,6 +42,7 @@ class WvUserTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId');
 
         $this->belongsTo('WvAccessRoles', [
             'foreignKey' => 'access_role_ids',

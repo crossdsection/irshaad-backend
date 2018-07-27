@@ -47,6 +47,7 @@ class WvPostTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('ArrayOps');
+        $this->addBehavior('HashId', ['field' => array( 'user_id', 'city_id', 'department_id', 'locality_id', 'country_id', 'state_id', 'locality_id' ) ]);
 
         $this->belongsTo('WvDepartments', [
             'foreignKey' => 'department_id',
@@ -89,12 +90,14 @@ class WvPostTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->integer('user_id')
+            ->notEmpty('user_id');
+
+        $validator
             ->integer('total_upvotes');
-            // ->notEmpty('total_upvotes');
 
         $validator
             ->integer('total_score');
-            // ->notEmpty('total_score');
 
         $validator
             ->scalar('title')
@@ -116,13 +119,7 @@ class WvPostTable extends Table
 
         $validator
             ->boolean('poststatus')
-            // ->requirePresence('poststatus', 'create')
             ->notEmpty('poststatus');
-
-        $validator
-            ->scalar('location')
-            ->maxLength('location', 100)
-            ->allowEmpty('location');
 
         $validator
             ->scalar('latitude')
@@ -154,12 +151,11 @@ class WvPostTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         // $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
-        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
         // $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
         // $rules->add($rules->existsIn(['state_id'], 'WvStates'));
         // $rules->add($rules->existsIn(['city_id'], 'WvCities'));
         // $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
-
         return $rules;
     }
 
@@ -169,6 +165,7 @@ class WvPostTable extends Table
         $post = TableRegistry::get('WvPost');
         $entity = $post->newEntity();
         $entity = $post->patchEntity( $entity, $postData );
+        $entity = $this->fixEncodings( $entity );
         $record = $post->save( $entity );
         if( isset( $record->id ) ){
           $return = $record->id;
@@ -220,7 +217,10 @@ class WvPostTable extends Table
           $accessData = $this->array_group_by( $accessData, 'area_level', 'area_level_id');
         }
         foreach ( $wvPost as $key => $value ) {
-          $accessRoleId = 0;
+          if( $value['user_id'] == null ){
+            continue;
+          }
+          $accessRoleId = 0; $accessRoleArr = array();
           if( $value->locality_id != 0 ){
             $cityId = $localityCityMap[ $value->locality_id ];
             $accessRoleArr = $accessData['city'][ $cityId ];

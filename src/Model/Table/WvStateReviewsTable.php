@@ -36,6 +36,8 @@ class WvStateReviewsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('HashId', ['field' => array( 'state_id' ) ]);
+
         $this->belongsTo('States', [
             'foreignKey' => 'state_id',
             'joinType' => 'INNER'

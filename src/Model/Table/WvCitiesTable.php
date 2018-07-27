@@ -37,6 +37,8 @@ class WvCitiesTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('HashId', [ 'field' => array( 'state_id' ) ]);
+
         $this->belongsTo('WvStates', [
             'foreignKey' => 'state_id',
             'joinType' => 'INNER'

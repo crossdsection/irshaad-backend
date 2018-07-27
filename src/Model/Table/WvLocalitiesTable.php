@@ -39,6 +39,7 @@ class WvLocalitiesTable extends Table
         $this->setTable('wv_localities');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', [ 'field' => array( 'city_id' ) ]);
 
         $this->belongsTo('WvCities', [
             'foreignKey' => 'city_id',

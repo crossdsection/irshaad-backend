@@ -43,6 +43,7 @@ class WvUserPollsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', ['field' => array( 'user_id', 'poll_id', 'post_id' ) ]);
 
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',

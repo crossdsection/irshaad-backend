@@ -38,13 +38,15 @@ class WvDetailsReviewsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Countries', [
+        $this->addBehavior('HashId', [ 'field' => array( 'country_id', 'city_id', 'locality_id' ) ]);
+
+        $this->belongsTo('WvCountries', [
             'foreignKey' => 'country_id'
         ]);
-        $this->belongsTo('Cities', [
+        $this->belongsTo('WvCities', [
             'foreignKey' => 'city_id'
         ]);
-        $this->belongsTo('Localities', [
+        $this->belongsTo('WvLocalities', [
             'foreignKey' => 'locality_id'
         ]);
     }

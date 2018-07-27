@@ -18,9 +18,9 @@ class OAuthComponent extends Component
      */
     protected $_defaultConfig = [];
 
-    public function getAccessToken( $userId = 0 ){
+    public function getAccessToken( $userId = null ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      if( $userId != 0 ){
+      if( $userId != null ){
         $this->Oauth = TableRegistry::get('WvOauth');
         $result = $this->Oauth->getUserToken( $userId );
         if( $result['error'] == -1 ){

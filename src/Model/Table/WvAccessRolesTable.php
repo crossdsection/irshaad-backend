@@ -41,11 +41,7 @@ class WvAccessRolesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        //
-        // $this->belongsTo('AreaLevels', [
-        //     'foreignKey' => 'area_level_id',
-        //     'joinType' => 'INNER'
-        // ]);
+        $this->addBehavior('HashId', ['field' => array( 'id', 'area_level_id' ) ]);
     }
 
     /**

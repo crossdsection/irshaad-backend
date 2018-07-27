@@ -46,6 +46,8 @@ class WvOauthTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->addBehavior('HashId', ['field' => array( 'user_id' ) ]);
+
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
@@ -94,7 +96,7 @@ class WvOauthTable extends Table
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules) {
-        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
         // $rules->add($rules->existsIn(['provider_id'], 'Providers'));
 
         return $rules;
@@ -106,7 +108,7 @@ class WvOauthTable extends Table
 
     public function getUserToken( $userId ){
       $result = array( 'error' => 0, 'data' => array());
-      if( $userId != 0 ){
+      if( $userId != null ){
         $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
         if( !empty( $extractedData ) && strtotime( $extractedData[0]['expiration_time'] ) > time() ){
           $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
@@ -142,7 +144,7 @@ class WvOauthTable extends Table
 
     public function createUserToken( $userId ){
       $result = array( 'error' => 0, 'data' => array());
-      if( $userId != 0 ){
+      if( $userId != null ){
         $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
         $serverName = Configure::read('App.fullBaseUrl');
         $secretKey = Configure::read('jwt_secret_key');
@@ -184,10 +186,9 @@ class WvOauthTable extends Table
 
     public function refreshAccessToken( $userId ){
       $result = array( 'error' => 0, 'data' => array());
-      if( $userId != 0 ){
+      if( $userId != null ){
         $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
         $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
-
         $serverName = Configure::read('App.fullBaseUrl');
         $secretKey = Configure::read('jwt_secret_key');
         $tokenId   = base64_encode( Security::randomBytes( 32 ) );
@@ -215,6 +216,7 @@ class WvOauthTable extends Table
         $oAuth = TableRegistry::get('WvOauth');
         $oEntity = $oAuth->get( $extractedData[0]->id );
         $oEntity = $oAuth->patchEntity( $oEntity, $saveData );
+        $oEntity = $this->fixEncodings( $oEntity );
         if( $oAuth->save( $oEntity ) ){
           $response = array(
             'name' => $user[0]->firstname.' '.$user[0]->lastname,
@@ -243,7 +245,7 @@ class WvOauthTable extends Table
 
     public function deleteUserToken( $userId ){
       $result = false;
-      if( $userId != 0 ){
+      if( $userId != null ){
         $extractedData = $this->find()->where([ 'user_id' => $userId ])->toArray();
         $oAuth = TableRegistry::get('WvOauth');
         $entity = $oAuth->get( $extractedData[0]->id );

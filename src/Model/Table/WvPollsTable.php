@@ -41,6 +41,7 @@ class WvPollsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('HashId', ['field' => array( 'post_id' ) ]);
 
         $this->belongsTo('WvPost', [
             'foreignKey' => 'post_id',

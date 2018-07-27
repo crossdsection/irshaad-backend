@@ -27,13 +27,42 @@ class WvPostController extends AppController
           $postData = $this->request->getData();
         }
         $saveData = array(); $continue = false;
-        $importantKeys = array( 'department_id', 'country_id', 'state_id', 'city_id', 'locality_id' );
-        foreach( $importantKeys as $key ){
-          if( isset( $postData[ $key ] ) && !empty( $postData[ $key ] ) ){
-            $saveData[ $key ] = $postData[ $key ];
-            $continue = true;
-          } else {
-            $saveData[ $key ] = 0;
+        if( isset( $postData['level'] ) ){
+          switch( $postData['level'] ){
+            case 'locality' :
+              $localeRes = $this->WvPost->WvLocalities->findLocality( $postData )['data'];
+              if( !empty( $localeRes['localities'] ) ){
+                $saveData['locality_id'] = $localeRes['localities'][0]['locality_id'];
+                $continue = true;
+                break;
+              }
+            case 'city' :
+              $cityRes = $this->WvPost->WvCities->findCities( $postData )['data'];
+              if( !empty( $cityRes['cities'] ) ){
+                $saveData['city_id'] = $cityRes['cities'][0]['city_id'];
+                $continue = true;
+                break;
+              }
+            case 'state' :
+              $stateRes = $this->WvPost->WvStates->findStates( $postData )['data'];
+              if( !empty( $stateRes['state'] ) ){
+                $saveData['state_id'] = $stateRes['state'][0]['state_id'];
+                $continue = true;
+                break;
+              }
+            case 'country' :
+              $countryRes = $this->WvPost->WvCountries->findCountry( $postData )['data'];
+              if( !empty( $countryRes['countries'] ) ){
+                $saveData['country_id'] = $countryRes['countries'][0]['country_id'];
+                $continue = true;
+                break;
+              }
+            case 'department' :
+              if( !isset( $postData['department_id'] ) && $postData['department_id'] != null ){
+                $saveData['department_id'] = $postData['department_id'];
+                $continue = true;
+                break;
+              }
           }
         }
         if( isset( $postData[ 'title' ] ) && !empty( $postData[ 'title' ] ) ){
