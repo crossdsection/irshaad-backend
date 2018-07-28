@@ -100,12 +100,12 @@ class WvFavLocationTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'WvUser'));
-        $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
-        $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
-        $rules->add($rules->existsIn(['state_id'], 'WvStates'));
-        $rules->add($rules->existsIn(['city_id'], 'WvCities'));
-        $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
+        // $rules->add($rules->existsIn(['user_id'], 'WvUser'));
+        // $rules->add($rules->existsIn(['department_id'], 'WvDepartments'));
+        // $rules->add($rules->existsIn(['country_id'], 'WvCountries'));
+        // $rules->add($rules->existsIn(['state_id'], 'WvStates'));
+        // $rules->add($rules->existsIn(['city_id'], 'WvCities'));
+        // $rules->add($rules->existsIn(['locality_id'], 'WvLocalities'));
 
         return $rules;
     }
@@ -154,6 +154,7 @@ class WvFavLocationTable extends Table
       }
       return $search;
     }
+
     public function retrieveAddresses( $search ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if( !empty( $search ) ){
@@ -213,9 +214,10 @@ class WvFavLocationTable extends Table
           }
         }
         if( !empty( $search['countryIds'] ) ){
-          $countryIds = Hash::extract( $search['countryIds'], '{n}.country_id' );
+          $tmpArray = array_values( $search['countryIds'] );
+          $countryIds = Hash::extract( $tmpArray, '{n}.country_id' );
           $countryRes = $this->WvCountries->findCountryById( $countryIds );
-          if( $countryRes['error'] == 0 ){
+          if( !empty( $countryRes['data'] ) ){
             foreach ( $countryRes['data']['countries'] as $key => $country ) {
               $countryId = $country['country_id'];
               $address = $country['country_name'];
@@ -239,6 +241,7 @@ class WvFavLocationTable extends Table
           'fields' => [ 'id' ]
         ])->where( $conditions )->toArray();
         $favLocIds = Hash::extract( $favLoc, '{n}.id');
+        $favLocIds = $this->decodeHashid( $favLocIds );
         if( !empty( $favLocIds ) ){
           $ret = $this->deleteAll([ 'id IN' => $favLocIds ]);
         }

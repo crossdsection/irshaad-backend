@@ -42,7 +42,7 @@ class WvCommentsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('HashId', ['field' => array( 'user_id', 'post_id' ) ]);
+        $this->addBehavior('HashId', ['field' => array( 'user_id', 'post_id', 'parent_id' ) ]);
 
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
@@ -102,5 +102,22 @@ class WvCommentsTable extends Table
         }
       }
       return $return;
+    }
+
+    public function getReplyCounts( $commentIds = array() ){
+      $response = array();
+      if( !empty( $commentIds ) ){
+        $query = $this->find();
+        $query->select([
+                  'parent_id',
+                  'count' => $query->func()->count('*')
+                ])
+              ->where([ 'parent_id IN' => $commentIds ])
+              ->group([ 'parent_id' ]);
+        foreach( $query as $row ){
+          $response[] = array( 'parent_id' => $row->parent_id, 'count' => $row->count );
+        }
+      }
+      return $response;
     }
 }

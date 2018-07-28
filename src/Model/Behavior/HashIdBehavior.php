@@ -33,7 +33,7 @@ class HashIdBehavior extends Behavior
   		'field' => array(), // To populate upon find() and save(), false to deactivate
   		'debug' => false, // Auto-detect from Configure::read('debug')
   		'minHashLength' => 0, // You can overwrite the Hashid defaults
-  		'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_+/', // You can overwrite the Hashid defaults
+  		'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-!/()=?`*;:_{}[]\|~^', // You can overwrite the Hashid defaults
   		'recursive' => false, // Also transform nested entities
   		'findFirst' => false, // Either true or 'first' or 'firstOrFail'
   		'implementedFinders' => [
@@ -83,17 +83,17 @@ class HashIdBehavior extends Behavior
         return;
       }
       if ( !empty( $field ) ) {
-        $query->traverseExpressions(function (ExpressionInterface $expression) use ( $field ){
-          foreach( $field as $idField ){
-            if (method_exists($expression, 'getField')
-              && ( $expression->getField() === $idField || $expression->getField() === $this->_table->alias() . '.' . $idField )
-            ) {
-              /** @var \Cake\Database\Expression\Comparison $expression */
-              $expression->setValue( $this->decodeHashid( $expression->getValue() ) );
-            }
-          }
-          return $expression;
-        });
+        foreach( $field as $idField ){
+          $query->traverseExpressions(function (ExpressionInterface $expression) use ( $idField ){
+              if (method_exists($expression, 'getField')
+                && ( $expression->getField() === $idField || $expression->getField() === $this->_table->alias() . '.' . $idField )
+              ) {
+                /** @var \Cake\Database\Expression\Comparison $expression */
+                $expression->setValue( $this->decodeHashid( $expression->getValue() ) );
+              }
+            return $expression;
+          });
+        }
       }
       $query->find('hashed');
       foreach ($this->_table->associations() as $association) {
@@ -256,8 +256,13 @@ class HashIdBehavior extends Behavior
         $hashid = $entity->get( $idField );
         if( $hashid && !is_numeric( $hashid ) ){
           $id = $this->decodeHashid( $hashid );
+          $originalId = $entity->getOriginal( $idField );
           $entity->set( $idField, $id);
-          $entity->setDirty( $idField, false );
+          if( $originalId == $id ){
+            $entity->setDirty( $idField, false );
+          } else {
+            $entity->setDirty( $idField, true );
+          }
         }
       }
     }
@@ -267,17 +272,23 @@ class HashIdBehavior extends Behavior
      * @return int
      */
     public function decodeHashid($hashid) {
-      if (is_array($hashid)) {
+      if ( is_array( $hashid ) ) {
         foreach ($hashid as $k => $v) {
-          $hashid[$k] = $this->decodeHashid($v);
+          if( !is_numeric( $v ) ){
+            $hashid[ $k ] = $this->decodeHashid( $v );
+          }
         }
         return $hashid;
       }
       if ($this->_config['debug']) {
         $hashid = substr($hashid, 0, strpos($hashid, '-'));
       }
-      $ids = $this->_getHasher()->decode($hashid);
-      return array_shift($ids);
+      if( !is_numeric( $hashid ) ){
+        $ids = $this->_getHasher()->decode($hashid);
+        return array_shift($ids);
+      } else {
+        return $hashid;
+      }
     }
 
     /**

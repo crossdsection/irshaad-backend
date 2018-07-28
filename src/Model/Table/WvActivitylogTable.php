@@ -124,6 +124,7 @@ class WvActivitylogTable extends Table
           $entity = $activity->newEntity();
         }
         $entity = $activity->patchEntity( $entity, $postData );
+        $entity = $this->fixEncodings( $entity );
         $record = $activity->save( $entity );
         if( $record->id ){
           $return = true;

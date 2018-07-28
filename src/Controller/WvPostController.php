@@ -34,35 +34,35 @@ class WvPostController extends AppController
               if( !empty( $localeRes['localities'] ) ){
                 $saveData['locality_id'] = $localeRes['localities'][0]['locality_id'];
                 $continue = true;
-                break;
               }
+              break;
             case 'city' :
               $cityRes = $this->WvPost->WvCities->findCities( $postData )['data'];
               if( !empty( $cityRes['cities'] ) ){
                 $saveData['city_id'] = $cityRes['cities'][0]['city_id'];
                 $continue = true;
-                break;
               }
+              break;
             case 'state' :
               $stateRes = $this->WvPost->WvStates->findStates( $postData )['data'];
               if( !empty( $stateRes['state'] ) ){
                 $saveData['state_id'] = $stateRes['state'][0]['state_id'];
                 $continue = true;
-                break;
               }
+              break;
             case 'country' :
               $countryRes = $this->WvPost->WvCountries->findCountry( $postData )['data'];
               if( !empty( $countryRes['countries'] ) ){
                 $saveData['country_id'] = $countryRes['countries'][0]['country_id'];
                 $continue = true;
-                break;
               }
+              break;
             case 'department' :
-              if( !isset( $postData['department_id'] ) && $postData['department_id'] != null ){
+              if( isset( $postData['department_id'] ) && $postData['department_id'] != null ){
                 $saveData['department_id'] = $postData['department_id'];
                 $continue = true;
-                break;
               }
+              break;
           }
         }
         if( isset( $postData[ 'title' ] ) && !empty( $postData[ 'title' ] ) ){

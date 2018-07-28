@@ -42,7 +42,7 @@ class WvUserTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('HashId');
+        $this->addBehavior('HashId', [ 'field' => array( 'default_location_id', 'department_id', 'country_id', 'state_id', 'city_id' ) ]);
 
         $this->belongsTo('WvAccessRoles', [
             'foreignKey' => 'access_role_ids',
@@ -287,6 +287,7 @@ class WvUserTable extends Table
               $entity->{$key} = $value;
             }
           }
+          $entity = $this->fixEncodings( $entity );
           if( $users->save( $entity ) ){
             $response[] = $user['id'];
           }

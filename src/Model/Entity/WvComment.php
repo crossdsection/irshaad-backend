@@ -31,6 +31,7 @@ class WvComment extends Entity
     protected $_accessible = [
         'user_id' => true,
         'post_id' => true,
+        'parent_id' => true,
         'text' => true,
         'created' => true,
         'modified' => true,

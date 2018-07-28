@@ -84,7 +84,7 @@ class WvPollsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['post_id'], 'WvPost'));
+        // $rules->add($rules->existsIn(['post_id'], 'WvPost'));
 
         return $rules;
     }
@@ -130,7 +130,7 @@ class WvPollsTable extends Table
           if( !isset( $response[ $polls['post_id'] ]  ) ){
             $response[ $polls['post_id'] ] = array();
           }
-          $response[ $polls['post_id'] ][] = $polls['title'];
+          $response[ $polls['post_id'] ][] = array( 'title' => $polls['title'], 'id' => $polls['id'] );
         }
       }
       return $response;

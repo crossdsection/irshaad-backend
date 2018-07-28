@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Utility\Hash;
 /**
  * WvComments Controller
  *
@@ -22,14 +22,28 @@ class WvCommentsController extends AppController
     public function get($postId = null) {
       $postId = $this->request->getParam('postId');
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $wvComments = $this->WvComments->find('all', ['limit' => 200])->where([ 'post_id' => $postId ]);
-      $fileuploadIds = array(); $userIds = array(); $data = array();
+      $parentId = $this->request->query('parentId');
+      if( !$parentId ){
+        $parentId = 0;
+      }
+      $wvComments = $this->WvComments->find('all', [
+        'limit' => 200,
+        'fields' => array( 'id', 'user_id', 'post_id', 'text', 'created', 'modified' ) ])->where([ 'post_id' => $postId, 'parent_id' => $parentId ]);
+      $fileuploadIds = array(); $userIds = array(); $commentIds = array(); $data = array();
       if( !empty( $wvComments ) ){
         foreach ( $wvComments as $key => $value ) {
            $userIds[] = $value->user_id;
+           $commentIds[] = $value->id;
         }
         $userInfos = $this->WvComments->WvUser->getUserInfo( $userIds );
+        $parentCounts = $this->WvComments->getReplyCounts( $commentIds );
+        $parentCounts = Hash::combine( $parentCounts, '{n}.parent_id', '{n}.count' );
         foreach ( $wvComments as $key => $value ) {
+          if( isset( $parentCounts[ $value['id'] ] ) ){
+            $value['replyCounts'] = $parentCounts[ $value['id'] ];
+          } else {
+            $value['replyCounts'] = 0;
+          }
           unset( $userInfos[ $value['user_id'] ]['accessRoles'] );
           $value['user'] = $userInfos[ $value['user_id'] ];
           unset( $value['user_id'] );
@@ -61,13 +75,16 @@ class WvCommentsController extends AppController
         $importantKeys = array( 'post_id', 'user_id', 'text');
         $saveData = array(); $continue = false;
         foreach ( $importantKeys as  $key ) {
-          try {
+          if( isset( $postData[ $key ] ) ){
             $saveData[ $key ] = $postData[ $key ];
             $continue = true;
-          } catch (Exception $e) {
+          } else {
             $continue = false;
             break;
           }
+        }
+        if( isset( $postData['parent_id'] ) ){
+          $saveData['parent_id'] = $postData['parent_id'];
         }
         if ( $continue ){
           if ( $this->WvComments->newComment( $saveData ) ) {
