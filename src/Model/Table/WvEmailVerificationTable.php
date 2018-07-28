@@ -7,6 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
+use Cake\Utility\Hash;
 
 /**
  * WvEmailVerification Model
@@ -44,7 +45,7 @@ class WvEmailVerificationTable extends Table
         $this->addBehavior('Timestamp');
         $this->addBehavior('GenericOps');
         $this->addBehavior('HashId', ['field' => array( 'user_id' ) ]);
-        
+
         $this->belongsTo('WvUser', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
@@ -130,24 +131,28 @@ class WvEmailVerificationTable extends Table
         $emailVerification = TableRegistry::get('WvEmailVerification');
         $user = $this->WvUser->find()->where( [ 'email' => $data['email'], 'status' => 1 ] )->toArray();
         if( !empty( $user ) ){
-          $found = $emailVerification->find()->where( [ 'user_id' => $user[0]->id, 'status' => 1 ] )->toArray();
-          if( $found != null ){
+          $founds = $emailVerification->find()->where( [ 'user_id' => $user[0]->id, 'status' => 1 ] )->toArray();
+          if( !empty( $founds ) ){
             $userVerified = false;
-            if( isset( $data['token'] ) && $data['token'] == $found[0]->token ){
-              $userVerified = true;
-            }
-            if( isset( $data['code'] ) && $data['code'] == $found[0]->code ){
-              $userVerified = true;
-            }
-            if( $userVerified ){
-              $updateUser = array( $user[0]->id => array( 'id' => $user[0]->id, 'email_verified' => 1 ) );
-              $usersUpdated = $this->WvUser->updateUser( $updateUser );
-              if( !empty( $usersUpdated ) ){
-                $entity = $emailVerification->get( $found[0]->id );
-                $entity->status = 0;
-                if( $emailVerification->save( $entity ) ){
-                  $response = array( 'error' => 0, 'message' => 'Verification Successful', 'data' => array( $user[0]->id ) );
+            foreach( $founds as $found ){
+              if( isset( $data['token'] ) && $data['token'] == $found->token ){
+                $userVerified = true;
+              }
+              if( isset( $data['code'] ) && $data['code'] == $found->code ){
+                $userVerified = true;
+              }
+              if( $userVerified ){
+                $updateUser = array( $user[0]->id => array( 'id' => $user[0]->id, 'email_verified' => 1 ) );
+                $usersUpdated = $this->WvUser->updateUser( $updateUser );
+                if( !empty( $usersUpdated ) ){
+                  $entity = $emailVerification->get( $found->id );
+                  $entity->status = 0;
+                  $entity = $this->fixEncodings( $entity );
+                  if( $emailVerification->save( $entity ) ){
+                    $response = array( 'error' => 0, 'message' => 'Verification Successful', 'data' => array( $user[0]->id ) );
+                  }
                 }
+                break;
               }
             }
           } else {

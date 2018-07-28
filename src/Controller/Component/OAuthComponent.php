@@ -39,9 +39,9 @@ class OAuthComponent extends Component
       return $response;
     }
 
-    public function removeToken( $userId = 0 ){
+    public function removeToken( $userId = null ){
       $response = array( 'error' => 0, 'message' => 'Invalid Request', 'data' => array() );
-      if( $userId != 0 ){
+      if( $userId != null ){
         $this->Oauth = TableRegistry::get('WvOauth');
         $result = $this->Oauth->deleteUserToken( $userId );
         if( $result )

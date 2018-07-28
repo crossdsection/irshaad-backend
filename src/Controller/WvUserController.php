@@ -15,18 +15,34 @@ class WvUserController extends AppController {
 
     public $components = array('OAuth', 'Files');
 
+    public function userexists(){
+      $response = array( 'error' => 1, 'message' => '', 'data' => array() );
+      $getData = $this->request->query();
+      if( isset( $getData['email'] ) && $this->WvUser->checkEmailExist( $getData['email'] ) ){
+        $response = array( 'error' => 0, 'message' => 'User Exists', 'data' => array( 'exist' => true, 'notExist' => false ) );
+      } else {
+        $response = array( 'error' => 0, 'message' => 'User Does not Exists', 'data' => array( 'exist' => false, 'notExist' => true ) );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
     /**
      * Signup API
      */
     public function signup() {
         $response = array( 'error' => 1, 'message' => '', 'data' => array() );
-        $userData = array();
+        $userData = array(); $continue = false;
         $postKeys = array( 'email', 'password', 'firstName', 'lastName', 'latitude', 'longitude', 'gender', 'phone', 'certificate' );
         $postData = $this->request->input( 'json_decode', true );
         if( empty( $postData ) ){
           $postData = $this->request->data;
         }
-        if ( !empty( $postData ) ){
+        if( isset( $postData['email'] ) && !$this->WvUser->checkEmailExist( $postData['email'] ) ){
+          $continue = true;
+        }
+        if ( !empty( $postData ) && $continue ){
           foreach( $postKeys as $postKey ){
             if( isset( $postData[ $postKey ] ) && !empty( $postData[ $postKey ] ) ){
               $newKey = strtolower( $postKey );

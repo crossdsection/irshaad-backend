@@ -174,6 +174,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         '/favlocation/exist/*',
         ['controller' => 'WvFavLocation', 'action' => 'checkExist']
     );
+
+    $routes->get(
+        '/user/exist/*',
+        ['controller' => 'WvUser', 'action' => 'userexists' ]
+    );
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

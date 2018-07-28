@@ -295,4 +295,14 @@ class WvUserTable extends Table
       }
       return $response;
     }
+
+    public function checkEmailExist( $email = null ){
+      $return = false;
+      if( $email != null ){
+        $user = TableRegistry::get('WvUser');
+        $return = $user->exists( [ 'email' => $email ] );
+        return $return;
+      }
+      return $return;
+    }
 }
