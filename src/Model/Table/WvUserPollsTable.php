@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvUserPolls Model
@@ -96,7 +97,8 @@ class WvUserPollsTable extends Table
         $userPoll = TableRegistry::get('WvUserPolls');
         $dataCheck = $this->find('all')->where([ 'user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
         $polls = $this->WvPolls->getPolls( $postData['post_id'] );
-        if( empty( $dataCheck ) && !empty( $polls ) && in_array( $postData['poll_id'], $polls ) ){
+        $pollIds = Hash::extract( $polls[ $postData[ 'post_id' ] ], '{n}.id' );
+        if( empty( $dataCheck ) && !empty( $polls ) && in_array( $postData['poll_id'], $pollIds ) ){
           $entity = $userPoll->newEntity();
           $entity = $userPoll->patchEntity( $entity, $postData );
           $record = $userPoll->save( $entity );

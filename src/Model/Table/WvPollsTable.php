@@ -115,6 +115,7 @@ class WvPollsTable extends Table
         $polls = TableRegistry::get('WvPolls');
         $entity = $polls->get( $data['poll_id'] );
         $entity->count++;
+        $entity = $this->fixEncodings( $entity );
         if( $polls->save( $entity ) ){
           $return = true;
         }
