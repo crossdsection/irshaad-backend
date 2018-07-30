@@ -32,7 +32,7 @@ class WvFileuploadsController extends AppController
           }
           $lastInsertId = $this->WvFileuploads->saveFiles($fileData);
           if ( $lastInsertId != 0 ) {
-            $response = array( 'error' => 0, 'message' => 'File Uploaded', 'data' => array( $lastInsertId ) );
+            $response = array( 'error' => 0, 'message' => 'File Uploaded', 'data' => array( 'fileId' => $lastInsertId, 'filepath' => $result['filepath'] ) );
           } else {
             $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
           }
