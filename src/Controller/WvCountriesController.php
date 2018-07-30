@@ -15,7 +15,7 @@ class WvCountriesController extends AppController {
   public function get(){
     $response = array( 'error' => 0, 'message' => '', 'data' => array() );
     $response['data'] = $this->WvCountries->find('all',[
-      'fields' => ['country_code','name','phonecode']
+      'fields' => [ 'id', 'country_code', 'name', 'phonecode' ]
     ]);
     $this->response = $this->response->withType('application/json')
                                      ->withStringBody( json_encode( $response ) );

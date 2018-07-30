@@ -166,6 +166,7 @@ class WvAccessRolesTable extends Table
         $result = $accessRoles->saveMany( $accessData );
         if( !empty( $result ) ){
           foreach( $result as $data ){
+            $data = $this->encodeResultSet( $data );
             $response[] = array( 'id' => $data['id'], 'area_level' => $data['area_level'],
                                  'area_level_id' => $data['area_level_id'], 'access_level' => $data['access_level'] );
           }

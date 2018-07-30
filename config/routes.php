@@ -179,6 +179,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         '/user/exist/*',
         ['controller' => 'WvUser', 'action' => 'userexists' ]
     );
+
+    $routes->get(
+        '/location/get/*',
+        ['controller' => 'WvLocalities', 'action' => 'get' ]
+    );
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

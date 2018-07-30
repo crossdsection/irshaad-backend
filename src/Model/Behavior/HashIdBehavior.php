@@ -32,7 +32,7 @@ class HashIdBehavior extends Behavior
   		'salt' => 'SayForExampleThisIsMySalt', // Please provide your own salt via Configure key 'Hashid.salt'
   		'field' => array(), // To populate upon find() and save(), false to deactivate
   		'debug' => false, // Auto-detect from Configure::read('debug')
-  		'minHashLength' => 0, // You can overwrite the Hashid defaults
+  		'minHashLength' => 8, // You can overwrite the Hashid defaults
   		'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-!/()=?`*;:_{}[]\|~^', // You can overwrite the Hashid defaults
   		'recursive' => false, // Also transform nested entities
   		'findFirst' => false, // Either true or 'first' or 'firstOrFail'
@@ -121,6 +121,24 @@ class HashIdBehavior extends Behavior
         return $entity;
       }
       $this->decode( $entity );
+      return $entity;
+    }
+
+    /**
+    * @param \Cake\Event\Event $event The fixEncodings event that was fired
+    * @param \Cake\Datasource\EntityInterface $entity The entity that is going to be saved
+    * @return void
+    */
+    public function encodeResultSet( EntityInterface $entity ) {
+      $field = $this->_config['field'];
+      if( !in_array( $this->_primaryKey, $field ) ){
+        $field[] = $this->_primaryKey;
+      }
+      foreach( $field as $key ){
+        if( isset( $entity[ $key ] ) ){
+          $entity[ $key ] = $this->encodeId( $entity[ $key ] );
+        }
+      }
       return $entity;
     }
 
