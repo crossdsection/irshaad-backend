@@ -130,7 +130,7 @@ class WvStatesTable extends Table
             }
           }
           $response['data'] = $countryRes['data'];
-          $response['data']['state'] = $stateData;
+          $response['data']['states'] = $stateData;
         }
       }
       return $response;

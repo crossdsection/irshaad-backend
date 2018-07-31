@@ -34,7 +34,7 @@ class WvPostController extends AppController
               $localeRes = $this->WvPost->WvLocalities->findLocality( $postData )['data'];
               if( !empty( $localeRes['localities'] ) ){
                 $saveData['locality_id'] = $localeRes['localities'][0]['locality_id'];
-                $addressString = $localeRes['localities'][0]['locality_name'].', '.$localeRes['cities'][0]['city_name'].', '.$localeRes['state'][0]['state_name'].', '.$localeRes['countries'][0]['country_name'];
+                $addressString = $localeRes['localities'][0]['locality_name'].', '.$localeRes['cities'][0]['city_name'].', '.$localeRes['states'][0]['state_name'].', '.$localeRes['countries'][0]['country_name'];
                 $continue = true;
               }
               break;
@@ -42,7 +42,7 @@ class WvPostController extends AppController
               $cityRes = $this->WvPost->WvCities->findCities( $postData )['data'];
               if( !empty( $cityRes['cities'] ) ){
                 $saveData['city_id'] = $cityRes['cities'][0]['city_id'];
-                $addressString = $cityRes['cities'][0]['city_name'].', '.$cityRes['state'][0]['state_name'].', '.$cityRes['countries'][0]['country_name'];
+                $addressString = $cityRes['cities'][0]['city_name'].', '.$cityRes['states'][0]['state_name'].', '.$cityRes['countries'][0]['country_name'];
                 $continue = true;
               }
               break;
@@ -50,7 +50,7 @@ class WvPostController extends AppController
               $stateRes = $this->WvPost->WvStates->findStates( $postData )['data'];
               if( !empty( $stateRes['state'] ) ){
                 $saveData['state_id'] = $stateRes['state'][0]['state_id'];
-                $addressString = $stateRes['state'][0]['state_name'].', '.$stateRes['countries'][0]['country_name'];
+                $addressString = $stateRes['states'][0]['state_name'].', '.$stateRes['countries'][0]['country_name'];
                 $continue = true;
               }
               break;

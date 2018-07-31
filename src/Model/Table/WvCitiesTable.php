@@ -104,7 +104,7 @@ class WvCitiesTable extends Table
           $statesRes = $this->WvStates->findStates( $data );
           if( !empty( $statesRes['data'] ) ){
             $countries = $statesRes['data']['countries'];
-            $states = $statesRes['data']['state'];
+            $states = $statesRes['data']['states'];
             foreach ( $states as $key => $value ) {
               if( strpos( $value['state_name'], $data['state'] ) !== false ){
                 $saveCity = array( 'name' => $data['city'], 'state_id' => $value['state_id'] );
