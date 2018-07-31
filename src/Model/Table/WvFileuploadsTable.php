@@ -71,12 +71,13 @@ class WvFileuploadsTable extends Table
     }
 
     public function saveFiles( $fileData = array() ){
-      $return = 0;
+      $return = null;
       if( !empty( $fileData ) ){
         $wvFileUploads = TableRegistry::get('WvFileuploads');
         $wvFile = $wvFileUploads->newEntity();
         $wvFile = $wvFileUploads->patchEntity( $wvFile, $fileData[0] );
         $result = $wvFileUploads->save( $wvFile );
+        $result = $this->encodeResultSet( $result );
         if ( isset( $result->id ) ) {
           $return = $result->id;
         }

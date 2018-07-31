@@ -131,7 +131,7 @@ class WvPollsTable extends Table
           if( !isset( $response[ $polls['post_id'] ]  ) ){
             $response[ $polls['post_id'] ] = array();
           }
-          $response[ $polls['post_id'] ][] = array( 'title' => $polls['title'], 'id' => $polls['id'] );
+          $response[ $polls['post_id'] ][] = array( 'title' => $polls['title'], 'id' => $polls['id'], 'count' => $polls['count'] );
         }
       }
       return $response;
