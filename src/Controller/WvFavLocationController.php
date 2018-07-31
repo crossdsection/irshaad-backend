@@ -33,7 +33,7 @@ class WvFavLocationController extends AppController
           $favLocationCheck = array( 'latitude' => $postData['latitude'], 'longitude' => $postData['longitude'], 'user_id' => $postData['user_id'], 'level' => $postData['level'] );
         }
         if( $this->WvFavLocation->exist( $favLocationCheck ) ){
-          $response = array( 'error' => 1, 'message' => 'Favourite Location Exists.', 'data' => array() );
+          $response = array( 'error' => 1, 'message' => 'Favourite Location Exists.', 'data' => array( 'exist' => true ) );
         } else if( isset( $postData['longitude'] ) && isset( $postData['latitude'] ) ){
           if( isset( $postData['countryShortName'] ) ){
             $postData['country_code'] = $postData['countryShortName'];
@@ -134,9 +134,9 @@ class WvFavLocationController extends AppController
        }
        if( isset( $getData['latitude'] ) && isset( $getData['longitude'] ) && $getData['latitude'] != 0 && $getData['longitude'] != 0 ){
          if( $this->WvFavLocation->exist( $getData ) ){
-           $response = array( 'error' => 0, 'message' => 'Exists', 'data' => array() );
+           $response = array( 'error' => 0, 'message' => 'Exists', 'data' => array('exist' => true, 'notExist' => false) );
          } else {
-           $response = array( 'error' => 0, 'message' => 'Does Not Exists', 'data' => array() );
+           $response = array( 'error' => 0, 'message' => 'Does Not Exists', 'data' => array( 'exist' => false, 'notExist' => true) );
          }
        }
        $this->response = $this->response->withType('application/json')
