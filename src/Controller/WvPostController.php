@@ -48,8 +48,8 @@ class WvPostController extends AppController
               break;
             case 'state' :
               $stateRes = $this->WvPost->WvStates->findStates( $postData )['data'];
-              if( !empty( $stateRes['state'] ) ){
-                $saveData['state_id'] = $stateRes['state'][0]['state_id'];
+              if( !empty( $stateRes['states'] ) ){
+                $saveData['state_id'] = $stateRes['states'][0]['state_id'];
                 $addressString = $stateRes['states'][0]['state_name'].', '.$stateRes['countries'][0]['country_name'];
                 $continue = true;
               }

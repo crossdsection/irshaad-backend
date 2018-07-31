@@ -116,7 +116,7 @@ class WvStatesTable extends Table
           }
           $countriesRes = $this->WvCountries->findCountryById( $countryIds, $data );
           $response['data'] = $countriesRes['data'];
-          $response['data']['state'] = $stateData;
+          $response['data']['states'] = $stateData;
         } else {
           $countryRes = $this->WvCountries->findCountry( $data );
           if( !empty( $countryRes['data'] ) ){
