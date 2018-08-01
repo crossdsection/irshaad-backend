@@ -97,6 +97,12 @@ class WvPostController extends AppController
         if( !empty( $postData[ 'filejson' ] ) ){
           $saveData[ 'filejson' ] = json_encode( $postData[ 'filejson' ] );
         }
+        if( $postData[ 'anonymous' ] ){
+          $saveData[ 'anonymous' ] = $postData[ 'anonymous' ];
+        }
+        if( $postData[ 'draft' ] ){
+          $saveData[ 'poststatus' ] = false;
+        }
         if ( $continue ){
           $returnId = $this->WvPost->savePost( $saveData );
           if ( $returnId ) {
@@ -156,7 +162,7 @@ class WvPostController extends AppController
           $wvPost = $query->limit( 10 );
         }
         if( isset( $_GET['posttype'] ) ){
-          $wvPost = $query->where( [ 'post_type' => $_GET['posttype'] ] );
+          $wvPost = $query->where( [ 'post_type' => $_GET['posttype'], 'poststatus' => 1 ] );
         }
         if( isset( $_GET['most_upvoted'] ) && $_GET['most_upvoted'] == 1 ){
           $orderBy[] = 'total_upvotes DESC';
