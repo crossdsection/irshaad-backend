@@ -140,7 +140,7 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'logout']
     );
 
-    $routes->get(
+    $routes->post(
         '/user/getinfo/*',
         ['controller' => 'WvUser', 'action' => 'getuserinfo']
     );

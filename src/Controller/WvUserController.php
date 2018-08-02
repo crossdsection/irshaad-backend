@@ -191,18 +191,29 @@ class WvUserController extends AppController {
     }
 
     public function getuserinfo() {
-        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-        $getData = $this->request->input('json_decode', true);
-        if( empty( $getData ) ){
-          $getData['userId'] = $_GET['userId'];
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $getData = $this->request->input('json_decode', true);
+      if( !empty( $getData ) ){
+        $getData['userId'] = $_POST['userId'];
+        $getData['accessRoleIds'] = $_POST['accessRoleIds'];
+      } else {
+        $getData = $this->request->getData();
+      }
+      if( !isset( $getData['mcph'] ) ){
+        $getData['mcph'] = $getData['userId'];
+      }
+      if( !empty( $getData ) ){
+        $data = $this->WvUser->getUserInfo( array( $getData['mcph'] ) );
+        if( $getData['mcph'] != $getData['userId'] ){
+          $data[ $getData['mcph'] ]['editable'] = false;
+        } else {
+          $data[ $getData['mcph'] ]['editable'] = true;
         }
-        if( isset( $getData['userId'] ) && !empty( $getData['userId'] ) ){
-          $data = $this->WvUser->getUserInfo( $getData['userId'] );
-          $response['data'] = array_values( $data );
-        }
-        $this->response = $this->response->withType('application/json')
-                                         ->withStringBody( json_encode( $response ) );
-        return $this->response;
+        $response = array( 'error' => 0, 'message' => 'Success!', 'data' => array_values( $data ) );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
     }
 
     public function updateaccess() {
