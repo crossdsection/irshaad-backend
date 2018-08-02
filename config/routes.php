@@ -146,6 +146,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
+        '/user/getinfo/*',
+        ['controller' => 'WvUser', 'action' => 'getuserinfo']
+    );
+
+    $routes->get(
         '/post/get',
         ['controller' => 'WvPost', 'action' => 'getfeed']
     );

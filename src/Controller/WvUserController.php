@@ -199,17 +199,27 @@ class WvUserController extends AppController {
       } else {
         $getData = $this->request->getData();
       }
+      if( !isset( $getData['userId'] ) && isset( $_GET['userId'] ) ){
+        $getData['userId'] = $_GET['userId'];
+      }
+      if( !isset( $getData['userId'] ) && isset( $_GET['accessRoleIds'] ) ){
+        $getData['accessRoleIds'] = $_GET['accessRoleIds'];
+      }
       if( !isset( $getData['mcph'] ) ){
         $getData['mcph'] = $getData['userId'];
       }
       if( !empty( $getData ) ){
         $data = $this->WvUser->getUserInfo( array( $getData['mcph'] ) );
-        if( $getData['mcph'] != $getData['userId'] ){
-          $data[ $getData['mcph'] ]['editable'] = false;
+        if( !empty( $data ) ){
+          if( $getData['mcph'] != $getData['userId'] ){
+            $data[ $getData['mcph'] ]['editable'] = false;
+          } else {
+            $data[ $getData['mcph'] ]['editable'] = true;
+          }
+          $response = array( 'error' => 0, 'message' => 'Success!', 'data' => array_values( $data ) );
         } else {
-          $data[ $getData['mcph'] ]['editable'] = true;
+          $response = array( 'error' => 0, 'message' => 'User Not Found', 'data' => array() );
         }
-        $response = array( 'error' => 0, 'message' => 'Success!', 'data' => array_values( $data ) );
       }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );
