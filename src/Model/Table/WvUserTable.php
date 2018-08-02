@@ -70,6 +70,8 @@ class WvUserTable extends Table
         ]);
         $this->hasOne('WvLoginRecord');
         $this->hasOne('WvEmailVerification');
+        $this->hasOne('WvPost');
+        $this->hasMany('WvUserFollowers');
     }
 
     /**
@@ -249,6 +251,9 @@ class WvUserTable extends Table
             $accessRoles = $this->WvAccessRoles->getAccessData( json_decode( $user['access_role_ids'] ) );
             $tmpResponse[ 'accessRoles' ] = $accessRoles;
           }
+          $tmpResponse['postCount'] = $this->WvPost->getUserPostCount( $user['id'] );
+          $tmpResponse['followingCount'] = $this->WvUserFollowers->getfollowingCount( $user['id'] );
+          $tmpResponse['followerCount'] = $this->WvUserFollowers->getfollowerCount( $user['id'] );
           $response[ $user->id ] = $tmpResponse;
         }
       }

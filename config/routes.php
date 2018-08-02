@@ -184,6 +184,17 @@ Router::scope('/', function (RouteBuilder $routes) {
         '/location/get/*',
         ['controller' => 'WvLocalities', 'action' => 'get' ]
     );
+
+    $routes->post(
+        '/user/follow/*',
+        ['controller' => 'WvUser', 'action' => 'follow' ]
+    );
+
+    $routes->post(
+        '/user/unfollow/*',
+        ['controller' => 'WvUser', 'action' => 'unfollow' ]
+    );
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

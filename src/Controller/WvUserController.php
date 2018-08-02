@@ -338,4 +338,44 @@ class WvUserController extends AppController {
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
     }
+
+    public function follow(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $postData = $this->request->input('json_decode', true);
+      if( !empty( $postData ) ){
+        $postData['userId'] = $_POST['userId'];
+        $postData['accessRoleIds'] = $_POST['accessRoleIds'];
+      } else {
+        $postData = $this->request->getData();
+      }
+      if( !empty( $postData ) && isset( $postData['mcph'] ) ){
+        $data = array( 'user_id' => $postData['userId'], 'followuser_id' => $postData['mcph'] );
+        if( $this->WvUser->WvUserFollowers->follow( $data ) ){
+          $response = array( 'error' => 0, 'message' => 'Follow Successful.' );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
+    public function unfollow(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request' );
+      $postData = $this->request->input('json_decode', true);
+      if( !empty( $postData ) ){
+        $postData['userId'] = $_POST['userId'];
+        $postData['accessRoleIds'] = $_POST['accessRoleIds'];
+      } else {
+        $postData = $this->request->getData();
+      }
+      if( !empty( $postData ) && isset( $postData['mcph'] ) ){
+        $data = array( 'user_id' => $postData['userId'], 'followuser_id' => $postData['mcph'] );
+        if( $this->WvUser->WvUserFollowers->unfollow( $data ) ){
+          $response = array( 'error' => 0, 'message' => 'Follow Successful.' );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
 }

@@ -280,4 +280,14 @@ class WvPostTable extends Table
       }
       return $response;
     }
+
+    public function getUserPostCount( $userId = null ){
+      $response = null;
+      if( $userId != null ){
+        $post = TableRegistry::get('WvPost');
+        $totalPosts = $post->find()->where([ 'user_id' => $userId ] )->count();
+        $response = $totalPosts;
+      }
+      return $response;
+    }
 }
