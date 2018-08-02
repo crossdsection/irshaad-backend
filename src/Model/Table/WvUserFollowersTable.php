@@ -125,13 +125,27 @@ class WvUserFollowersTable extends Table
     /**
     * userId
      */
-    public function getfollowers( $userId = null ){
+    public function getfollowers( $userId = null, $searchText = null, $queryConditions = array() ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array()  );
       if( $userId != null ){
         $userFollowers = TableRegistry::get('WvUserFollowers');
-        $entity = $userFollowers->find()->where([ 'followuser_id' => $userId ] )->toArray();
+        $query = $userFollowers->find()->where([ 'followuser_id' => $userId ] );
+        if( isset( $queryConditions['page'] ) ){
+          $query = $query->page( $queryConditions['page'] );
+        }
+        if( isset( $queryConditions['offset'] ) ){
+          $query = $query->limit( $queryConditions['offset'] );
+        }
+        $entity = $query->toArray();
         $followerIds = Hash::extract( $entity, '{n}.user_id' );
         $userData = $this->WvUser->getUserList( $followerIds );
+        if( $searchText != null && strlen( $searchText ) > 0 ){
+          foreach( $userData as $key => $value ){
+            if( !(( stripos( $value['firstname'], $searchText ) !== false ) || ( stripos( $value['lastname'], $searchText ) !== false )) ){
+              unset( $userData[ $key ] );
+            }
+          }
+        }
         $response['data'] = array_values( $userData );
       }
       return $response;
@@ -140,13 +154,27 @@ class WvUserFollowersTable extends Table
     /**
      * data['user_id']
      */
-    public function getfollowing( $userId = null ){
+    public function getfollowing( $userId = null, $searchText = null, $queryConditions = array() ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array()  );
       if( $userId != null ){
         $userFollowers = TableRegistry::get('WvUserFollowers');
-        $entity = $userFollowers->find()->where([ 'user_id' => $userId ] )->toArray();
+        $query = $userFollowers->find()->where([ 'user_id' => $userId ] );
+        if( isset( $queryConditions['page'] ) ){
+          $query = $query->page( $queryConditions['page'] );
+        }
+        if( isset( $queryConditions['offset'] ) ){
+          $query = $query->limit( $queryConditions['offset'] );
+        }
+        $entity = $query->toArray();
         $followingIds = Hash::extract( $entity, '{n}.followuser_id' );
         $userData = $this->WvUser->getUserList( $followingIds );
+        if( $searchText != null && strlen( $searchText ) > 0 ){
+          foreach( $userData as $key => $value ){
+            if( !(( stripos( $value['firstname'], $searchText ) !== false ) || ( stripos( $value['lastname'], $searchText ) !== false )) ){
+              unset( $userData[ $key ] );
+            }
+          }
+        }
         $response['data'] = array_values( $userData );
       }
       return $response;

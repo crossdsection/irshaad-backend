@@ -409,9 +409,13 @@ class WvUserController extends AppController {
       if( !isset( $requestData['mcph'] ) ){
         $requestData['mcph'] = $requestData['user_id'];
       }
-      if( !empty( $requestData ) ){
-        $mcphData = $this->WvUser->WvUserFollowers->getfollowers( $requestData['mcph'] )['data'];
-        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'] )['data'];
+      if( !empty( $requestData ) && isset( $requestData['page'] )){
+        $searchText = null;
+        if( isset( $requestData['searchKey'] ) ){
+          $searchText = $requestData['searchKey'];
+        }
+        $mcphData = $this->WvUser->WvUserFollowers->getfollowers( $requestData['mcph'], $searchText )['data'];
+        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'], $searchText )['data'];
         $returnData = $this->WvUser->WvUserFollowers->compareFollowStatus( $userData, $mcphData );
         $response = array( 'error' => 0, 'message' => '', 'data' => $returnData );
       }
@@ -433,9 +437,17 @@ class WvUserController extends AppController {
       if( !isset( $requestData['mcph'] ) ){
         $requestData['mcph'] = $requestData['user_id'];
       }
-      if( !empty( $requestData ) ){
-        $mcphData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['mcph'] )['data'];
-        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'] )['data'];
+      if( !empty( $requestData ) && isset( $requestData['page'] ) ){
+        $searchText = null; $queryConditions = array();
+        $queryConditions['page'] = $requestData['page'];
+        if( isset( $requestData['offset'] ) ){
+          $queryConditions['offset'] = $requestData['offset'];
+        }
+        if( isset( $requestData['searchKey'] ) ){
+          $searchText = $requestData['searchKey'];
+        }
+        $mcphData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['mcph'], $searchText )['data'];
+        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'], $searchText )['data'];
         $returnData = $this->WvUser->WvUserFollowers->compareFollowStatus( $userData, $mcphData );
         $response = array( 'error' => 0, 'message' => '', 'data' => $returnData );
       }
