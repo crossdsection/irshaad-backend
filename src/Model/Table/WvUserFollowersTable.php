@@ -123,16 +123,16 @@ class WvUserFollowersTable extends Table
     }
 
     /**
-     * data['user_id']
+    * userId
      */
-    public function getfollowers( $data ){
+    public function getfollowers( $userId = null ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array()  );
-      if( !empty( $data ) && isset( $data['user_id'] ) ){
+      if( $userId != null ){
         $userFollowers = TableRegistry::get('WvUserFollowers');
-        $entity = $userFollowers->find()->where([ 'followuser_id' => $data['user_id'] ] )->toArray();
+        $entity = $userFollowers->find()->where([ 'followuser_id' => $userId ] )->toArray();
         $followerIds = Hash::extract( $entity, '{n}.user_id' );
-        $userData = $this->WvUser->getUserList( $entityIds );
-        $response['data'] = $userData;
+        $userData = $this->WvUser->getUserList( $followerIds );
+        $response['data'] = array_values( $userData );
       }
       return $response;
     }
@@ -140,14 +140,14 @@ class WvUserFollowersTable extends Table
     /**
      * data['user_id']
      */
-    public function getfollowing( $data ){
+    public function getfollowing( $userId = null ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array()  );
-      if( !empty( $data ) && isset( $data['user_id'] ) ){
+      if( $userId != null ){
         $userFollowers = TableRegistry::get('WvUserFollowers');
-        $entity = $userFollowers->find()->where([ 'user_id' => $data['user_id'] ] )->toArray();
-        $followerIds = Hash::extract( $entity, '{n}.followuser_id' );
-        $userData = $this->WvUser->getUserList( $entityIds );
-        $response['data'] = $userData;
+        $entity = $userFollowers->find()->where([ 'user_id' => $userId ] )->toArray();
+        $followingIds = Hash::extract( $entity, '{n}.followuser_id' );
+        $userData = $this->WvUser->getUserList( $followingIds );
+        $response['data'] = array_values( $userData );
       }
       return $response;
     }
@@ -176,5 +176,23 @@ class WvUserFollowersTable extends Table
         $response = $totalFollowing;
       }
       return $response;
+    }
+
+    public function compareFollowStatus( $currentUserData = array(), $mcphUserData = array() ){
+      $returnData = array();
+      if( !empty( $mcphUserData ) ){
+        $currentUserIds = Hash::extract( $currentUserData, '{n}.id' );
+        $mcphUserIds = Hash::extract( $mcphUserData, '{n}.id' );
+        $currentUserDoesNotFollowIds = array_diff( $mcphUserIds, $currentUserIds );
+        foreach( $mcphUserData as $mcphUser ){
+          if( in_array( $mcphUser['id'], $currentUserDoesNotFollowIds ) ){
+            $mcphUser['follows'] = false;
+          } else {
+            $mcphUser['follows'] = true;
+          }
+          $returnData[] = $mcphUser;
+        }
+      }
+      return $returnData;
     }
 }

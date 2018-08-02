@@ -395,4 +395,52 @@ class WvUserController extends AppController {
                                        ->withStringBody( json_encode( $response ) );
       return $this->response;
     }
+
+    public function getFollowers(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
+      $jsonData = $this->request->input('json_decode', true);
+      $getData = $this->request->query();
+      $postData = $this->request->getData();
+      $requestData = array_merge( $getData, $postData );
+      $requestData = array_merge( $requestData, $jsonData );
+      if( !isset( $requestData['user_id'] ) ){
+        $requestData['user_id'] = $_POST['userId'];
+      }
+      if( !isset( $requestData['mcph'] ) ){
+        $requestData['mcph'] = $requestData['user_id'];
+      }
+      if( !empty( $requestData ) ){
+        $mcphData = $this->WvUser->WvUserFollowers->getfollowers( $requestData['mcph'] )['data'];
+        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'] )['data'];
+        $returnData = $this->WvUser->WvUserFollowers->compareFollowStatus( $userData, $mcphData );
+        $response = array( 'error' => 0, 'message' => '', 'data' => $returnData );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
+
+    public function getFollowings(){
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
+      $jsonData = $this->request->input('json_decode', true);
+      $getData = $this->request->query();
+      $postData = $this->request->getData();
+      $requestData = array_merge( $getData, $postData );
+      $requestData = array_merge( $requestData, $jsonData );
+      if( !isset( $requestData['user_id'] ) ){
+        $requestData['user_id'] = $_POST['userId'];
+      }
+      if( !isset( $requestData['mcph'] ) ){
+        $requestData['mcph'] = $requestData['user_id'];
+      }
+      if( !empty( $requestData ) ){
+        $mcphData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['mcph'] )['data'];
+        $userData = $this->WvUser->WvUserFollowers->getfollowing( $requestData['user_id'] )['data'];
+        $returnData = $this->WvUser->WvUserFollowers->compareFollowStatus( $userData, $mcphData );
+        $response = array( 'error' => 0, 'message' => '', 'data' => $returnData );
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
 }
