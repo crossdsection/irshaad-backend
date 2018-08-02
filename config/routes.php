@@ -215,6 +215,16 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'getFollowings' ]
     );
 
+    $routes->get(
+        '/user/getfollowers/*',
+        ['controller' => 'WvUser', 'action' => 'getFollowers' ]
+    );
+
+    $routes->get(
+        '/user/getfollowing/*',
+        ['controller' => 'WvUser', 'action' => 'getFollowings' ]
+    );
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

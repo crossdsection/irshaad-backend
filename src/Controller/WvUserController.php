@@ -196,7 +196,8 @@ class WvUserController extends AppController {
       $getData = $this->request->query();
       $postData = $this->request->getData();
       $requestData = array_merge( $getData, $postData );
-      $requestData = array_merge( $requestData, $jsonData );
+      if( $jsonData )
+        $requestData = array_merge( $requestData, $jsonData );
       if( !isset( $requestData['userId'] ) ){
         $requestData['userId'] = $_POST['userId'];
         $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
@@ -402,7 +403,8 @@ class WvUserController extends AppController {
       $getData = $this->request->query();
       $postData = $this->request->getData();
       $requestData = array_merge( $getData, $postData );
-      $requestData = array_merge( $requestData, $jsonData );
+      if( $jsonData )
+        $requestData = array_merge( $requestData, $jsonData );
       if( !isset( $requestData['user_id'] ) ){
         $requestData['user_id'] = $_POST['userId'];
       }
@@ -430,7 +432,8 @@ class WvUserController extends AppController {
       $getData = $this->request->query();
       $postData = $this->request->getData();
       $requestData = array_merge( $getData, $postData );
-      $requestData = array_merge( $requestData, $jsonData );
+      if( $jsonData )
+        $requestData = array_merge( $requestData, $jsonData );
       if( !isset( $requestData['user_id'] ) ){
         $requestData['user_id'] = $_POST['userId'];
       }
