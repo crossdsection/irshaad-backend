@@ -192,29 +192,25 @@ class WvUserController extends AppController {
 
     public function getuserinfo() {
       $response = array( 'error' => 1, 'message' => 'Invalid Request' );
-      $getData = $this->request->input('json_decode', true);
-      if( !empty( $getData ) ){
-        $getData['userId'] = $_POST['userId'];
-        $getData['accessRoleIds'] = $_POST['accessRoleIds'];
-      } else {
-        $getData = $this->request->getData();
+      $jsonData = $this->request->input('json_decode', true);
+      $getData = $this->request->query();
+      $postData = $this->request->getData();
+      $requestData = array_merge( $getData, $postData );
+      $requestData = array_merge( $requestData, $jsonData );
+      if( !isset( $requestData['userId'] ) ){
+        $requestData['userId'] = $_POST['userId'];
+        $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
       }
-      if( !isset( $getData['userId'] ) && isset( $_GET['userId'] ) ){
-        $getData['userId'] = $_GET['userId'];
+      if( !isset( $requestData['mcph'] ) ){
+        $requestData['mcph'] = $requestData['userId'];
       }
-      if( !isset( $getData['userId'] ) && isset( $_GET['accessRoleIds'] ) ){
-        $getData['accessRoleIds'] = $_GET['accessRoleIds'];
-      }
-      if( !isset( $getData['mcph'] ) ){
-        $getData['mcph'] = $getData['userId'];
-      }
-      if( !empty( $getData ) ){
-        $data = $this->WvUser->getUserInfo( array( $getData['mcph'] ) );
+      if( !empty( $requestData ) ){
+        $data = $this->WvUser->getUserInfo( array( $requestData['mcph'] ) );
         if( !empty( $data ) ){
-          if( $getData['mcph'] != $getData['userId'] ){
-            $data[ $getData['mcph'] ]['editable'] = false;
+          if( $requestData['mcph'] != $requestData['userId'] ){
+            $data[ $requestData['mcph'] ]['editable'] = false;
           } else {
-            $data[ $getData['mcph'] ]['editable'] = true;
+            $data[ $requestData['mcph'] ]['editable'] = true;
           }
           $response = array( 'error' => 0, 'message' => 'Success!', 'data' => array_values( $data ) );
         } else {

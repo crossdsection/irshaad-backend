@@ -153,24 +153,35 @@ class WvPostController extends AppController
     public function getfeed($id = null)
     {
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      if( isset( $_GET['page'] ) ){
-        $query = $this->WvPost->find('all'); $orderBy = array();
-        $wvPost = $query->page( $_GET['page'] );
-        if( isset( $_GET['count'] ) ){
-          $wvPost = $query->limit( $_GET['count'] );
-        } else {
-          $wvPost = $query->limit( 10 );
+      $getData = $this->request->query();
+      $postData = $this->request->getData();
+      $requestData = array_merge( $getData, $postData );
+      if( isset( $requestData['page'] ) ){
+        $conditions = array( 'poststatus' => 1 );
+        $orderBy = array();
+        if( isset( $requestData['posttype'] ) ){
+          $conditions[] = array( 'post_type' => $requestData['posttype'] );
         }
-        if( isset( $_GET['posttype'] ) ){
-          $wvPost = $query->where( [ 'post_type' => $_GET['posttype'], 'poststatus' => 1 ] );
+        if( isset( $requestData['mcph'] ) ){
+          $conditions[] = array( 'user_id' => $requestData['mcph'] );
         }
-        if( isset( $_GET['most_upvoted'] ) && $_GET['most_upvoted'] == 1 ){
+        if( isset( $requestData['most_upvoted'] ) && $requestData['most_upvoted'] == 1 ){
           $orderBy[] = 'total_upvotes DESC';
         }
-        if( isset( $_GET['sort_datetime'] ) && $_GET['sort_datetime'] == 1 ){
+        if( isset( $requestData['sort_datetime'] ) && $requestData['sort_datetime'] == 1 ){
           $orderBy[] = 'created ASC';
         } else {
           $orderBy[] = 'created DESC';
+        }
+        $query = $this->WvPost->find('all');
+        $wvPost = $query->page( $requestData['page'] );
+        if( !empty( $conditions ) ){
+          $wvPost = $query->where( $conditions );
+        }
+        if( isset( $requestData['count'] ) ){
+          $wvPost = $query->limit( $requestData['count'] );
+        } else {
+          $wvPost = $query->limit( 10 );
         }
         $wvPost = $query->order( $orderBy );
         if( !empty( $wvPost ) ){
