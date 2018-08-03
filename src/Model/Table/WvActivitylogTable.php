@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvActivitylog Model
@@ -137,12 +138,10 @@ class WvActivitylogTable extends Table
       $data = array();
       if( !empty( $postIds ) ){
         $tableData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
-        foreach ( $postIds as $key => $postId ) {
-          if( !isset( $data[ $postId ] ) ){
-            $data[ $postId ] = array( 'upvotes' => 0, 'downvotes' => 0, 'eyewitness' => 0 );
-          }
-        }
         foreach( $tableData as $key => $value ){
+          if( !isset( $data[ $value->post_id ] ) ){
+            $data[ $value->post_id ] = array( 'upvotes' => 0, 'downvotes' => 0, 'eyewitness' => 0, 'bookmark' => $value->bookmark );
+          }
           if( $value->upvote > 0 )
             $data[ $value->post_id ]['upvotes'] = $data[ $value->post_id ]['upvotes'] + 1;
           if( $value->downvote > 0 )
@@ -228,5 +227,25 @@ class WvActivitylogTable extends Table
         );
       }
       return $data;
+    }
+
+    public function conditionBasedSearch( $queryConditions = array() ){
+      $response = array();
+      if( !empty( $queryConditions ) ){
+        $activities = $this->find();
+        if( isset( $queryConditions['page'] ) )
+          $activities = $activities->page( $queryConditions['page'] );
+        if( isset( $queryConditions['offset'] ) )
+          $activities = $activities->limit( $queryConditions['offset'] );
+        if( isset( $queryConditions['conditions'] ) )
+          $activities = $activities->where( $queryConditions['conditions'] );
+        $activities = $activities->toArray();
+        if( !empty( $activities ) ){
+          $postIds = Hash::extract( $activities, '{n}.post_id' );
+          $wvPost = $this->WvPost->find()->where(['id IN' => $postIds ])->toArray();
+          $response = $wvPost;
+        }
+      }
+      return $response;
     }
 }

@@ -225,6 +225,16 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvUser', 'action' => 'getFollowings' ]
     );
 
+    $routes->post(
+        '/post/getbookmarks/*',
+        ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
+    );
+
+    $routes->get(
+        '/post/getbookmarks/*',
+        ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
+    );
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

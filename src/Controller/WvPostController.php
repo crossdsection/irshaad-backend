@@ -156,14 +156,26 @@ class WvPostController extends AppController
       $getData = $this->request->query();
       $postData = $this->request->getData();
       $requestData = array_merge( $getData, $postData );
+      if( !isset( $requestData['userId'] ) ){
+        $requestData['userId'] = $_POST['userId'];
+        $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
+      }
+      if( !isset( $requestData['mcph'] ) ){
+        $requestData['mcph'] = $requestData['userId'];
+      }
       if( isset( $requestData['page'] ) ){
-        $conditions = array( 'poststatus' => 1 );
+        $conditions = array();
         $orderBy = array();
         if( isset( $requestData['posttype'] ) ){
           $conditions[] = array( 'post_type' => $requestData['posttype'] );
         }
         if( isset( $requestData['mcph'] ) ){
           $conditions[] = array( 'user_id' => $requestData['mcph'] );
+        }
+        if( isset( $requestData['draft'] ) && $requestData['draft'] == 1 && $requestData['mcph'] != $requestData['userId'] ){
+          $conditions[] = array( 'poststatus' => 0 );
+        } else {
+          $conditions[] = array( 'poststatus' => 1 );
         }
         if( isset( $requestData['most_upvoted'] ) && $requestData['most_upvoted'] == 1 ){
           $orderBy[] = 'total_upvotes DESC';

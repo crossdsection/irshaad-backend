@@ -76,4 +76,37 @@ class WvActivitylogController extends AppController
         $posts = $this->WvActivitylog->Posts->find('list', ['limit' => 200]);
         $this->set(compact('wvActivitylog', 'users', 'posts'));
     }
+
+    public function getbookmarks( ){
+      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $getData = $this->request->query();
+      $postData = $this->request->getData();
+      $requestData = array_merge( $getData, $postData );
+      if( !isset( $requestData['userId'] ) ){
+        $requestData['userId'] = $_POST['userId'];
+        $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
+      }
+      if( !isset( $requestData['mcph'] ) ){
+        $requestData['mcph'] = $requestData['userId'];
+      }
+      if( !empty( $requestData ) && isset( $requestData['page'] ) ){
+        $queryConditions = array();
+        $queryConditions['page'] = $requestData['page'];
+        if( isset( $requestData['offset'] ) ){
+          $queryConditions['offset'] = $requestData['offset'];
+        } else {
+          $queryConditions['offset'] = 10;
+        }
+        $queryConditions['conditions'] = array( 'bookmark' => 1, 'user_id' => $requestData['mcph'] );
+        $wvPost = $this->WvActivitylog->conditionBasedSearch( $queryConditions );
+        if( !empty( $wvPost ) ){
+          $response['data'] = $this->WvActivitylog->WvPost->retrievePostDetailed( $wvPost );
+        } else {
+          $response = array( 'error' => 0, 'message' => 'Your Feed is Empty.', 'data' => array() );
+        }
+      }
+      $this->response = $this->response->withType('application/json')
+                                       ->withStringBody( json_encode( $response ) );
+      return $this->response;
+    }
 }
