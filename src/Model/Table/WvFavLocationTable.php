@@ -142,13 +142,25 @@ class WvFavLocationTable extends Table
             $isDefault = true;
           }
           if( $favLoc->level == 'locality' ){
-            $search['localityIds'][ $favLoc->locality_id ] = array( 'locality_id' => $favLoc->locality_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level, 'is_default' => $isDefault );
+            $search['localityIds'][ $favLoc->locality_id ] = array(
+              'locality_id' => $favLoc->locality_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude,
+              'level' => $favLoc->level, 'is_default' => $isDefault, 'id' => $favLoc->id
+            );
           } else if( $favLoc->level == 'city' ){
-            $search['cityIds'][ $favLoc->city_id ] = array( 'city_id' => $favLoc->city_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level, 'is_default' => $isDefault );
+            $search['cityIds'][ $favLoc->city_id ] = array(
+              'city_id' => $favLoc->city_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude,
+              'level' => $favLoc->level, 'is_default' => $isDefault, 'id' => $favLoc->id
+            );
           } else if( $favLoc->level == 'state' ){
-            $search['stateIds'][ $favLoc->state_id ] = array( 'state_id' => $favLoc->state_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level, 'is_default' => $isDefault );
+            $search['stateIds'][ $favLoc->state_id ] = array(
+              'state_id' => $favLoc->state_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude,
+              'level' => $favLoc->level, 'is_default' => $isDefault, 'id' => $favLoc->id
+            );
           } else if( $favLoc->level == 'country' ){
-            $search['countryIds'][ $favLoc->country_id ] = array( 'country_id' => $favLoc->country_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude, 'level' => $favLoc->level, 'is_default' => $isDefault );
+            $search['countryIds'][ $favLoc->country_id ] = array(
+              'country_id' => $favLoc->country_id, 'latitude' => $favLoc->latitude, 'longitude' => $favLoc->longitude,
+              'level' => $favLoc->level, 'is_default' => $isDefault, 'id' => $favLoc->id
+            );
           }
         }
       }
@@ -171,6 +183,7 @@ class WvFavLocationTable extends Table
               $country = $this->traverseAndMatch( $localityRes['data']['countries'], 'country_id', $state['country_id'] );
               $address = $locale['locality_name'].', '.$city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
               $data[] = array( 'address_string' => $address,
+                               'favlocation_id' => $search['localityIds'][ $localityId ]['id'],
                                'latitude' => $search['localityIds'][ $localityId ]['latitude'],
                                'longitude' => $search['localityIds'][ $localityId ]['longitude'],
                                'level' => $search['localityIds'][ $localityId ]['level'],
@@ -189,6 +202,7 @@ class WvFavLocationTable extends Table
               $country = $this->traverseAndMatch( $cityRes['data']['countries'], 'country_id', $state['country_id'] );
               $address = $city['city_name'].', '.$state['state_name'].', '.$country['country_name'];
               $data[] = array( 'address_string' => $address,
+                               'favlocation_id' => $search['cityIds'][ $cityId ]['id'],
                                'latitude' => $search['cityIds'][ $cityId ]['latitude'],
                                'longitude' => $search['cityIds'][ $cityId ]['longitude'],
                                'level' => $search['cityIds'][ $cityId ]['level'],
@@ -206,6 +220,7 @@ class WvFavLocationTable extends Table
               $country = $this->traverseAndMatch( $stateRes['data']['countries'], 'country_id', $state['country_id'] );
               $address = $state['state_name'].', '.$country['country_name'];
               $data[] = array( 'address_string' => $address,
+                               'favlocation_id' => $search['stateIds'][ $stateId ]['id'],
                                'latitude' => $search['stateIds'][ $stateId ]['latitude'],
                                'longitude' => $search['stateIds'][ $stateId ]['longitude'],
                                'level' => $search['stateIds'][ $stateId ]['level'],
@@ -222,6 +237,7 @@ class WvFavLocationTable extends Table
               $countryId = $country['country_id'];
               $address = $country['country_name'];
               $data[] = array( 'address_string' => $address,
+                               'favlocation_id' => $search['countryIds'][ $countryId ]['id'],
                                'latitude' => $search['countryIds'][ $countryId ]['latitude'],
                                'longitude' => $search['countryIds'][ $countryId ]['longitude'],
                                'level' => $search['countryIds'][ $countryId ]['level'],

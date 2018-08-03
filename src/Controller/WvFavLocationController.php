@@ -152,10 +152,24 @@ class WvFavLocationController extends AppController
        } else {
          $postData = $this->request->getData();
        }
-       if( isset( $postData['latitude'] ) && isset( $postData['longitude'] ) && $postData['latitude'] != 0 && $postData['longitude'] != 0 ){
+       $continue = false;
+       if( isset( $postData['latitude'] )
+            && isset( $postData['longitude'] )
+              && $postData['latitude'] != 0
+                && $postData['longitude'] != 0 ){
+         $continue = true;
+       }
+       if( isset( $postData['favlocationId'] ) ){
+         $postData['id'] = $postData['favlocationId'];
+         unset( $postData['favlocationId'] );
+         $continue = true;
+       }
+       if( $continue ){
          $record = $this->WvFavLocation->find()->where( $postData )->toArray();
          if( !empty( $record ) && $record[0]->id ){
-           $user = array( 'id' => $postData['user_id'], 'default_location_id' => $record[0]->id );
+           $search = $this->WvFavLocation->buildDataForSearch( $record );
+           $result = $this->WvFavLocation->retrieveAddresses( $search );
+           $user = array( 'id' => $postData['user_id'], 'default_location_id' => $record[0]->id, 'address' => $result['data'][0]['address_string'] );
            $usersUpdated = $this->WvFavLocation->WvUser->updateUser( array( $user ) );
            if ( !empty( $usersUpdated ) ) {
              $response = array( 'error' => 0, 'message' => 'Default Location Set', 'data' => array() );
