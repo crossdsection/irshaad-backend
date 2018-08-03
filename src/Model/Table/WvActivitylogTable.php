@@ -248,4 +248,20 @@ class WvActivitylogTable extends Table
       }
       return $response;
     }
+
+    public function getBookMarkCount( $userId = null, $queryConditions = array() ){
+      $response = null;
+      if( $userId != null ){
+        $post = TableRegistry::get('WvActivitylog');
+        $conditions = array( 'user_id' => $userId );
+        $query = $post->find();
+        // if( !empty( $queryConditions ) ){
+        //
+        // }
+        $query = $query->where( $conditions );
+        $totalPosts = $query->count();
+        $response = $totalPosts;
+      }
+      return $response;
+    }
 }

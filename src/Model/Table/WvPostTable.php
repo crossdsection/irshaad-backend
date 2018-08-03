@@ -281,11 +281,21 @@ class WvPostTable extends Table
       return $response;
     }
 
-    public function getUserPostCount( $userId = null ){
+    public function getUserPostCount( $userId = null, $queryConditions = array() ){
       $response = null;
       if( $userId != null ){
         $post = TableRegistry::get('WvPost');
-        $totalPosts = $post->find()->where([ 'user_id' => $userId ] )->count();
+        $conditions = array( 'user_id' => $userId );
+        $query = $post->find();
+        if( !empty( $queryConditions ) ){
+          if( $queryConditions['poststatus'] == 0 ){
+            $conditions[] = array( 'poststatus' => 0 );
+          } else {
+            $conditions[] = array( 'poststatus' => 1 );
+          }
+        }
+        $query = $query->where( $conditions );
+        $totalPosts = $query->count();
         $response = $totalPosts;
       }
       return $response;

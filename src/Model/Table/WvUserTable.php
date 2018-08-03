@@ -252,6 +252,8 @@ class WvUserTable extends Table
             $tmpResponse[ 'accessRoles' ] = $accessRoles;
           }
           $tmpResponse['postCount'] = $this->WvPost->getUserPostCount( $user['id'] );
+          $tmpResponse['draftCount'] = $this->WvPost->getUserPostCount( $user['id'], array( 'poststatus' => 0 ) );
+          $tmpResponse['bookmarkCount'] = $this->WvPost->WvActivitylog->getBookMarkCount( $user['id'] );
           $tmpResponse['followingCount'] = $this->WvUserFollowers->getfollowingCount( $user['id'] );
           $tmpResponse['followerCount'] = $this->WvUserFollowers->getfollowerCount( $user['id'] );
           $response[ $user->id ] = $tmpResponse;
