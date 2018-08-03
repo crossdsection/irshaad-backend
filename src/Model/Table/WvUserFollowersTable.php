@@ -138,7 +138,7 @@ class WvUserFollowersTable extends Table
         }
         $entity = $query->toArray();
         $followerIds = Hash::extract( $entity, '{n}.user_id' );
-        $userData = $this->WvUser->getUserList( $followerIds, array( 'id', 'profilepic', 'firstname', 'lastname', 'about', 'tagline', 'address' ) );
+        $userData = $this->WvUser->getUserList( $followerIds, array( 'id', 'profilepic', 'firstname', 'lastname', 'about', 'tagline', 'address', 'profession' ) );
         if( $searchText != null && strlen( $searchText ) > 0 ){
           foreach( $userData as $key => $value ){
             if( !(( stripos( $value['firstname'], $searchText ) !== false ) || ( stripos( $value['lastname'], $searchText ) !== false )) ){
@@ -167,7 +167,7 @@ class WvUserFollowersTable extends Table
         }
         $entity = $query->toArray();
         $followingIds = Hash::extract( $entity, '{n}.followuser_id' );
-        $userData = $this->WvUser->getUserList( $followingIds, array( 'id', 'profilepic', 'firstname', 'lastname', 'about', 'tagline', 'address' ) );
+        $userData = $this->WvUser->getUserList( $followingIds, array( 'id', 'profilepic', 'firstname', 'lastname', 'about', 'tagline', 'address', 'profession' ) );
         if( $searchText != null && strlen( $searchText ) > 0 ){
           foreach( $userData as $key => $value ){
             if( !(( stripos( $value['firstname'], $searchText ) !== false ) || ( stripos( $value['lastname'], $searchText ) !== false )) ){

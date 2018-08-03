@@ -262,6 +262,13 @@ class WvUserTable extends Table
     public function getUserList( $userIds = array(), $userKeys = array( 'id', 'profilepic', 'firstname', 'lastname' ) ){
       $response = array();
       if( !empty( $userIds ) ){
+        $professionFlag = false;
+        /*Just Dummy Key, remove as soon as possible*/
+        if( in_array( 'profession', $userKeys ) ){
+          $professionFlag = true;
+          $index = array_search( 'profession', $userKeys );
+          unset( $userKeys[ $index ] );
+        }
         $users = $this->find('all')->select( $userKeys )->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
         foreach( $users as $index => $user ){
           $tmpResponse = array();
@@ -273,6 +280,10 @@ class WvUserTable extends Table
               $tmpResponse[ 'profilepic' ] = ( $user[ 'profilepic' ] == null or $user[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $user[ 'profilepic' ];
             else
               $tmpResponse[ $stringKey ] = $user[ $stringKey ];
+          }
+          /*Just Dummy Key, remove as soon as possible*/
+          if( $professionFlag ){
+            $tmpResponse[ 'profession' ] = '';
           }
           $response[ $user->id ] = $tmpResponse;
         }
