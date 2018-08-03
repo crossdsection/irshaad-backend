@@ -236,20 +236,17 @@ class WvUserTable extends Table
       if( !empty( $userIds ) ){
         $users = $this->find()->where([ 'id IN' => $userIds, 'status' => 1 ])->toArray();
         foreach( $users as $index => $user ){
-          $tmpResponse = array();
+          $tmpResponse = $user;
           if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
             $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
-          }
-          $directKeys = array( 'gender', 'profilepic', 'email', 'phone', 'address', 'latitude', 'longitude', 'email_verified', 'address', 'about', 'tagline' );
-          foreach( $directKeys as $key ){
-            if( isset( $user[ $key ] ) ){
-              $tmpResponse[ $key ] = $user[ $key ];
-            }
+            unset( $tmpResponse['firstname'] );
+            unset( $tmpResponse['lastname'] );
           }
           $tmpResponse[ 'profilepic' ] = ( !isset( $tmpResponse[ 'profilepic' ] ) or $tmpResponse[ 'profilepic' ] == null or $tmpResponse[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $tmpResponse[ 'profilepic' ];
           if( isset( $user['access_role_ids'] ) ){
             $accessRoles = $this->WvAccessRoles->getAccessData( json_decode( $user['access_role_ids'] ) );
             $tmpResponse[ 'accessRoles' ] = $accessRoles;
+            unset( $tmpResponse['access_role_ids'] );
           }
           $tmpResponse['postCount'] = $this->WvPost->getUserPostCount( $user['id'] );
           $tmpResponse['draftCount'] = $this->WvPost->getUserPostCount( $user['id'], array( 'poststatus' => 0 ) );

@@ -169,7 +169,7 @@ class WvFavLocationController extends AppController
          if( !empty( $record ) && $record[0]->id ){
            $search = $this->WvFavLocation->buildDataForSearch( $record );
            $result = $this->WvFavLocation->retrieveAddresses( $search );
-           $user = array( 'id' => $postData['user_id'], 'default_location_id' => $record[0]->id, 'address' => $result['data'][0]['address_string'] );
+           $user = array( 'id' => $postData['user_id'], 'default_location_id' => $record[0]->id, 'address' => $result['data'][0]['address_string'], 'latitude' => $result['data'][0]['latitude'], 'longitude' => $result['data'][0]['longitude'] );
            $usersUpdated = $this->WvFavLocation->WvUser->updateUser( array( $user ) );
            if ( !empty( $usersUpdated ) ) {
              $response = array( 'error' => 0, 'message' => 'Default Location Set', 'data' => array() );
