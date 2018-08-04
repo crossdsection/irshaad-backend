@@ -134,20 +134,34 @@ class WvActivitylogTable extends Table
       return $return;
     }
 
-    public function getCumulativeResult( $postIds = array() ){
+    public function getCumulativeResult( $postIds = array(), $userId = null ){
       $data = array();
       if( !empty( $postIds ) ){
         $tableData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
         foreach( $tableData as $key => $value ){
           if( !isset( $data[ $value->post_id ] ) ){
-            $data[ $value->post_id ] = array( 'upvotes' => 0, 'downvotes' => 0, 'eyewitness' => 0, 'bookmark' => $value->bookmark );
+            $data[ $value->post_id ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0 );
           }
           if( $value->upvote > 0 )
-            $data[ $value->post_id ]['upvotes'] = $data[ $value->post_id ]['upvotes'] + 1;
+            $data[ $value->post_id ]['upvoteCount'] = $data[ $value->post_id ]['upvoteCount'] + 1;
           if( $value->downvote > 0 )
-            $data[ $value->post_id ]['downvotes'] = $data[ $value->post_id ]['downvotes'] + 1;
+            $data[ $value->post_id ]['downvoteCount'] = $data[ $value->post_id ]['downvoteCount'] + 1;
           if( $value->eyewitness > 0 )
-            $data[ $value->post_id ]['eyewitness'] = $data[ $value->post_id ]['eyewitness'] + 1;
+            $data[ $value->post_id ]['eyewitnessCount'] = $data[ $value->post_id ]['eyewitnessCount'] + 1;
+          if( $userId != null && $userId == $value->user_id ){
+            $userStatus = array( 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
+            $userStatus['userVoteStatus'] = ( $value->upvote > 0 ) ? 1 : $userStatus['userVoteStatus'];
+            $userStatus['userVoteStatus'] = ( $value->downvote > 0 ) ? -1 : $userStatus['userVoteStatus'];
+            $userStatus['userBookmarkStatus'] = ( $value->bookmark > 0 ) ? 1 : $userStatus['userBookmarkStatus'];
+            $userStatus['userFlagStatus'] = ( $value->flag > 0 ) ? 1 : $userStatus['userFlagStatus'];
+            $userStatus['userEyeWitnessStatus'] = ( $value->eyewitness > 0 ) ? 1 : $userStatus['userEyeWitnessStatus'];
+            $data[ $value->post_id ] = array_merge( $data[ $value->post_id ], $userStatus );
+          }
+        }
+        foreach( $postIds as $postId ){
+          if( !isset( $data[ $postId ] ) ){
+            $data[ $postId ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
+          }
         }
       }
       return $data;

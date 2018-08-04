@@ -116,7 +116,7 @@ class WvUserFollowersTable extends Table
         $entityIds = Hash::extract( $entity, '{n}.id');
         $entityIds = $this->decodeHashid( $entityIds );
         if( !empty( $entityIds ) ){
-          $ret = $this->deleteAll([ 'id IN' => $entityIds ]);
+          $return = $this->deleteAll([ 'id IN' => $entityIds ]);
         }
       }
       return $return;

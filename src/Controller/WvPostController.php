@@ -190,14 +190,18 @@ class WvPostController extends AppController
         if( !empty( $conditions ) ){
           $wvPost = $query->where( $conditions );
         }
-        if( isset( $requestData['count'] ) ){
-          $wvPost = $query->limit( $requestData['count'] );
+        if( isset( $requestData['offset'] ) ){
+          $wvPost = $query->limit( $requestData['offset'] );
         } else {
           $wvPost = $query->limit( 10 );
         }
         $wvPost = $query->order( $orderBy );
         if( !empty( $wvPost ) ){
-          $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+          if( isset( $requestData['userId'] ) ){
+            $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost, $requestData['userId'], $requestData['accessRoleIds'] );
+          } else {
+            $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+          }
         } else {
           $response = array( 'error' => 0, 'message' => 'Your Feed is Empty.', 'data' => array() );
         }

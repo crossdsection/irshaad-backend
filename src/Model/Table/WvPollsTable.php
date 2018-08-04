@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvPolls Model
@@ -41,12 +42,14 @@ class WvPollsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('ArrayOps');
         $this->addBehavior('HashId', ['field' => array( 'post_id' ) ]);
 
         $this->belongsTo('WvPost', [
             'foreignKey' => 'post_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasOne('WvUserPolls');
     }
 
     /**
@@ -123,15 +126,25 @@ class WvPollsTable extends Table
       return $return;
     }
 
-    public function getPolls( $postIds ){
+    public function getPolls( $postIds, $userId = null ){
       $response = array();
       if( !empty( $postIds ) ){
-        $pollsData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
-        foreach( $pollsData as $polls ){
-          if( !isset( $response[ $polls['post_id'] ]  ) ){
-            $response[ $polls['post_id'] ] = array();
+        $pollsData = $this->find('all')->select([ 'title', 'id', 'count', 'post_id' ])->where([ 'post_id IN' => $postIds ])->toArray();
+        $pollsData = Hash::combine( $pollsData, '{n}.id', '{n}', '{n}.post_id');
+        $userPollData = $this->WvUserPolls->getUserlistPolled( $postIds );
+        foreach( $pollsData as $postId => $polls ){
+          if( !isset( $response[ $postId ]  ) ){
+            $response[ $postId ] = array( 'polls' => array(), 'userPollStatus' => false );
           }
-          $response[ $polls['post_id'] ][] = array( 'title' => $polls['title'], 'id' => $polls['id'], 'count' => $polls['count'] );
+          $userPollStatus = false;
+          if( $userId != null && in_array( $userId, $userPollData[ $postId ] ) )
+            $userPollStatus = true;
+          $response[ $postId ] = array( 'polls' => array_values( $polls ), 'userPollStatus' => $userPollStatus );
+        }
+        foreach( $postIds as $postId ){
+          if( !isset( $response[ $postId ] ) ){
+            $response[ $postId ] = array( 'polls' => array(), 'userPollStatus' => false );
+          }
         }
       }
       return $response;

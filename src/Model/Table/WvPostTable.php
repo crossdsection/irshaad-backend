@@ -174,14 +174,11 @@ class WvPostTable extends Table
       return $return;
     }
 
-    public function retrievePostDetailed( $wvPost ){
+    public function retrievePostDetailed( $wvPost, $userId = null, $accessRoleIds = array() ){
       $fileuploadIds = array(); $userIds = array(); $postIds = array();
       $localityIds = array(); $localityCityMap = array();
       $data = array();
       if( !empty( $wvPost ) ){
-        $accessRoleIds = array();
-        if( isset( $_POST['accessRoleIds'] ) )
-          $accessRoleIds = $_POST['accessRoleIds'];
         $locationTag = array( 'city_id' => array(), 'state_id' => array(), 'country_id' => array());
         foreach ( $wvPost as $key => $value ) {
           $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
@@ -199,8 +196,8 @@ class WvPostTable extends Table
         $this->WvFileuploads = TableRegistry::get('WvFileuploads');
         $fileResponse = $this->WvFileuploads->getfileurls( $fileuploadIds );
         $userInfos = $this->WvUser->getUserList( $userIds );
-        $postProperties = $this->WvActivitylog->getCumulativeResult( $postIds );
-        $postPolls = $this->WvPolls->getPolls( $postIds );
+        $postProperties = $this->WvActivitylog->getCumulativeResult( $postIds, $userId );
+        $postPolls = $this->WvPolls->getPolls( $postIds, $userId );
         if( !empty( $localityIds ) ){
           $localityRes = $this->WvLocalities->findLocalityById( $localityIds );
           if( !empty( $localityRes['data']['cities'] )){
@@ -231,13 +228,14 @@ class WvPostTable extends Table
           } else if( $value->country_id != 0 ){
             $accessRoleArr = $accessData['country'][ $value->country_id ];
           }
-          $permission = array( 'enable' => 0, 'authority' => 0 );
+          $permission = array( 'user_enable_pole' => false, 'admin_enable_accept' => false );
           foreach( $accessRoleArr as $accessRole ){
             if( $accessRole['id'] != 0 && in_array( $accessRole['id'], $accessRoleIds ) ){
-              if( $accessRole['access_level'] >= 1 )
-                $permission['enable'] = 1;
+              if( $accessRole['access_level'] >= 1 ){
+                $permission['user_enable_pole'] = 1;
+              }
               if( $accessRole['access_level'] == 2 ){
-                $permission['authority'] = 1;
+                $permission['admin_enable_accept'] = 1;
                 break;
               }
             }
@@ -257,7 +255,7 @@ class WvPostTable extends Table
           }
           if( isset( $postPolls[ $value['id'] ] ) ){
             $value['polls'] = $postPolls[ $value['id'] ];
-          }
+          } 
           $value['permissions'] = $permission;
           unset( $value['filejson'] );
           $value['user'] = $userInfos[ $value['user_id'] ];

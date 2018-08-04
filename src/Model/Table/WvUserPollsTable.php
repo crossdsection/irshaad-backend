@@ -110,4 +110,18 @@ class WvUserPollsTable extends Table
       }
       return $return;
     }
+
+    public function getUserlistPolled( $postIds = array() ){
+      $response = array();
+      if( !empty( $postIds ) ){
+        $pollData = $this->find('all')->select([ 'user_id', 'post_id' ])->where([ 'post_id IN' => $postIds ])->toArray();
+        foreach( $pollData as $poll ){
+          if( !isset( $response[ $poll->post_id ] ) ){
+            $response[ $poll->post_id ] = array();
+          }
+          $response[ $poll->post_id ][] = $poll->user_id;
+        }
+      }
+      return $response;
+    }
 }
