@@ -137,7 +137,7 @@ class WvPollsTable extends Table
             $response[ $postId ] = array( 'polls' => array(), 'userPollStatus' => false );
           }
           $userPollStatus = false;
-          if( $userId != null && in_array( $userId, $userPollData[ $postId ] ) )
+          if( $userId != null && isset( $userPollData[ $postId ] ) && in_array( $userId, $userPollData[ $postId ] ) )
             $userPollStatus = true;
           $response[ $postId ] = array( 'polls' => array_values( $polls ), 'userPollStatus' => $userPollStatus );
         }
