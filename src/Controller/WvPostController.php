@@ -156,11 +156,11 @@ class WvPostController extends AppController
       $getData = $this->request->query();
       $postData = $this->request->getData();
       $requestData = array_merge( $getData, $postData );
-      if( !isset( $requestData['userId'] ) ){
+      if( !isset( $requestData['userId'] ) && isset( $_POST['userId'] ) ){
         $requestData['userId'] = $_POST['userId'];
         $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
       }
-      if( !isset( $requestData['mcph'] ) ){
+      if( !isset( $requestData['mcph'] ) && isset( $_POST['userId'] ) ){
         $requestData['mcph'] = $requestData['userId'];
       }
       if( isset( $requestData['page'] ) ){
