@@ -228,14 +228,14 @@ class WvPostTable extends Table
           } else if( $value->country_id != 0 ){
             $accessRoleArr = $accessData['country'][ $value->country_id ];
           }
-          $permission = array( 'user_enable_pole' => false, 'admin_enable_accept' => false );
+          $permission = array( 'userEnablePole' => false, 'adminEnableAccept' => false );
           foreach( $accessRoleArr as $accessRole ){
             if( $accessRole['id'] != 0 && in_array( $accessRole['id'], $accessRoleIds ) ){
               if( $accessRole['access_level'] >= 1 ){
-                $permission['user_enable_pole'] = 1;
+                $permission['userEnablePole'] = 1;
               }
               if( $accessRole['access_level'] == 2 ){
-                $permission['admin_enable_accept'] = 1;
+                $permission['adminEnableAccept'] = 1;
                 break;
               }
             }
@@ -255,7 +255,7 @@ class WvPostTable extends Table
           }
           if( isset( $postPolls[ $value['id'] ] ) ){
             $value['polls'] = $postPolls[ $value['id'] ];
-          } 
+          }
           $value['permissions'] = $permission;
           unset( $value['filejson'] );
           $value['user'] = $userInfos[ $value['user_id'] ];
