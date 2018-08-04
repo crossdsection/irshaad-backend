@@ -172,7 +172,7 @@ class WvPostController extends AppController
         if( isset( $requestData['mcph'] ) ){
           $conditions[] = array( 'user_id' => $requestData['mcph'] );
         }
-        if( isset( $requestData['draft'] ) && $requestData['draft'] == 1 && $requestData['mcph'] != $requestData['userId'] ){
+        if( isset( $requestData['draft'] ) && $requestData['draft'] == 1 && $requestData['mcph'] == $requestData['userId'] ){
           $conditions[] = array( 'poststatus' => 0 );
         } else {
           $conditions[] = array( 'poststatus' => 1 );
