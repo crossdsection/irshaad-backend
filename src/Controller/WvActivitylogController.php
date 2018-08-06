@@ -18,7 +18,7 @@ class WvActivitylogController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add() {
-      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
       if ( $this->request->is('post') ) {
         $postData = $this->request->input('json_decode', true);
         if( !empty( $postData ) ){
@@ -31,7 +31,7 @@ class WvActivitylogController extends AppController
           $wvActivity = $this->WvActivitylog->find('all')->where(['user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
           if( empty( $wvActivity ) ){
             $saveData = $postData;
-            if( $saveData['upvote'] > 0 ){
+            if( ( isset( $saveData['upvote'] ) ) && $saveData['upvote'] > 0 ){
               $res = $this->WvActivitylog->WvPost->changeUpvotes( $saveData['post_id'], 1 );
             }
           } else {
@@ -39,7 +39,8 @@ class WvActivitylogController extends AppController
           }
           if( !empty( $saveData ) ){
             if ( $this->WvActivitylog->saveActivity( $saveData ) ) {
-              $response = array( 'error' => 0, 'message' => 'Activity Submitted', 'data' => array() );
+              $result = $this->WvActivitylog->getCumulativeResult( array( $postData['post_id'] ), $postData['user_id'] );
+              $response = array( 'error' => 0, 'message' => 'Activity Submitted', 'data' => $result[ $postData['post_id'] ] );
             }
           } else {
             $response = array( 'error' => -1, 'message' => 'Activity Failed', 'data' => array() );

@@ -199,32 +199,36 @@ class WvActivitylogTable extends Table
     public function compareAndReturn( $postData, $currentState ){
       $data = array();
       if( !empty( $postData ) && !empty( $currentState ) ){
-        $upvote = $currentState->upvote;
-        if( $postData['upvote'] < 0 || $postData['downvote'] > 0 ){
-          $upvote = 0;
-        } else if ( $postData['upvote'] > 0 ) {
-          $upvote = 1;
-        }
-        if( $currentState->upvote < $upvote ){
-          $res = $this->WvPost->changeUpvotes( $currentState->post_id, 1 );
-        } elseif ( $currentState->upvote > $upvote ){
-          $res = $this->WvPost->changeUpvotes( $currentState->post_id, -1 );
-        }
-        $currentState->upvote = $upvote;
-        if( $postData['upvote'] > 0 || $postData['downvote'] < 0 ){
-          $currentState->downvote = 0;
-        } else if ( $postData['downvote'] > 0 ) {
-          $currentState->downvote = 1;
+        if( isset( $postData['upvote'] ) || isset( $postData['downvote'] ) ){
+          $upvote = $currentState->upvote;
+          if( ( isset( $postData['upvote'] ) && $postData['upvote'] < 0 ) || ( isset( $postData['downvote'] ) && $postData['downvote'] > 0 ) ){
+            $upvote = 0;
+          } else if ( $postData['upvote'] > 0 ) {
+            $upvote = 1;
+          }
+          if( $currentState->upvote < $upvote ){
+            $res = $this->WvPost->changeUpvotes( $currentState->post_id, 1 );
+          } elseif ( $currentState->upvote > $upvote ){
+            $res = $this->WvPost->changeUpvotes( $currentState->post_id, -1 );
+          }
+          $currentState->upvote = $upvote;
+          if( ( isset( $postData['upvote'] ) && $postData['upvote'] > 0 ) || ( isset( $postData['downvote'] ) && $postData['downvote'] < 0 ) ){
+            $currentState->downvote = 0;
+          } else if ( $postData['downvote'] > 0 ) {
+            $currentState->downvote = 1;
+          }
         }
         $keys = array( 'bookmark', 'flag', 'eyewitness' );
         foreach( $keys as $key ){
-          if( $postData[ $key ] > 0 ){
-            $currentState[ $key ] = 1;
-          } else if( $postData[ $key ] < 0 ){
-            $currentState[ $key ] = 0;
+          if( isset( $postData[ $key ] ) ){
+            if( $postData[ $key ] > 0 ){
+              $currentState[ $key ] = 1;
+            } else if( $postData[ $key ] < 0 ){
+              $currentState[ $key ] = 0;
+            }
           }
         }
-        if( $postData['shares'] > 0 ){
+        if( isset( $postData['shares'] ) && $postData['shares'] > 0 ){
           $currentState->shares = $currentState->shares + 1;
         }
         $data = array(
