@@ -346,7 +346,7 @@ class WvUserController extends AppController {
           }
           $usersUpdated = $this->WvUser->updateUser( $userData );
           if ( !empty( $usersUpdated ) ) {
-            $response = array( 'error' => 0, 'message' => 'Profile Pic Changed', 'data' => array() );
+            $response = array( 'error' => 0, 'message' => 'Profile Pic Changed', 'data' => array( 'profilepic' => $userData[ $userId ] ) );
           } else {
             $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
           }

@@ -36,6 +36,7 @@ class AuthorizationMiddleware
       foreach( $allowedConActions as $conActions ){
         if( $conActions['controller'] == $request->getParam('controller') && $conActions['action'] == $request->getParam('action') ){
           $flagAllow = true;
+          break;
         }
       }
       $oauth = TableRegistry::get('WvOauth');

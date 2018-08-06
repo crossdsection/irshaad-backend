@@ -96,8 +96,8 @@ class WvUserPollsTable extends Table
       if( !empty( $postData ) ){
         $userPoll = TableRegistry::get('WvUserPolls');
         $dataCheck = $this->find('all')->where([ 'user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
-        $polls = $this->WvPolls->getPolls( $postData['post_id'] );
-        $pollIds = Hash::extract( $polls[ $postData[ 'post_id' ] ], '{n}.id' );
+        $polls = $this->WvPolls->getPolls( array( $postData['post_id'] ) );
+        $pollIds = Hash::extract( $polls[ $postData[ 'post_id' ] ]['polls'], '{n}.id' );
         if( empty( $dataCheck ) && !empty( $polls ) && in_array( $postData['poll_id'], $pollIds ) ){
           $entity = $userPoll->newEntity();
           $entity = $userPoll->patchEntity( $entity, $postData );

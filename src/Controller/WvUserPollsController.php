@@ -29,7 +29,9 @@ class WvUserPollsController extends AppController
         }
         if( !empty( $postData ) ){
           if( $this->WvUserPolls->saveUserPolls( $postData ) ){
-            $response = array( 'error' => 0, 'message' => 'Poll Submitted', 'data' => array() );
+            $polls = $this->WvUserPolls->WvPolls->getPolls( array( $postData['post_id'] ) );
+            $polls = array_values( $polls );
+            $response = array( 'error' => 0, 'message' => 'Poll Submitted', 'data' => $polls );
           }
         } else {
           $response = array( 'error' => 1, 'message' => 'Error', 'data' => array() );
