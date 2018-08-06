@@ -136,6 +136,15 @@ class WvPollsTable extends Table
           if( !isset( $response[ $postId ]  ) ){
             $response[ $postId ] = array( 'polls' => array(), 'userPollStatus' => false );
           }
+          $totalPollCount = 0;
+          foreach( $polls as $poll ){
+            $totalPollCount += $poll['count'];
+          }
+          foreach( $polls as $poll ){
+            if( !isset( $poll['percent'] ) ){
+              $poll['percent'] = number_format( ( $poll['count'] / $totalPollCount ) * 100, 2 ) . '%';
+            }
+          }
           $userPollStatus = false;
           if( $userId != null && isset( $userPollData[ $postId ] ) && in_array( $userId, $userPollData[ $postId ] ) )
             $userPollStatus = true;

@@ -160,9 +160,6 @@ class WvPostController extends AppController
         $requestData['userId'] = $_POST['userId'];
         $requestData['accessRoleIds'] = $_POST['accessRoleIds'];
       }
-      if( !isset( $requestData['mcph'] ) && isset( $_POST['userId'] ) ){
-        $requestData['mcph'] = $requestData['userId'];
-      }
       if( isset( $requestData['page'] ) ){
         $conditions = array();
         $orderBy = array();
