@@ -98,7 +98,8 @@ class WvPollsTable extends Table
         $createData = array();
         $postId = $data['post_id'];
         foreach( $data['polls'] as $key => $value ){
-          $createData[] = array( 'post_id' => $postId, 'title' => $value );
+          if( strlen( $value ) > 0 )
+            $createData[] = array( 'post_id' => $postId, 'title' => $value );
         }
         $polls = TableRegistry::get('WvPolls');
         $entities = $polls->newEntities( $createData );
@@ -141,8 +142,10 @@ class WvPollsTable extends Table
             $totalPollCount += $poll['count'];
           }
           foreach( $polls as $poll ){
-            if( !isset( $poll['percent'] ) ){
+            if( !isset( $poll['percent'] ) && $totalPollCount != 0 ){
               $poll['percent'] = number_format( ( $poll['count'] / $totalPollCount ) * 100, 2 ) . '%';
+            } else {
+              $poll['percent'] = 0;
             }
           }
           $userPollStatus = false;
