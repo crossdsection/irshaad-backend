@@ -190,7 +190,7 @@ class WvPostController extends AppController
         if( isset( $requestData['offset'] ) ){
           $wvPost = $query->limit( $requestData['offset'] );
         } else {
-          $wvPost = $query->limit( 10 );
+          $wvPost = $query->limit( 25 );
         }
         $wvPost = $query->order( $orderBy );
         if( !empty( $wvPost ) ){

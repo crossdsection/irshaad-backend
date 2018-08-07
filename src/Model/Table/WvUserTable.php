@@ -297,7 +297,11 @@ class WvUserTable extends Table
           $entity = $users->get( $user['id'] );
           foreach( $user as $key => $value ){
             if( $key != 'id' ){
-              $entity->{$key} = $value;
+              if( $key != 'date_of_birth' ){
+                $entity->{$key} = $value;
+              } else {
+                $entity->{$key} = time( strtotime( $value ) );
+              }
             }
           }
           $entity = $this->fixEncodings( $entity );
