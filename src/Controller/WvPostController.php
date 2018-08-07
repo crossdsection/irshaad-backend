@@ -128,15 +128,16 @@ class WvPostController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function getpost( $id = null )
+    public function getpost()
     {
-      $id = $this->request->getParam('id');
-      $response = array( 'error' => 0, 'message' => '', 'data' => array() );
-      $wvPost = $this->WvPost->find('all')->where(['id' => $id]);
-      if( !empty( $wvPost ) ){
-        $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
-      } else {
-        $response = array( 'error' => 0, 'message' => 'Invalid Param', 'data' => array() );
+      $jsonData = $this->request->input('json_decode', true);
+      if( isset( $jsonData['postId'] ) ){
+        $wvPost = $this->WvPost->find('all')->where( [ 'id' => $jsonData['postId'] ]);
+        if( !empty( $wvPost ) ){
+          $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+        } else {
+          $response = array( 'error' => 0, 'message' => 'Invalid Param', 'data' => array() );
+        }
       }
       $this->response = $this->response->withType('application/json')
                                        ->withStringBody( json_encode( $response ) );

@@ -107,7 +107,7 @@ class WvPostTable extends Table
 
         $validator
             ->scalar('details')
-            ->maxLength('details', 512)
+            // ->maxLength('details', 512)
             ->requirePresence('details', 'create')
             ->notEmpty('details');
 
