@@ -239,8 +239,6 @@ class WvUserTable extends Table
           $tmpResponse = $user;
           if( isset( $user['firstname'] ) && isset( $user['lastname'] ) ){
             $tmpResponse['name'] = $user['firstname'].' '.$user['lastname'];
-            unset( $tmpResponse['firstname'] );
-            unset( $tmpResponse['lastname'] );
           }
           $tmpResponse[ 'profilepic' ] = ( !isset( $tmpResponse[ 'profilepic' ] ) or $tmpResponse[ 'profilepic' ] == null or $tmpResponse[ 'profilepic' ] == '' ) ? 'webroot' . DS . 'img' . DS . 'assets' . DS . 'profile-pic.png' : $tmpResponse[ 'profilepic' ];
           if( isset( $user['access_role_ids'] ) ){

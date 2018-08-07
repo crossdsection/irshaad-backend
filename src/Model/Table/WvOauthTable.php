@@ -113,11 +113,14 @@ class WvOauthTable extends Table
         if( !empty( $extractedData ) && strtotime( $extractedData[0]['expiration_time'] ) > time() ){
           $user = $this->WvUser->find()->where( [ 'id' => $userId ] )->toArray();
           $secretKey = Configure::read('jwt_secret_key');
+          $issuedAt = time();
+          $expire = $issuedAt + 86400;
+
           $data = [
-             'issued_at'  => $extractedData[0]['issued_at'],         // Issued at: time when the token was generated
+             'issued_at'  => $issuedAt,         // Issued at: time when the token was generated
              'access_token'  => $extractedData[0]['access_token'],          // Json Token Id: an unique identifier for the token
              'provider_id'  => $extractedData[0]['provider_id'],       // Issuer
-             'expiration_time'  => $extractedData[0]['expiration_time']->toUnixString(),           // Expire
+             'expiration_time'  => $expire,           // Expire
              'user_id' => $userId,
              'access_roles' => json_decode( $user[0]->access_role_ids ),
           ];
@@ -126,11 +129,18 @@ class WvOauthTable extends Table
             $secretKey, // The signing key
             'HS512'     // Algorithm used to sign the token, see https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40#section-3
           );
-          $response = array(
-            'name' => $user[0]->firstname.' '.$user[0]->lastname,
-            'bearerToken' => $bearerToken
-          );
-          $result['data'] = $response;
+          $oAuth = TableRegistry::get('WvOauth');
+          $oEntity = $oAuth->get( $extractedData[0]->id );
+          $oEntity = $oAuth->patchEntity( $oEntity, $data );
+          if( $oAuth->save( $oEntity ) ){
+            $response = array(
+              'name' => $user[0]->firstname.' '.$user[0]->lastname,
+              'bearerToken' => $bearerToken
+            );
+            $result['data'] = $response;
+          } else {
+            $result['error'] = -1;
+          }
         } else if( !empty( $extractedData ) ) {
           $result['error'] = -1;
         } else {
