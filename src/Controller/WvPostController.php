@@ -130,13 +130,14 @@ class WvPostController extends AppController
      */
     public function getpost()
     {
+      $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
       $jsonData = $this->request->input('json_decode', true);
       if( isset( $jsonData['postId'] ) ){
         $wvPost = $this->WvPost->find('all')->where( [ 'id' => $jsonData['postId'] ]);
         if( !empty( $wvPost ) ){
           $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
         } else {
-          $response = array( 'error' => 0, 'message' => 'Invalid Param', 'data' => array() );
+          $response = array( 'error' => 1, 'message' => 'Invalid Param', 'data' => array() );
         }
       }
       $this->response = $this->response->withType('application/json')
