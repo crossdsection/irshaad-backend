@@ -149,12 +149,11 @@ class WvActivitylogTable extends Table
           if( $value->eyewitness > 0 )
             $data[ $value->post_id ]['eyewitnessCount'] = $data[ $value->post_id ]['eyewitnessCount'] + 1;
           if( $userId != null && $userId == $value->user_id ){
-            $userStatus['userVoteStatus'] = ( $value->upvote > 0 ) ? 1 : $userStatus['userVoteStatus'];
-            $userStatus['userVoteStatus'] = ( $value->downvote > 0 ) ? -1 : $userStatus['userVoteStatus'];
-            $userStatus['userBookmarkStatus'] = ( $value->bookmark > 0 ) ? 1 : $userStatus['userBookmarkStatus'];
-            $userStatus['userFlagStatus'] = ( $value->flag > 0 ) ? 1 : $userStatus['userFlagStatus'];
-            $userStatus['userEyeWitnessStatus'] = ( $value->eyewitness > 0 ) ? 1 : $userStatus['userEyeWitnessStatus'];
-            $data[ $value->post_id ] = array_merge( $data[ $value->post_id ], $userStatus );
+            $data[ $value->post_id ]['userVoteStatus'] = ( $value->upvote > 0 ) ? 1 : $data[ $value->post_id ]['userVoteStatus'];
+            $data[ $value->post_id ]['userVoteStatus'] = ( $value->downvote > 0 ) ? -1 : $data[ $value->post_id ]['userVoteStatus'];
+            $data[ $value->post_id ]['userBookmarkStatus'] = ( $value->bookmark > 0 ) ? 1 : $data[ $value->post_id ]['userBookmarkStatus'];
+            $data[ $value->post_id ]['userFlagStatus'] = ( $value->flag > 0 ) ? 1 : $data[ $value->post_id ]['userFlagStatus'];
+            $data[ $value->post_id ]['userEyeWitnessStatus'] = ( $value->eyewitness > 0 ) ? 1 : $data[ $value->post_id ]['userEyeWitnessStatus'];
           }
         }
         foreach( $postIds as $postId ){
