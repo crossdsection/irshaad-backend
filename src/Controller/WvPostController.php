@@ -132,12 +132,20 @@ class WvPostController extends AppController
     {
       $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
       $jsonData = $this->request->input('json_decode', true);
+      if( !isset( $jsonData['userId'] ) && isset( $_POST['userId'] ) ){
+        $jsonData['userId'] = $_POST['userId'];
+        $jsonData['accessRoleIds'] = $_POST['accessRoleIds'];
+      }
       if( isset( $jsonData['postId'] ) ){
         $wvPost = $this->WvPost->find('all')->where( [ 'id' => $jsonData['postId'] ]);
         if( !empty( $wvPost ) ){
           $response['error'] = 0;
           $response['message'] = 'Success';
-          $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+          if( isset( $jsonData['userId'] ) ){
+            $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost, $jsonData['userId'], $jsonData['accessRoleIds'] );
+          } else {
+            $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
+          }
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Param', 'data' => array() );
         }

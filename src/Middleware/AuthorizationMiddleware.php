@@ -31,6 +31,7 @@ class AuthorizationMiddleware
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'signup' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'forgotpassword' );
       $allowedConActions[] = array( 'controller' => 'WvPost', 'action' => 'getfeed' );
+      $allowedConActions[] = array( 'controller' => 'WvPost', 'action' => 'getpost' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'emailVerification' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'userexists' );
       foreach( $allowedConActions as $conActions ){

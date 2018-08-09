@@ -140,7 +140,7 @@ class WvActivitylogTable extends Table
         $tableData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
         foreach( $tableData as $key => $value ){
           if( !isset( $data[ $value->post_id ] ) ){
-            $data[ $value->post_id ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0 );
+            $data[ $value->post_id ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
           }
           if( $value->upvote > 0 )
             $data[ $value->post_id ]['upvoteCount'] = $data[ $value->post_id ]['upvoteCount'] + 1;
@@ -149,7 +149,6 @@ class WvActivitylogTable extends Table
           if( $value->eyewitness > 0 )
             $data[ $value->post_id ]['eyewitnessCount'] = $data[ $value->post_id ]['eyewitnessCount'] + 1;
           if( $userId != null && $userId == $value->user_id ){
-            $userStatus = array( 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
             $userStatus['userVoteStatus'] = ( $value->upvote > 0 ) ? 1 : $userStatus['userVoteStatus'];
             $userStatus['userVoteStatus'] = ( $value->downvote > 0 ) ? -1 : $userStatus['userVoteStatus'];
             $userStatus['userBookmarkStatus'] = ( $value->bookmark > 0 ) ? 1 : $userStatus['userBookmarkStatus'];
