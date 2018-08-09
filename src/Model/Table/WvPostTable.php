@@ -242,10 +242,14 @@ class WvPostTable extends Table
           }
           if( !empty( $fileResponse['data']  ) ){
             $fileJSON = json_decode( $value->filejson );
-            $value['files'] = array();
+            $value['files'] = array( 'images' => array(), 'attachments' => array() );
             foreach( $fileJSON as $key => $id ){
               if( isset( $fileResponse['data'][ $id ] ) ){
-                $value['files'][] = $fileResponse['data'][ $id ];
+                if( strpos( $fileResponse['data'][ $id ]['filetype'], 'image' ) !== false ){
+                  $value['files']['images'][] = $fileResponse['data'][ $id ];
+                } else {
+                  $value['files']['attachments'][] = $fileResponse['data'][ $id ];
+                }
               }
             }
           }
