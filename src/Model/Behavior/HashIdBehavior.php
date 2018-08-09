@@ -33,7 +33,7 @@ class HashIdBehavior extends Behavior
   		'field' => array(), // To populate upon find() and save(), false to deactivate
   		'debug' => false, // Auto-detect from Configure::read('debug')
   		'minHashLength' => 8, // You can overwrite the Hashid defaults
-  		'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-!/()=?`*;:_{}[]\|~^', // You can overwrite the Hashid defaults
+  		'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_', // You can overwrite the Hashid defaults
   		'recursive' => false, // Also transform nested entities
   		'findFirst' => false, // Either true or 'first' or 'firstOrFail'
   		'implementedFinders' => [

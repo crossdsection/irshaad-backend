@@ -135,6 +135,8 @@ class WvPostController extends AppController
       if( isset( $jsonData['postId'] ) ){
         $wvPost = $this->WvPost->find('all')->where( [ 'id' => $jsonData['postId'] ]);
         if( !empty( $wvPost ) ){
+          $response['error'] = 0;
+          $response['message'] = 'Success';
           $response['data'] = $this->WvPost->retrievePostDetailed( $wvPost );
         } else {
           $response = array( 'error' => 1, 'message' => 'Invalid Param', 'data' => array() );
