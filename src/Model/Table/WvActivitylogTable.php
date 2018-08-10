@@ -140,7 +140,7 @@ class WvActivitylogTable extends Table
         $tableData = $this->find('all')->where([ 'post_id IN' => $postIds ])->toArray();
         foreach( $tableData as $key => $value ){
           if( !isset( $data[ $value->post_id ] ) ){
-            $data[ $value->post_id ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
+            $data[ $value->post_id ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'authorityFlagCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0, 'authorityFlagStatus' => 0 );
           }
           if( $value->upvote > 0 )
             $data[ $value->post_id ]['upvoteCount'] = $data[ $value->post_id ]['upvoteCount'] + 1;
@@ -148,17 +148,20 @@ class WvActivitylogTable extends Table
             $data[ $value->post_id ]['downvoteCount'] = $data[ $value->post_id ]['downvoteCount'] + 1;
           if( $value->eyewitness > 0 )
             $data[ $value->post_id ]['eyewitnessCount'] = $data[ $value->post_id ]['eyewitnessCount'] + 1;
+          if( $value->authority_flag > 0 )
+            $data[ $value->post_id ]['authorityFlagCount'] = $data[ $value->post_id ]['authorityFlagCount'] + 1;
           if( $userId != null && $userId == $value->user_id ){
             $data[ $value->post_id ]['userVoteStatus'] = ( $value->upvote > 0 ) ? 1 : $data[ $value->post_id ]['userVoteStatus'];
             $data[ $value->post_id ]['userVoteStatus'] = ( $value->downvote > 0 ) ? -1 : $data[ $value->post_id ]['userVoteStatus'];
             $data[ $value->post_id ]['userBookmarkStatus'] = ( $value->bookmark > 0 ) ? 1 : $data[ $value->post_id ]['userBookmarkStatus'];
             $data[ $value->post_id ]['userFlagStatus'] = ( $value->flag > 0 ) ? 1 : $data[ $value->post_id ]['userFlagStatus'];
             $data[ $value->post_id ]['userEyeWitnessStatus'] = ( $value->eyewitness > 0 ) ? 1 : $data[ $value->post_id ]['userEyeWitnessStatus'];
+            $data[ $value->post_id ]['authorityFlagStatus'] = ( $value->authority_flag > 0 ) ? 1 : $data[ $value->post_id ]['authorityFlagStatus'];
           }
         }
         foreach( $postIds as $postId ){
           if( !isset( $data[ $postId ] ) ){
-            $data[ $postId ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0 );
+            $data[ $postId ] = array( 'upvoteCount' => 0, 'downvoteCount' => 0, 'eyewitnessCount' => 0, 'authorityFlagCount' => 0, 'userVoteStatus' => 0, 'userBookmarkStatus' => 0, 'userFlagStatus' => 0, 'userEyeWitnessStatus' => 0, 'authorityFlagStatus' => 0 );
           }
         }
       }
@@ -216,7 +219,7 @@ class WvActivitylogTable extends Table
             $currentState->downvote = 1;
           }
         }
-        $keys = array( 'bookmark', 'flag', 'eyewitness' );
+        $keys = array( 'bookmark', 'flag', 'eyewitness', 'authority_flag' );
         foreach( $keys as $key ){
           if( isset( $postData[ $key ] ) ){
             if( $postData[ $key ] > 0 ){
@@ -238,6 +241,7 @@ class WvActivitylogTable extends Table
           'bookmark' => $currentState->bookmark,
           'flag' => $currentState->flag,
           'eyewitness' => $currentState->eyewitness,
+          'authority_flag' => $currentState->authority_flag,
           'shares' => $currentState->shares,
           'modified' => date("Y-m-d H:i:s", time())
         );

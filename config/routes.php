@@ -171,7 +171,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
-        '/comments/get/:postId',
+        '/comments/get/*',
         ['controller' => 'WvComments', 'action' => 'get']
     );
 

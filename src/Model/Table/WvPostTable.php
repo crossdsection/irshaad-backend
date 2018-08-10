@@ -174,6 +174,38 @@ class WvPostTable extends Table
       return $return;
     }
 
+    public function allowAdmin( $wvPost, $accessRoleIds = array() ){
+      $return = false;
+      if( !empty( $wvPost ) ){
+        $locationTag = array( 'city_id' => array(), 'state_id' => array(), 'country_id' => array());
+        $localityCityMap = array(); $accessRoleArr = array();
+        if( $wvPost->locality_id != null ){
+          $localityRes = $this->WvLocalities->findLocalityById( array( $wvPost->locality_id ) );
+          if( !empty( $localityRes['data']['cities'] )){
+            $localityCityMap = Hash::combine( $localityRes['data']['localities'], '{n}.locality_id', '{n}.city_id' );
+            $cityIds = Hash::extract( $localityRes['data']['cities'], '{n}.city_id' );
+            $locationTag['city_id'] = array_merge( $cityIds, $locationTag['city_id'] );
+          }
+        } else if( $wvPost->city_id != null ){
+          $locationTag['city_id'][] = $wvPost->city_id;
+        } else if( $wvPost->state_id != null ){
+          $locationTag['state_id'][] = $wvPost->state_id;
+        } else if( $wvPost->country_id != null ){
+          $locationTag['country_id'][] = $wvPost->country_id;
+        }
+        if( !empty( $locationTag['city_id'] ) || !empty( $locationTag['state_id'] ) || !empty( $locationTag['country_id'] ) ){
+          $accessData = $this->WvUser->WvAccessRoles->retrieveAccessRoleIds( $locationTag );
+          $accessRoleArr = Hash::extract( $accessData, '{n}.id' );
+          // $accessData = $this->array_group_by( $accessData, 'area_level', 'area_level_id');
+        }
+        $allowedAccessRoles = array_intersect( $accessRoleArr, (array) $accessRoleIds );
+        if( !empty( $allowedAccessRoles ) ){
+          $return = true;
+        }
+      }
+      return $return;
+    }
+
     public function retrievePostDetailed( $wvPost, $userId = null, $accessRoleIds = array() ){
       $fileuploadIds = array(); $userIds = array(); $postIds = array();
       $localityIds = array(); $localityCityMap = array();

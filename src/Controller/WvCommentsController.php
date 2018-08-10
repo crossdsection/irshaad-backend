@@ -20,8 +20,8 @@ class WvCommentsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function get($postId = null) {
-      $postId = $this->request->getParam('postId');
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
+      $postId = $this->request->query('postId');
       $parentId = $this->request->query('parentId');
       if( !$parentId ){
         $parentId = 0;

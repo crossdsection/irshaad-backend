@@ -42,6 +42,7 @@ class WvActivitylog extends Entity
         'shares' => true,
         'flag' => true,
         'eyewitness' => true,
+        'authority_flag' => true,
         'created' => true,
         'modified' => true,
         'user' => true,

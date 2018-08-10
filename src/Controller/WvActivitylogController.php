@@ -23,12 +23,18 @@ class WvActivitylogController extends AppController
         $postData = $this->request->input('json_decode', true);
         if( !empty( $postData ) ){
           $postData['user_id'] = $_POST['userId'];
+          $postData['accessRoleIds'] = $_POST['accessRoleIds'];
         } else {
           $postData = $this->request->getData();
         }
         $saveData = array();
         if( isset( $postData['user_id'] ) && isset( $postData['post_id'] ) ){
           $wvActivity = $this->WvActivitylog->find('all')->where(['user_id' => $postData['user_id'], 'post_id' => $postData['post_id'] ])->toArray();
+          $wvPost = $this->WvActivitylog->WvPost->get( $postData['post_id'] );
+          $allowAdmin = $this->WvActivitylog->WvPost->allowAdmin( $wvPost, $postData['accessRoleIds'] );
+          if( !$allowAdmin ){
+            $postData['authority_flag'] = -1;
+          }
           if( empty( $wvActivity ) ){
             $saveData = $postData;
             if( ( isset( $saveData['upvote'] ) ) && $saveData['upvote'] > 0 ){
