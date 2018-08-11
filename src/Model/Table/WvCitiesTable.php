@@ -150,7 +150,7 @@ class WvCitiesTable extends Table
         $entity = $city->patchEntity( $entity, $data );
         $record = $city->save( $entity );
         if( $record->id ){
-          $return = $record->id;
+          $return = $this->encodeId( $record->id );
         }
       }
       return $return;

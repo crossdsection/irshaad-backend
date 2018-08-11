@@ -45,6 +45,10 @@ class WvLocalitiesTable extends Table
             'foreignKey' => 'city_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasOne('WvAreaRatings', [
+            'foreignKey' => 'area_level_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -166,7 +170,7 @@ class WvLocalitiesTable extends Table
         $entity = $locality->patchEntity( $entity, $data );
         $record = $locality->save( $entity );
         if( $record->id ){
-          $return = $record->id;
+          $return = $this->encodeId( $record->id );
         }
       }
       return $return;

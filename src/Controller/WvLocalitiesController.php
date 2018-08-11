@@ -15,25 +15,37 @@ class WvLocalitiesController extends AppController {
   public function get(){
     $response = array( 'error' => 1, 'message' => 'Invalid Request', 'data' => array() );
     $getData = $this->request->query();
+    $userId = null;
+    if( isset( $_GET['userId'] ) ){
+      $userId = $_GET['userId'];
+    }
     if( !empty( $getData ) ){
       $response['error'] = 0; $response['message'] = '';
       if( isset( $getData['level'] ) ){
         switch( $getData['level'] ){
           case 'locality' :
             $localeRes = $this->WvLocalities->findLocality( $getData )['data'];
-            $response['data'] = $localeRes;
+            $areaLevelId = $localeRes['localities'][0]['locality_id'];
+            $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], $areaLevelId, $userId );
+            $response['data'] = array( 'location' => $localeRes, 'areaRating' => $areaRating );
             break;
           case 'city' :
             $cityRes = $this->WvLocalities->WvCities->findCities( $getData )['data'];
-            $response['data'] = $cityRes;
+            $areaLevelId = $cityRes['cities'][0]['city_id'];
+            $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], $areaLevelId, $userId );
+            $response['data'] = array( 'location' => $cityRes, 'areaRating' => $areaRating );
             break;
           case 'state' :
             $stateRes = $this->WvLocalities->WvCities->WvStates->findStates( $getData )['data'];
-            $response['data'] = $stateRes;
+            $areaLevelId = $stateRes['states'][0]['state_id'];
+            $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], $areaLevelId, $userId );
+            $response['data'] = array( 'location' => $stateRes, 'areaRating' => $areaRating );
             break;
           case 'country' :
             $countryRes = $this->WvLocalities->WvCities->WvStates->WvCountries->findCountry( $getData )['data'];
-            $response['data'] = $countryRes;
+            $areaLevelId = $countryRes['countries'][0]['country_id'];
+            $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], $areaLevelId, $userId );
+            $response['data'] = array( 'location' => $countryRes, 'areaRating' => $areaRating );
             break;
         }
       }

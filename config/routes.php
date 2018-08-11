@@ -230,6 +230,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
     );
 
+    $routes->post(
+        '/area/rate/*',
+        ['controller' => 'WvAreaRatings', 'action' => 'rateArea' ]
+    );
+
     $routes->get(
         '/post/getbookmarks/*',
         ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]

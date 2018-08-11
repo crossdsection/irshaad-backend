@@ -34,6 +34,7 @@ class AuthorizationMiddleware
       $allowedConActions[] = array( 'controller' => 'WvPost', 'action' => 'getpost' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'emailVerification' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'userexists' );
+      $allowedConActions[] = array( 'controller' => 'WvLocalities', 'action' => 'get' );
       foreach( $allowedConActions as $conActions ){
         if( $conActions['controller'] == $request->getParam('controller') && $conActions['action'] == $request->getParam('action') ){
           $flagAllow = true;
@@ -62,6 +63,7 @@ class AuthorizationMiddleware
                       throw $error;
                     }
                 } catch (Exception $e) {
+                  pr( $e);exit;
                   $error = new UnauthorizedException(__('Illegal Token'));
                   $error->responseHeader('Access-Control-Allow-Origin','*');
                   throw $error;

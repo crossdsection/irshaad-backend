@@ -148,7 +148,7 @@ class WvStatesTable extends Table
         $entity = $state->patchEntity( $entity, $data );
         $record = $state->save( $entity );
         if( $record->id ){
-          $return = $record->id;
+          $return = $this->encodeId( $record->id );
         }
       }
       return $return;
