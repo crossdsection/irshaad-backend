@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * WvAccessRoles Model
@@ -41,6 +42,7 @@ class WvAccessRolesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('ArrayOps');
         $this->addBehavior('HashId', ['field' => array( 'id', 'area_level_id' ) ]);
     }
 
@@ -81,6 +83,13 @@ class WvAccessRolesTable extends Table
         return $rules;
     }
 
+    public $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'state'  => 'WvStates', 'department'  => 'WvDepartment' );
+    public $locationKeyMap = array(
+      'country_id' => 'country', 'country' => 'country_id',
+      'state_id' => 'state', 'state' => 'state_id',
+      'city_id' => 'city', 'city' => 'city_id'
+    );
+
     public function getAccessData( $roleIds ){
       $data = array();
       if( !empty( $roleIds  ) ){
@@ -89,7 +98,7 @@ class WvAccessRolesTable extends Table
         $areaWiseModels = array( 'country' => 'WvCountries', 'city'  => 'WvCities', 'state'  => 'WvStates', 'department'  => 'WvDepartment' );
         foreach( $accessRoles as $accessRole ){
           $areaLevel = $accessRole['area_level'];
-          $areaModel =  TableRegistry::get( $areaWiseModels[ $areaLevel ] );
+          $areaModel =  TableRegistry::get( $this->areaWiseModels[ $areaLevel ] );
           $return = $areaModel->find()->where( [ 'id' => $accessRole['area_level_id'] ] )->toArray();
           $data[] = array( 'area' => $return[0]->name, 'access_level' => $accessLevels[ $accessRole['access_level'] ]);
         }
@@ -105,14 +114,9 @@ class WvAccessRolesTable extends Table
     public function retrieveAccessRoleIds( $data, $accessLevel = array( 1, 2 ) ){
       $response = array();
       if( !empty( $data  ) ){
-        $locationKeyMap = array(
-          'country_id' => 'country', 'country' => 'country_id',
-          'state_id' => 'state', 'state' => 'state_id',
-          'city_id' => 'city', 'city' => 'city_id'
-        );
         $conditions = array( 'OR' => array() );
         foreach( $data as $key => $ids ){
-          $areaLevel = $locationKeyMap[ $key ];
+          $areaLevel = $this->locationKeyMap[ $key ];
           if( !empty( $ids ) ){
             $conditions['OR'][] = array( 'area_level' => $areaLevel, 'area_level_id IN' => $ids, 'access_level IN' => $accessLevel );
           }
@@ -123,7 +127,7 @@ class WvAccessRolesTable extends Table
         $accessRolesFound = array();
         $accessRoleKeysFound = array( 'city_id' => array(), 'country_id' => array(), 'state_id' => array());
         foreach( $accessRoles as $key => $access ){
-          $dataKey = $locationKeyMap[ $access['area_level'] ];
+          $dataKey = $this->locationKeyMap[ $access['area_level'] ];
           if( in_array( $access['area_level_id'], $data[ $dataKey ] ) ){
             $accessRolesFound[] = array( 'id' => $access['id'], 'area_level' => $access['area_level'],
                                  'area_level_id' => $access['area_level_id'], 'access_level' => $access['access_level'] );
@@ -144,17 +148,12 @@ class WvAccessRolesTable extends Table
      * data[ city_id ]
      * data[ state_id ]
      */
-    public function addAccess( $data, $accessLevel = array( 1, 2 ) ){
+    public function addAccess( $data = array(), $accessLevel = array( 1, 2 ) ){
       $response = array();
       if( !empty( $data ) ){
         $accessData = array();
-        $locationKeyMap = array(
-          'country_id' => 'country', 'country' => 'country_id',
-          'state_id' => 'state', 'state' => 'state_id',
-          'city_id' => 'city', 'city' => 'city_id'
-        );
         foreach( $data as $key => $access ){
-          $areaLevel = $locationKeyMap[ $key ];
+          $areaLevel = $this->locationKeyMap[ $key ];
           foreach( $access as $locationIds ){
             foreach ( $accessLevel as $key => $access ) {
               $accessData[] = array( 'area_level' => $areaLevel, 'area_level_id' => $locationIds, 'access_level' => $access );
@@ -173,5 +172,64 @@ class WvAccessRolesTable extends Table
         }
       }
       return $response;
+    }
+
+    public function getRelativeAccessRoles( $data = array(), $accessLevel = array( 1, 2 ) ){
+      $accessRoleIds = array();
+      if( !empty( $data ) ){
+        $cityModel =  TableRegistry::get( $this->areaWiseModels[ 'city' ] );
+        $cityRes = $cityModel->findCitiesById( $data['city_id'] )['data'];
+
+        $cityMap = Hash::combine( $cityRes['cities'], '{n}.city_id', '{n}.state_id');
+        $stateMap = Hash::combine( $cityRes['states'], '{n}.state_id', '{n}.country_id');
+        $countries = Hash::extract( $cityRes['countries'], '{n}.country_id' );
+
+        $stateModel =  TableRegistry::get( $this->areaWiseModels[ 'state' ] );
+        $stateRes = $stateModel->findStateById( $data['state_id'] )['data'];
+
+        $stateMap = array_merge( $stateMap, Hash::combine( $stateRes['states'], '{n}.state_id', '{n}.country_id') );
+        $countries = array_merge( $countries, Hash::extract( $stateRes['countries'], '{n}.country_id' ));
+
+        $countryModel =  TableRegistry::get( $this->areaWiseModels[ 'country' ] );
+        $countryRes = $countryModel->findCountryById( $data['country_id'] )['data'];
+
+        $countries = array_merge( $countries, Hash::extract( $countryRes['countries'], '{n}.country_id' ));
+        $countries = array_unique( $countries );
+
+        $newAccessMap = array(
+          'countries' => array( 'key' => 'country', 'value' => 'country_id' ),
+          'states' => array( 'key' => 'state', 'value' => 'state_id' ),
+          'cities' => array( 'key' => 'city', 'value' => 'city_id' )
+        );
+
+        foreach( $newAccessMap as $index => $arr ){
+          $response = array();
+          if( isset( $cityRes[ $index ] ) ){
+            $response = $cityRes[ $index ];
+          }
+          if( isset( $stateRes[ $index ] ) ){
+            $response = $stateRes[ $index ];
+          }
+          if( isset( $countryRes[ $index ] ) ){
+            $response = $countryRes[ $index ];
+          }
+          foreach( $response as $data ){
+            $conditions['OR'][] = array( 'area_level' => $arr['key'], 'area_level_id' => $data[ $arr['value'] ], 'access_level IN' => $accessLevel );
+          }
+        }
+
+        $accessData = array();
+        $accessRoles = $this->find('all')
+                            ->where( $conditions )
+                            ->toArray();
+        foreach( $accessRoles as $key => $value ){
+
+        }
+        $accessData = $this->array_group_by( $accessRoles, 'area_level', 'area_level_id', 'id');
+        $accessRoleIds = Hash::extract( $accessRoles, '{n}.id');
+        pr( $accessRoleIds);
+        pr( $accessData );exit;
+      }
+      return $accessRoleIds;
     }
 }

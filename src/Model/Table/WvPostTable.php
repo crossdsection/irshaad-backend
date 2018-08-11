@@ -216,13 +216,13 @@ class WvPostTable extends Table
           $fileuploadIds = array_merge( $fileuploadIds, json_decode( $value['filejson'] ) );
           $userIds[] = $value->user_id;
           $postIds[] = $value->id;
-          if( $value->locality_id != 0 )
+          if( $value->locality_id != null )
             $localityIds[] = $value->locality_id;
-          if( $value->city_id != 0 )
+          if( $value->city_id != null )
             $locationTag['city_id'][] = $value->city_id;
-          if( $value->state_id != 0 )
+          if( $value->state_id != null )
             $locationTag['state_id'][] = $value->state_id;
-          if( $value->country_id != 0 )
+          if( $value->country_id != null )
             $locationTag['country_id'][] = $value->country_id;
         }
         $this->WvFileuploads = TableRegistry::get('WvFileuploads');
@@ -250,19 +250,19 @@ class WvPostTable extends Table
             continue;
           }
           $accessRoleId = 0; $accessRoleArr = array();
-          if( $value->locality_id != 0 ){
+          if( $value->locality_id != null ){
             $cityId = $localityCityMap[ $value->locality_id ];
             $accessRoleArr = $accessData['city'][ $cityId ];
-          } else if( $value->city_id != 0 ){
+          } else if( $value->city_id != null ){
             $accessRoleArr = $accessData['city'][ $value->city_id ];
-          } else if( $value->state_id != 0 ){
+          } else if( $value->state_id != null ){
             $accessRoleArr = $accessData['state'][ $value->state_id ];
-          } else if( $value->country_id != 0 ){
+          } else if( $value->country_id != null ){
             $accessRoleArr = $accessData['country'][ $value->country_id ];
           }
           $permission = array( 'userEnablePole' => false, 'adminEnableAccept' => false );
           foreach( $accessRoleArr as $accessRole ){
-            if( $accessRole['id'] != 0 && in_array( $accessRole['id'], $accessRoleIds ) ){
+            if( $accessRole['id'] != null && in_array( $accessRole['id'], (array) $accessRoleIds ) ){
               if( $accessRole['access_level'] >= 1 ){
                 $permission['userEnablePole'] = 1;
               }
