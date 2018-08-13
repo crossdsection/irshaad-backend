@@ -47,6 +47,10 @@ class WvLocalitiesController extends AppController {
             $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], $areaLevelId, $userId );
             $response['data'] = array( 'location' => $countryRes, 'areaRating' => $areaRating );
             break;
+          case 'world' :
+            $areaRating = $this->WvLocalities->WvAreaRatings->getRatings( $getData['level'], 0, $userId );
+            $response['data'] = array( 'location' => array(), 'areaRating' => $areaRating );
+            break;
         }
       }
     }

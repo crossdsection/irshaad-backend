@@ -113,8 +113,8 @@ class WvAreaRatingsTable extends Table
     }
 
     public function getRatings( $areaLevel = null, $areaLevelId = null, $userId = null ){
-      $response = array();
-      if( $areaLevelId != null && $areaLevel != null ){
+      $response = array( 'areaLevel' => $areaLevel, 'areaLevelId' => $areaLevelId, 'goodPercent' => 0, 'badPercent' => 0, 'userStatus' => false );
+      if( ( $areaLevelId != null && $areaLevel != null ) || ( $areaLevelId == 0 && $areaLevel == 'world' ) ){
         $areaRating = $this->find('all')->where([ 'area_level' => $areaLevel, 'area_level_id' => $areaLevelId ]);
         $totalCount = 0; $goodCount = 0; $badCount = 0; $userStatus = false;
         $goodPercent = 0; $badPercent = 0;
