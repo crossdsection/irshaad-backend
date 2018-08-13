@@ -94,12 +94,26 @@ class WvCitiesTable extends Table
         $city = $this->find('all')->where([ 'name LIKE' => '%'.$data['city'].'%' ])->toArray();
         $cityData = array();
         if( !empty( $city ) ){
-          $stateIds = array();
+          $stateIds = array(); $tmpCityData = array();
+          $maxSimilarity = 0;
           foreach ( $city as $key => $value ) {
-            $cityData[] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
-            $stateIds[] = $value->state_id;
+            $sim = similar_text( $data['city'], $value['name'] );
+            if( $sim >= $maxSimilarity ){
+              $maxSimilarity = $sim;
+              $tmpCityData[ $value->state_id ] = array( 'city_id' => $value['id'], 'city_name' => $value['name'], 'state_id' => $value->state_id );
+              $stateIds[] = $value->state_id;
+            }
           }
           $statesRes = $this->WvStates->findStateById( $stateIds, $data );
+          $states = $statesRes['data']['states'];
+          $maxSimilarity = 0;
+          foreach ( $states as $key => $value ) {
+            $sim = similar_text( $data['state'], $value['state_name'] );
+            if( $sim >= $maxSimilarity ){
+              $maxSimilarity = $sim;
+              $cityData = array( $tmpCityData[ $value['state_id'] ] );
+            }
+          }
         } else {
           $statesRes = $this->WvStates->findStates( $data );
           if( !empty( $statesRes['data'] ) ){
@@ -143,7 +157,7 @@ class WvCitiesTable extends Table
      * data['state_id']
      */
     public function addCities( $data ){
-      $return = 0;
+      $return = null;
       if( !empty( $data ) ){
         $city = TableRegistry::get('WvCities');
         $entity = $city->newEntity();

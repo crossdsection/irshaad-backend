@@ -87,9 +87,19 @@ class WvStatesTable extends Table
         $countryData = array();
         $states = $this->find('all')->where([ 'id IN' => $stateIds ])->toArray();
         $countryIds = array();
+        $maxSimilarity = 0;
         foreach ($states as $key => $value) {
-          $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
-          $countryIds[] = $value['country_id'];
+          if( empty( $data ) ){
+            $statesData[] = array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] );
+            $countryIds[] = $value['country_id'];
+          } else {
+            $sim = similar_text( $data['state'], $value['name'] );
+            if( $sim >= $maxSimilarity ){
+              $maxSimilarity = $sim;
+              $statesData = array( array( 'state_id' => $value['id'], 'state_name' => $value['name'], 'country_id' => $value['country_id'] ) );
+              $countryIds = array( $value['country_id'] );
+            }
+          }
         }
         $countryRes = $this->WvCountries->findCountryById( $countryIds, $data );
         $response['data'] = $countryRes['data'];
@@ -141,7 +151,7 @@ class WvStatesTable extends Table
      * data['state_id']
      */
     public function addState( $data ){
-      $return = 0;
+      $return = null;
       if( !empty( $data ) ){
         $state = TableRegistry::get('WvStates');
         $entity = $state->newEntity();

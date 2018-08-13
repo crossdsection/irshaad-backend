@@ -109,7 +109,7 @@ class WvLocalitiesTable extends Table
           unset( $data['city'] );
           $data['city_id'] = $cityRes['data']['cities'][0]['city_id'];
           $returnId = $this->addLocality( $data );
-          if ( $returnId != 0 ){
+          if ( $returnId != null ){
             $response['data'] = $cityRes['data'];
             $response['data']['localities'] = array( array( 'locality_id' => $returnId, 'locality_name' => $data['locality'], 'city_id' => $data['city_id'], 'latitude' => $data['latitude'], 'longitude' => $data['longitude'] ) );
           } else {
@@ -163,7 +163,7 @@ class WvLocalitiesTable extends Table
      * data['longitude']
      */
     public function addLocality( $data ){
-      $return = 0;
+      $return = null;
       if( !empty( $data ) ){
         $locality = TableRegistry::get('WvLocalities');
         $entity = $locality->newEntity();
