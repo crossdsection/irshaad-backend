@@ -63,7 +63,6 @@ class AuthorizationMiddleware
                       throw $error;
                     }
                 } catch (Exception $e) {
-                  pr( $e);exit;
                   $error = new UnauthorizedException(__('Illegal Token'));
                   $error->responseHeader('Access-Control-Allow-Origin','*');
                   throw $error;
