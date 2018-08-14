@@ -117,6 +117,7 @@ class WvFavLocationTable extends Table
         $entity = $favLocal->newEntity();
         $entity = $favLocal->patchEntity( $entity, $postData );
         $record = $favLocal->save( $entity );
+        $record = $this->encodeResultSet( $record );
         return $record;
       }
       return $return;

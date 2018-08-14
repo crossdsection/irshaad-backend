@@ -251,7 +251,7 @@ class HashIdBehavior extends Behavior
      */
     public function encodeId($id) {
       if ($id < 0 || !is_numeric($id)) {
-        throw new RecordNotFoundException('Invalid integer, the id must be >= 1.');
+        return $id;
       }
       $hashid = $this->_getHasher()->encode($id);
       if ($this->_config['debug']) {
