@@ -95,7 +95,12 @@ class WvFavLocationController extends AppController
      {
        $response = array( 'error' => 0, 'message' => '', 'data' => array() );
        $userData = $this->WvFavLocation->WvUser->getUserList( array( $_GET['userId'] ), array( 'id', 'default_location_id' ) );
-       $wvFavLocations = $this->WvFavLocation->find('all', ['limit' => 200])->where(['user_id' => $_GET['userId']])->toArray();
+       $conditions = array( 'user_id' => $_GET['userId'] );
+       $isHome = $this->request->query('isHome');
+       if( $isHome ){
+         $conditions[] = array( 'id' => $userData[ $_GET['userId'] ]['default_location_id'] );
+       }
+       $wvFavLocations = $this->WvFavLocation->find('all', ['limit' => 200])->where( $conditions )->toArray();
        if( !empty( $wvFavLocations ) ){
          $search = $this->WvFavLocation->buildDataForSearch( $wvFavLocations, $userData[ $_GET['userId'] ] );
          $ret = $this->WvFavLocation->retrieveAddresses( $search );
