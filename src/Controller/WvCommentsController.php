@@ -28,7 +28,7 @@ class WvCommentsController extends AppController
       }
       $wvComments = $this->WvComments->find('all', [
         'limit' => 200,
-        'fields' => array( 'id', 'user_id', 'post_id', 'text', 'created', 'modified' ) ])->where([ 'post_id' => $postId, 'parent_id' => $parentId ]);
+        'fields' => array( 'id', 'user_id', 'post_id', 'text', 'created', 'modified', 'parent_id' ) ])->where([ 'post_id' => $postId, 'parent_id' => $parentId ]);
       $fileuploadIds = array(); $userIds = array(); $commentIds = array(); $data = array();
       if( !empty( $wvComments ) ){
         foreach ( $wvComments as $key => $value ) {
