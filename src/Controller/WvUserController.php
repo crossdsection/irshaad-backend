@@ -318,7 +318,7 @@ class WvUserController extends AppController {
         $users = $this->WvUser->find('all')->where([ 'email' => $postData['email'] ])->toArray();
         if( $users ){
           $response = $this->WvUser->WvEmailVerification->add( $users[0]->id );
-          $baseUrl = Router::fullBaseUrl().'auth/resetpassword?token='.$response->token;
+          $baseUrl = Router::fullBaseUrl().'resetpassword?email='.$postData['email'].'&token='.$response->token;
           $emailData = array( 'action_url' => $baseUrl, 'code' => $response->code );
           $result = $this->_sendMail( array( $postData['email'] ), 'Reset Password', 'forgotPassword', $emailData );
           $response = array( 'error' => 0, 'message' => 'Reset Code Sent' );
