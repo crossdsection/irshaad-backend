@@ -97,9 +97,19 @@ class WvAreaRatingsTable extends Table
       $return = false;
       if( !empty( $saveData ) ){
         $areaRate = TableRegistry::get('WvAreaRatings');
-        $entity = $areaRate->newEntity();
-        $entity = $areaRate->patchEntity( $entity, $saveData );
-        $entity = $this->fixEncodings( $entity );
+        $query = $areaRate->find('all')->where([
+          'user_id' => $saveData['user_id'],
+          'area_level_id' => $saveData['area_level_id'],
+          'area_level' => $saveData['area_level']]);
+        $entity = $query->first();
+        if( !empty( $entity ) ){
+          $entity = $areaRate->patchEntity( $entity, $saveData );
+          $entity = $this->fixEncodings( $entity );
+        } else {
+          $entity = $areaRate->newEntity();
+          $entity = $areaRate->patchEntity( $entity, $saveData );
+          $entity = $this->fixEncodings( $entity );
+        }
         try {
           $record = $areaRate->save( $entity );
           if( isset( $record->id ) ){
@@ -115,7 +125,11 @@ class WvAreaRatingsTable extends Table
     public function getRatings( $areaLevel = null, $areaLevelId = null, $userId = null ){
       $response = array( 'areaLevel' => $areaLevel, 'areaLevelId' => $areaLevelId, 'goodPercent' => 0, 'badPercent' => 0, 'userStatus' => false );
       if( ( $areaLevelId != null && $areaLevel != null ) || ( $areaLevelId == 0 && $areaLevel == 'world' ) ){
-        $areaRating = $this->find('all')->where([ 'area_level' => $areaLevel, 'area_level_id' => $areaLevelId ]);
+        $areaRating = $this->find('all')->where([
+          'area_level' => $areaLevel,
+          'area_level_id' => $areaLevelId,
+          'modified BETWEEN NOW() -INTERVAL 1 DAY AND NOW()'
+        ]);
         $totalCount = 0; $goodCount = 0; $badCount = 0; $userStatus = false;
         $goodPercent = 0; $badPercent = 0;
         foreach( $areaRating as $key => $rating ){
