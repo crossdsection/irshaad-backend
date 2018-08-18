@@ -35,6 +35,7 @@ class AuthorizationMiddleware
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'emailVerification' );
       $allowedConActions[] = array( 'controller' => 'WvUser', 'action' => 'userexists' );
       $allowedConActions[] = array( 'controller' => 'WvLocalities', 'action' => 'get' );
+      $allowedConActions[] = array( 'controller' => 'WvAreaRatings', 'action' => 'getdatewiseratings' );
       foreach( $allowedConActions as $conActions ){
         if( $conActions['controller'] == $request->getParam('controller') && $conActions['action'] == $request->getParam('action') ){
           $flagAllow = true;

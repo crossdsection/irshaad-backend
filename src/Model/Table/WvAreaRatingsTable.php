@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 /**
  * WvAreaRatings Model
@@ -100,11 +101,12 @@ class WvAreaRatingsTable extends Table
         $query = $areaRate->find('all')->where([
           'user_id' => $saveData['user_id'],
           'area_level_id' => $saveData['area_level_id'],
-          'area_level' => $saveData['area_level']]);
+          'area_level' => $saveData['area_level'],
+          'modified BETWEEN NOW() -INTERVAL 1 DAY AND NOW()'
+        ]);
         $entity = $query->first();
         if( !empty( $entity ) ){
-          $entity = $areaRate->patchEntity( $entity, $saveData );
-          $entity = $this->fixEncodings( $entity );
+          return $return;
         } else {
           $entity = $areaRate->newEntity();
           $entity = $areaRate->patchEntity( $entity, $saveData );
@@ -155,6 +157,38 @@ class WvAreaRatingsTable extends Table
           'badPercent' => $badPercent,
           'userStatus' => $userStatus
         );
+      }
+      return $response;
+    }
+
+    public function getDateWiseRatings( $param ){
+      $response = array();
+      if( ( $param['areaLevelId'] != null && $param['areaLevel'] != null ) || ( $param['areaLevelId'] == 0 && $param['areaLevel'] == 'world' ) ){
+        $areaRating = $this->find('all')->where([
+          'area_level' => $param['areaLevel'],
+          'area_level_id' => $param['areaLevelId'],
+          'modified BETWEEN NOW() - INTERVAL 7 DAY AND NOW()'
+        ])->toArray();
+        if( !empty( $areaRating ) ){
+          foreach( $areaRating as $key => $areaRate ){
+            $created = $areaRate->created->i18nFormat('yyyy-MM-dd');
+            if( !isset( $response[ $created ] ) ){
+              $response[ $created ] = array( 'goodPercent' => 0, 'badPercent' => 0, 'goodCount' => 0, 'badCount' => 0, 'totalCount' => 0 );
+            }
+            if( $areaRate->good > 0 ){
+              $response[ $created ]['goodCount']++;
+              $response[ $created ]['totalCount']++;
+            }
+            if( $areaRate->bad > 0 ){
+              $response[ $created ]['badCount']++;
+              $response[ $created ]['totalCount']++;
+            }
+            if( $response[ $created ]['totalCount'] > 0 ){
+              $response[ $created ]['goodPercent'] = round( $response[ $created ]['goodCount'] * 100 / $response[ $created ]['totalCount'] );
+              $response[ $created ]['badPercent'] = round( $response[ $created ]['badCount'] * 100 / $response[ $created ]['totalCount'] );
+            }
+          }
+        }
       }
       return $response;
     }

@@ -236,6 +236,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->get(
+        '/area/getratings/*',
+        ['controller' => 'WvAreaRatings', 'action' => 'getdatewiseratings' ]
+    );
+
+    $routes->get(
         '/post/getbookmarks/*',
         ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
     );
