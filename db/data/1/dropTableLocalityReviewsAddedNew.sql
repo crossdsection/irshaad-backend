@@ -1,6 +1,6 @@
-DROP TABLE `wv_locality_reviews`;
+DROP TABLE `locality_reviews`;
 
-CREATE TABLE `wv_localities` (
+CREATE TABLE `localities` (
   `id` int(11) NOT NULL,
   `locality` varchar(100) NOT NULL,
   `city_id` int(11) NOT NULL,

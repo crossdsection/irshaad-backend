@@ -1,6 +1,6 @@
-DROP TABLE `wv_fav_location`;
+DROP TABLE `fav_location`;
 
-CREATE TABLE `wv_fav_location` (
+CREATE TABLE `fav_location` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
@@ -12,6 +12,6 @@ CREATE TABLE `wv_fav_location` (
   `modified` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `wv_fav_location` ADD PRIMARY KEY (`id`);
+ALTER TABLE `fav_location` ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `wv_fav_location` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `fav_location` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

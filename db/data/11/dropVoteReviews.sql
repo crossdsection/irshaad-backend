@@ -1,1 +1,1 @@
-DROP TABLE wv_votes_reviews
+DROP TABLE votes_reviews

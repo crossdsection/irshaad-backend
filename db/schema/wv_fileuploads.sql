@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_fileuploads`
+-- Table structure for table `fileuploads`
 --
 
-CREATE TABLE `wv_fileuploads` (
+CREATE TABLE `fileuploads` (
   `id` int(11) NOT NULL,
   `filepath` varchar(256) NOT NULL,
   `filetype` varchar(256) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `wv_fileuploads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `wv_fileuploads`
+-- Dumping data for table `fileuploads`
 --
 
-INSERT INTO `wv_fileuploads` (`id`, `filepath`, `filetype`, `created`, `modified`) VALUES
+INSERT INTO `fileuploads` (`id`, `filepath`, `filetype`, `created`, `modified`) VALUES
 (5, '/var/www/worlvoting/webroot/img/upload/5a27990e44efe.jpg', 'image/jpeg', '2018-06-21 11:30:19', '2018-06-21 11:30:19'),
 (6, '/var/www/worlvoting/webroot/img/upload/5a27990e44efe.jpg', 'image/jpeg', '2018-06-21 11:31:23', '2018-06-21 11:31:23');
 
@@ -47,9 +47,9 @@ INSERT INTO `wv_fileuploads` (`id`, `filepath`, `filetype`, `created`, `modified
 --
 
 --
--- Indexes for table `wv_fileuploads`
+-- Indexes for table `fileuploads`
 --
-ALTER TABLE `wv_fileuploads`
+ALTER TABLE `fileuploads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -57,9 +57,9 @@ ALTER TABLE `wv_fileuploads`
 --
 
 --
--- AUTO_INCREMENT for table `wv_fileuploads`
+-- AUTO_INCREMENT for table `fileuploads`
 --
-ALTER TABLE `wv_fileuploads`
+ALTER TABLE `fileuploads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

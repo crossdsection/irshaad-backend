@@ -1,6 +1,6 @@
-DROP TABLE `wv_ministry`;
+DROP TABLE `ministry`;
 
-CREATE TABLE `wv_departments` (
+CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE `wv_departments` (
   `modified` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `wv_departments` ADD PRIMARY KEY( `id`);
-ALTER TABLE `wv_departments` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `departments` ADD PRIMARY KEY( `id`);
+ALTER TABLE `departments` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

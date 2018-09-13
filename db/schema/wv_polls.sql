@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_polls`
+-- Table structure for table `polls`
 --
 
-CREATE TABLE `wv_polls` (
+CREATE TABLE `polls` (
   `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -40,9 +40,9 @@ CREATE TABLE `wv_polls` (
 --
 
 --
--- Indexes for table `wv_polls`
+-- Indexes for table `polls`
 --
-ALTER TABLE `wv_polls`
+ALTER TABLE `polls`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -50,9 +50,9 @@ ALTER TABLE `wv_polls`
 --
 
 --
--- AUTO_INCREMENT for table `wv_polls`
+-- AUTO_INCREMENT for table `polls`
 --
-ALTER TABLE `wv_polls`
+ALTER TABLE `polls`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

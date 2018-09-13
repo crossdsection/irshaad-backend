@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_email_verification`
+-- Table structure for table `email_verification`
 --
 
-CREATE TABLE `wv_email_verification` (
+CREATE TABLE `email_verification` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `token` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `wv_email_verification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Triggers `wv_email_verification`
+-- Triggers `email_verification`
 --
 DELIMITER $$
-CREATE TRIGGER `Set Expiration Time` BEFORE INSERT ON `wv_email_verification` FOR EACH ROW BEGIN
+CREATE TRIGGER `Set Expiration Time` BEFORE INSERT ON `email_verification` FOR EACH ROW BEGIN
   SET NEW.expirationtime = NOW() + INTERVAL 5 HOUR;
 END
 $$
@@ -52,9 +52,9 @@ DELIMITER ;
 --
 
 --
--- Indexes for table `wv_email_verification`
+-- Indexes for table `email_verification`
 --
-ALTER TABLE `wv_email_verification`
+ALTER TABLE `email_verification`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -62,9 +62,9 @@ ALTER TABLE `wv_email_verification`
 --
 
 --
--- AUTO_INCREMENT for table `wv_email_verification`
+-- AUTO_INCREMENT for table `email_verification`
 --
-ALTER TABLE `wv_email_verification`
+ALTER TABLE `email_verification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

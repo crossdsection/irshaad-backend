@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_oauth`
+-- Table structure for table `oauth`
 --
 
-CREATE TABLE `wv_oauth` (
+CREATE TABLE `oauth` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `provider_id` varchar(512) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `wv_oauth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_oauth`
+-- Dumping data for table `oauth`
 --
 
-INSERT INTO `wv_oauth` (`id`, `user_id`, `provider_id`, `access_token`, `issued_at`, `expiration_time`, `created`, `modified`) VALUES
+INSERT INTO `oauth` (`id`, `user_id`, `provider_id`, `access_token`, `issued_at`, `expiration_time`, `created`, `modified`) VALUES
 (1, 36, 'https://localhost', 'xwxLftFsFLyb3SxYSUhY8dJruOav/xjqX8CufTgig+o=', '2018-06-04 06:29:20', '2018-06-05 06:29:20', '2018-06-04 06:14:57', '2018-06-04 06:29:20');
 
 --
@@ -51,9 +51,9 @@ INSERT INTO `wv_oauth` (`id`, `user_id`, `provider_id`, `access_token`, `issued_
 --
 
 --
--- Indexes for table `wv_oauth`
+-- Indexes for table `oauth`
 --
-ALTER TABLE `wv_oauth`
+ALTER TABLE `oauth`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -61,9 +61,9 @@ ALTER TABLE `wv_oauth`
 --
 
 --
--- AUTO_INCREMENT for table `wv_oauth`
+-- AUTO_INCREMENT for table `oauth`
 --
-ALTER TABLE `wv_oauth`
+ALTER TABLE `oauth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 

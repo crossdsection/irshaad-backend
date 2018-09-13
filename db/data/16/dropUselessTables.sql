@@ -1,3 +1,3 @@
-DROP TABLE wv_state_reviews;
+DROP TABLE state_reviews;
 
-DROP TABLE wv_details_reviews
+DROP TABLE details_reviews

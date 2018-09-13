@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_user_followers`
+-- Table structure for table `user_followers`
 --
 
-CREATE TABLE `wv_user_followers` (
+CREATE TABLE `user_followers` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `followuser_id` int(11) NOT NULL,
@@ -39,9 +39,9 @@ CREATE TABLE `wv_user_followers` (
 --
 
 --
--- Indexes for table `wv_user_followers`
+-- Indexes for table `user_followers`
 --
-ALTER TABLE `wv_user_followers`
+ALTER TABLE `user_followers`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userId` (`user_id`),
   ADD KEY `followuser_id` (`followuser_id`);
@@ -51,13 +51,13 @@ ALTER TABLE `wv_user_followers`
 --
 
 --
--- AUTO_INCREMENT for table `wv_user_followers`
+-- AUTO_INCREMENT for table `user_followers`
 --
-ALTER TABLE `wv_user_followers`
+ALTER TABLE `user_followers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `wv_user_followers` ADD INDEX( `user_id`, `followuser_id`);
-ALTER TABLE `wv_user_followers` ADD UNIQUE( `user_id`, `followuser_id`);
+ALTER TABLE `user_followers` ADD INDEX( `user_id`, `followuser_id`);
+ALTER TABLE `user_followers` ADD UNIQUE( `user_id`, `followuser_id`);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

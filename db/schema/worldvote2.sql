@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_access_roles`
+-- Table structure for table `access_roles`
 --
 
-CREATE TABLE `wv_access_roles` (
+CREATE TABLE `access_roles` (
   `id` int(11) NOT NULL,
   `name` varchar(1024) NOT NULL,
   `area_level` enum('world','country','province','city','department') NOT NULL COMMENT 'These will be prioritize as Wolrd &gt; Country &gt; Province &gt; City &gt; Department',
@@ -39,19 +39,19 @@ CREATE TABLE `wv_access_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_access_roles`
+-- Dumping data for table `access_roles`
 --
 
-INSERT INTO `wv_access_roles` (`id`, `name`, `area_level`, `area_level_id`, `access_level`, `created`, `modified`) VALUES
+INSERT INTO `access_roles` (`id`, `name`, `area_level`, `area_level_id`, `access_level`, `created`, `modified`) VALUES
 (1, 'City RWA', 'city', 5236, 1, '2018-05-24 16:35:00', '2018-05-24 16:35:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_activitylog`
+-- Table structure for table `activitylog`
 --
 
-CREATE TABLE `wv_activitylog` (
+CREATE TABLE `activitylog` (
   `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -61,20 +61,20 @@ CREATE TABLE `wv_activitylog` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_cities`
+-- Table structure for table `cities`
 --
 
-CREATE TABLE `wv_cities` (
+CREATE TABLE `cities` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_cities`
+-- Dumping data for table `cities`
 --
 
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (1, 'Bombuflat', 1),
 (2, 'Garacharma', 1),
 (3, 'Port Blair', 1),
@@ -2396,7 +2396,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (2319, 'Mauganj', 21),
 (2320, 'Meghnagar', 21),
 (2321, 'Mehara Gaon', 21);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (2322, 'Mehgaon', 21),
 (2323, 'Mhaugaon', 21),
 (2324, 'Mhow', 21),
@@ -4554,7 +4554,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (4476, 'Mandamarri', 36),
 (4477, 'Manuguru', 36),
 (4478, 'Medak', 36);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (4479, 'Medchal', 36),
 (4480, 'Miryalaguda', 36),
 (4481, 'Nagar Karnul', 36),
@@ -6705,7 +6705,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (6626, 'Gladstone', 269),
 (6627, 'Gold Coast', 269),
 (6628, 'Gowrie Junction', 269);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (6629, 'Gympie', 269),
 (6630, 'Helensvale', 269),
 (6631, 'Hervey Bay', 269),
@@ -8798,7 +8798,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (8718, 'Ibicarai', 516),
 (8719, 'Ibicui', 516),
 (8720, 'Ibipeba', 516);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (8721, 'Ibirapitanga', 516),
 (8722, 'Ibirataia', 516),
 (8723, 'Ibotirama', 516),
@@ -10796,7 +10796,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (10715, 'Saint-Cesaire', 673),
 (10716, 'Saint-Cyrill-de-Wendover', 673),
 (10717, 'Saint-Damase', 673);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (10718, 'Saint-Damien-de-Buckland', 673),
 (10719, 'Saint-Denis', 673),
 (10720, 'Saint-Donat-de-Montcalm', 673),
@@ -12899,7 +12899,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (12817, 'San Mateo', 781),
 (12818, 'San Miguel de Sema', 781),
 (12819, 'San Pablo de Borbur', 781);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (12820, 'Santa Maria', 781),
 (12821, 'Santa Rosa de Viterbo', 781),
 (12822, 'Santa Sofia', 781),
@@ -14930,7 +14930,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (14847, 'Jilove', 936),
 (14848, 'Jirkov', 936),
 (14849, 'Kadan', 936);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (14850, 'Klasterec nad Ohri', 936),
 (14851, 'Krupka', 936),
 (14852, 'Litomerice', 936),
@@ -16992,7 +16992,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (16908, 'Anjalankoski', 1162),
 (16909, 'Hamina', 1162),
 (16910, 'Kotka', 1162);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (16911, 'Kouvola', 1162),
 (16912, 'Kuusankoski', 1162),
 (16913, 'Valkeala', 1162),
@@ -18835,7 +18835,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (18750, 'Aschaffenburg', 1357),
 (18751, 'Augsburg', 1357),
 (18752, 'Bad Aibling', 1357);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (18753, 'Bad Kissingen', 1357),
 (18754, 'Bad Neustadt', 1357),
 (18755, 'Bad Reichenhall', 1357),
@@ -20764,7 +20764,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (20678, 'Ikerasak', 1492),
 (20679, 'Illorsuit', 1492),
 (20680, 'Niaqornat', 1492);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (20681, 'Nuugaatsiaq', 1492),
 (20682, 'Qaarsut', 1492),
 (20683, 'Saattut', 1492),
@@ -22674,7 +22674,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (22587, 'Monteferrante', 1826),
 (22588, 'Montelapiano', 1826),
 (22589, 'Montenerodomo', 1826);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (22590, 'Monteodorisio', 1826),
 (22591, 'Mozzagrogna', 1826),
 (22592, 'Orsogna', 1826),
@@ -24551,7 +24551,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (24464, 'Taishi', 1930),
 (24465, 'Takarazuka', 1930),
 (24466, 'Takasago', 1930);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (24467, 'Tatsuno', 1930),
 (24468, 'Toyooka', 1930),
 (24469, 'Yamasaki', 1930),
@@ -26565,7 +26565,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (26477, 'Wasserbillig', 2236),
 (26478, 'Wecker', 2236),
 (26479, 'Wecker-Gare', 2236);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (26480, 'Weydig', 2236),
 (26481, 'Wormeldange', 2236),
 (26482, 'Wormeldange-Haut', 2236),
@@ -28444,7 +28444,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (28355, 'Temoaya', 2442),
 (28356, 'Tenancingo', 2442),
 (28357, 'Tenango de Arista', 2442);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (28358, 'Tenango del Aire', 2442),
 (28359, 'Tenochtitlan', 2442),
 (28360, 'Teoloyucan', 2442),
@@ -30348,7 +30348,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (30258, 'Zandvoort', 2594),
 (30259, 'Zeevang', 2594),
 (30260, 'Zwaag', 2594);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (30261, 'Zwanenburg', 2594),
 (30262, 'Almelo', 2595),
 (30263, 'Bathmen', 2595),
@@ -32333,7 +32333,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (32242, 'Mangaldan', 2848),
 (32243, 'San Fernando', 2848),
 (32244, 'Urdaneta', 2848);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (32245, 'Vigan', 2848),
 (32246, 'Binan', 2849),
 (32247, 'Laguna', 2849),
@@ -34291,7 +34291,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (34199, 'Cojasca', 2950),
 (34200, 'Comisani', 2950),
 (34201, 'Contesti', 2950);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (34202, 'Corbii Mari', 2950),
 (34203, 'Cornatelu', 2950),
 (34204, 'Cornesti', 2950),
@@ -36258,7 +36258,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (36165, 'Suzjomka', 2986),
 (36166, 'Trubchjovsk', 2986),
 (36167, 'Unecha', 2986);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (36168, 'Zhukovka', 2986),
 (36169, 'Gusinoozjorsk', 2987),
 (36170, 'Kamensk', 2987),
@@ -38193,7 +38193,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (38099, 'Thulamahashe', 3244),
 (38100, 'Tzaneen', 3244),
 (38101, 'Botleng', 3245);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (38102, 'Ekangala', 3245),
 (38103, 'Embalenhle', 3245),
 (38104, 'Emjindini', 3245),
@@ -40124,7 +40124,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (40029, 'al-Ma\'qulah', 3634),
 (40030, '\'Awsajah', 3636),
 (40031, 'Binzart', 3636);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (40032, 'Ghar-al-Milh', 3636),
 (40033, 'Manzil \'Abd-ar-Rahman', 3636),
 (40034, 'Manzil Bu Ruqaybah', 3636),
@@ -42093,7 +42093,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (41997, 'Whitley Bay', 3842),
 (41998, 'Wickford', 3842),
 (41999, 'Widnes', 3842);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (42000, 'Wigan', 3842),
 (42001, 'Wigston', 3842),
 (42002, 'Wilmslow', 3842),
@@ -43977,7 +43977,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (43880, 'Sunset', 3930),
 (43881, 'Sweetwater', 3930),
 (43882, 'Tallahassee', 3930);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (43883, 'Tamarac', 3930),
 (43884, 'Tamiami', 3930),
 (43885, 'Tampa', 3930),
@@ -45878,7 +45878,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (45780, 'Struthers', 3959),
 (45781, 'Sylvania', 3959),
 (45782, 'Tallmadge', 3959);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (45783, 'Tiffin', 3959),
 (45784, 'Toledo', 3959),
 (45785, 'Trotwood', 3959),
@@ -47811,7 +47811,7 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 (47712, 'Nutley', 3953),
 (47713, 'Mount Olive', 3953),
 (47714, 'Neptune', 3953);
-INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (47715, 'Pemberton Township', 3953),
 (47716, 'Lacey', 3953),
 (47717, 'Rahway', 3953),
@@ -48416,10 +48416,10 @@ INSERT INTO `wv_cities` (`id`, `name`, `state_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_countries`
+-- Table structure for table `countries`
 --
 
-CREATE TABLE `wv_countries` (
+CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `sortname` varchar(3) NOT NULL,
   `name` varchar(150) NOT NULL,
@@ -48427,10 +48427,10 @@ CREATE TABLE `wv_countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wv_countries`
+-- Dumping data for table `countries`
 --
 
-INSERT INTO `wv_countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
+INSERT INTO `countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
 (1, 'AF', 'Afghanistan', 93),
 (2, 'AL', 'Albania', 355),
 (3, 'DZ', 'Algeria', 213),
@@ -48681,10 +48681,10 @@ INSERT INTO `wv_countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_details_reviews`
+-- Table structure for table `details_reviews`
 --
 
-CREATE TABLE `wv_details_reviews` (
+CREATE TABLE `details_reviews` (
   `id` int(11) NOT NULL,
   `country_id` tinyint(1) DEFAULT NULL,
   `review_flag` int(11) NOT NULL COMMENT 'zero for good and one for bad',
@@ -48698,10 +48698,10 @@ CREATE TABLE `wv_details_reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_fav_location`
+-- Table structure for table `fav_location`
 --
 
-CREATE TABLE `wv_fav_location` (
+CREATE TABLE `fav_location` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `ministry_id` int(11) NOT NULL,
@@ -48714,10 +48714,10 @@ CREATE TABLE `wv_fav_location` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_locality_reviews`
+-- Table structure for table `locality_reviews`
 --
 
-CREATE TABLE `wv_locality_reviews` (
+CREATE TABLE `locality_reviews` (
   `id` int(11) NOT NULL,
   `locality` varchar(100) NOT NULL,
   `city_id` int(11) NOT NULL
@@ -48726,10 +48726,10 @@ CREATE TABLE `wv_locality_reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_login_record`
+-- Table structure for table `login_record`
 --
 
-CREATE TABLE `wv_login_record` (
+CREATE TABLE `login_record` (
   `id` int(11) NOT NULL,
   `user_id` int(10) NOT NULL,
   `latitude` varchar(256) NOT NULL,
@@ -48737,10 +48737,10 @@ CREATE TABLE `wv_login_record` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_login_record`
+-- Dumping data for table `login_record`
 --
 
-INSERT INTO `wv_login_record` (`id`, `user_id`, `latitude`, `longitude`) VALUES
+INSERT INTO `login_record` (`id`, `user_id`, `latitude`, `longitude`) VALUES
 (15, 65, '30.365015900000003', '78.0755332'),
 (17, 65, '30.3650071', '78.07553419999999'),
 (18, 65, '30.365007599999995', '78.075537'),
@@ -48759,10 +48759,10 @@ INSERT INTO `wv_login_record` (`id`, `user_id`, `latitude`, `longitude`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_ministry`
+-- Table structure for table `ministry`
 --
 
-CREATE TABLE `wv_ministry` (
+CREATE TABLE `ministry` (
   `id` int(11) NOT NULL,
   `ministry_name` varchar(256) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
@@ -48773,10 +48773,10 @@ CREATE TABLE `wv_ministry` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_ministry`
+-- Dumping data for table `ministry`
 --
 
-INSERT INTO `wv_ministry` (`id`, `ministry_name`, `country_id`, `state_id`, `city_id`, `ministry_status`, `ministry_head_profilepic`) VALUES
+INSERT INTO `ministry` (`id`, `ministry_name`, `country_id`, `state_id`, `city_id`, `ministry_status`, `ministry_head_profilepic`) VALUES
 (1, 'Department of Administrative', 101, 0, 0, 1, '20180508182846.png'),
 (5, 'Department of Biotechnology', 101, 0, 0, 1, '20180509123846.jpg'),
 (13, 'world department', 0, 0, 0, 0, '20180508173855.png'),
@@ -48787,10 +48787,10 @@ INSERT INTO `wv_ministry` (`id`, `ministry_name`, `country_id`, `state_id`, `cit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_post`
+-- Table structure for table `post`
 --
 
-CREATE TABLE `wv_post` (
+CREATE TABLE `post` (
   `id` int(11) NOT NULL,
   `cat_id` int(10) NOT NULL,
   `subcat_id` int(10) NOT NULL,
@@ -48816,20 +48816,20 @@ CREATE TABLE `wv_post` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_states`
+-- Table structure for table `states`
 --
 
-CREATE TABLE `wv_states` (
+CREATE TABLE `states` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_states`
+-- Dumping data for table `states`
 --
 
-INSERT INTO `wv_states` (`id`, `name`, `country_id`) VALUES
+INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 (1, 'Andaman and Nicobar Islands', 101),
 (2, 'Andhra Pradesh', 101),
 (3, 'Arunachal Pradesh', 101),
@@ -51011,7 +51011,7 @@ INSERT INTO `wv_states` (`id`, `name`, `country_id`) VALUES
 (2179, 'Rivercess', 123),
 (2180, 'Sinoe', 123),
 (2181, 'Ajdabiya', 124);
-INSERT INTO `wv_states` (`id`, `name`, `country_id`) VALUES
+INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 (2182, 'Fezzan', 124),
 (2183, 'Banghazi', 124),
 (2184, 'Darnah', 124),
@@ -52955,10 +52955,10 @@ INSERT INTO `wv_states` (`id`, `name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_state_reviews`
+-- Table structure for table `state_reviews`
 --
 
-CREATE TABLE `wv_state_reviews` (
+CREATE TABLE `state_reviews` (
   `id` int(11) NOT NULL,
   `state_id` int(1) NOT NULL,
   `review_flag` tinyint(1) NOT NULL,
@@ -52968,10 +52968,10 @@ CREATE TABLE `wv_state_reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_user`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `wv_user` (
+CREATE TABLE `user` (
   `id` int(10) NOT NULL,
   `firstname` varchar(256) NOT NULL,
   `lastname` varchar(256) NOT NULL,
@@ -53001,10 +53001,10 @@ CREATE TABLE `wv_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wv_user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `wv_user` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `phone`, `address`, `latitude`, `longitude`, `profilepic`, `status`, `active`, `email_verified`, `adhar_verified`, `authority_flag`, `access_role_ids`, `rwa_name`, `department_id`, `designation`, `certificate`, `country_id`, `state_id`, `city_id`, `created`, `modified`) VALUES
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `gender`, `email`, `password`, `phone`, `address`, `latitude`, `longitude`, `profilepic`, `status`, `active`, `email_verified`, `adhar_verified`, `authority_flag`, `access_role_ids`, `rwa_name`, `department_id`, `designation`, `certificate`, `country_id`, `state_id`, `city_id`, `created`, `modified`) VALUES
 (36, 'Bhawna', 'Pandey', NULL, 'bhawnapandey@greenusys.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.3650466', '78.075757', NULL, 1, 0, 1, 0, 0, '[1]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
 (65, 'Ravi Ranjan', '', NULL, 'ravisingh4994@gmail.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '15/1, Canal Rd, Kishanpur, Dehradun, Uttarakhand 248001, India', '30.365015900000003', '78.0755332', NULL, 1, 1, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
 (66, 'Ravi Ranjan Singh', '', NULL, 'raviranjan.rrs49@gmail.com', '$2y$10$16HnhCobYSTv6QAKOuY5auwImoaQ.x69aGaBWu7VX1b5/hq33Un8.', NULL, '', '30.365007599999995', '78.075537', NULL, 1, 0, 1, 0, 0, '[]', NULL, 0, '', '', 0, 0, 0, '2018-05-24 16:30:23', '2018-05-24 16:30:23'),
@@ -53014,10 +53014,10 @@ INSERT INTO `wv_user` (`id`, `firstname`, `lastname`, `gender`, `email`, `passwo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_votes_reviews`
+-- Table structure for table `votes_reviews`
 --
 
-CREATE TABLE `wv_votes_reviews` (
+CREATE TABLE `votes_reviews` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `ministry_id` int(11) DEFAULT NULL,
@@ -53034,94 +53034,94 @@ CREATE TABLE `wv_votes_reviews` (
 --
 
 --
--- Indexes for table `wv_access_roles`
+-- Indexes for table `access_roles`
 --
-ALTER TABLE `wv_access_roles`
+ALTER TABLE `access_roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_activitylog`
+-- Indexes for table `activitylog`
 --
-ALTER TABLE `wv_activitylog`
+ALTER TABLE `activitylog`
   ADD PRIMARY KEY (`id`),
   ADD KEY `post_id` (`post_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `wv_cities`
+-- Indexes for table `cities`
 --
-ALTER TABLE `wv_cities`
+ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
   ADD KEY `state_id` (`state_id`);
 
 --
--- Indexes for table `wv_countries`
+-- Indexes for table `countries`
 --
-ALTER TABLE `wv_countries`
+ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_details_reviews`
+-- Indexes for table `details_reviews`
 --
-ALTER TABLE `wv_details_reviews`
+ALTER TABLE `details_reviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_fav_location`
+-- Indexes for table `fav_location`
 --
-ALTER TABLE `wv_fav_location`
+ALTER TABLE `fav_location`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_locality_reviews`
+-- Indexes for table `locality_reviews`
 --
-ALTER TABLE `wv_locality_reviews`
+ALTER TABLE `locality_reviews`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `wv_locality_ibfk_1` (`city_id`);
+  ADD KEY `locality_ibfk_1` (`city_id`);
 
 --
--- Indexes for table `wv_login_record`
+-- Indexes for table `login_record`
 --
-ALTER TABLE `wv_login_record`
+ALTER TABLE `login_record`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `wv_login_record_ibfk_1` (`user_id`);
+  ADD KEY `login_record_ibfk_1` (`user_id`);
 
 --
--- Indexes for table `wv_ministry`
+-- Indexes for table `ministry`
 --
-ALTER TABLE `wv_ministry`
+ALTER TABLE `ministry`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_post`
+-- Indexes for table `post`
 --
-ALTER TABLE `wv_post`
+ALTER TABLE `post`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_states`
+-- Indexes for table `states`
 --
-ALTER TABLE `wv_states`
+ALTER TABLE `states`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indexes for table `wv_state_reviews`
+-- Indexes for table `state_reviews`
 --
-ALTER TABLE `wv_state_reviews`
+ALTER TABLE `state_reviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wv_user`
+-- Indexes for table `user`
 --
-ALTER TABLE `wv_user`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `wv_votes_reviews`
+-- Indexes for table `votes_reviews`
 --
-ALTER TABLE `wv_votes_reviews`
+ALTER TABLE `votes_reviews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -53129,87 +53129,87 @@ ALTER TABLE `wv_votes_reviews`
 --
 
 --
--- AUTO_INCREMENT for table `wv_access_roles`
+-- AUTO_INCREMENT for table `access_roles`
 --
-ALTER TABLE `wv_access_roles`
+ALTER TABLE `access_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `wv_activitylog`
+-- AUTO_INCREMENT for table `activitylog`
 --
-ALTER TABLE `wv_activitylog`
+ALTER TABLE `activitylog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_cities`
+-- AUTO_INCREMENT for table `cities`
 --
-ALTER TABLE `wv_cities`
+ALTER TABLE `cities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48315;
 
 --
--- AUTO_INCREMENT for table `wv_countries`
+-- AUTO_INCREMENT for table `countries`
 --
-ALTER TABLE `wv_countries`
+ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
--- AUTO_INCREMENT for table `wv_details_reviews`
+-- AUTO_INCREMENT for table `details_reviews`
 --
-ALTER TABLE `wv_details_reviews`
+ALTER TABLE `details_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_fav_location`
+-- AUTO_INCREMENT for table `fav_location`
 --
-ALTER TABLE `wv_fav_location`
+ALTER TABLE `fav_location`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_locality_reviews`
+-- AUTO_INCREMENT for table `locality_reviews`
 --
-ALTER TABLE `wv_locality_reviews`
+ALTER TABLE `locality_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_login_record`
+-- AUTO_INCREMENT for table `login_record`
 --
-ALTER TABLE `wv_login_record`
+ALTER TABLE `login_record`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `wv_ministry`
+-- AUTO_INCREMENT for table `ministry`
 --
-ALTER TABLE `wv_ministry`
+ALTER TABLE `ministry`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `wv_post`
+-- AUTO_INCREMENT for table `post`
 --
-ALTER TABLE `wv_post`
+ALTER TABLE `post`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_states`
+-- AUTO_INCREMENT for table `states`
 --
-ALTER TABLE `wv_states`
+ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
 
 --
--- AUTO_INCREMENT for table `wv_state_reviews`
+-- AUTO_INCREMENT for table `state_reviews`
 --
-ALTER TABLE `wv_state_reviews`
+ALTER TABLE `state_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `wv_user`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `wv_user`
+ALTER TABLE `user`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
--- AUTO_INCREMENT for table `wv_votes_reviews`
+-- AUTO_INCREMENT for table `votes_reviews`
 --
-ALTER TABLE `wv_votes_reviews`
+ALTER TABLE `votes_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -53217,29 +53217,29 @@ ALTER TABLE `wv_votes_reviews`
 --
 
 --
--- Constraints for table `wv_activitylog`
+-- Constraints for table `activitylog`
 --
-ALTER TABLE `wv_activitylog`
-  ADD CONSTRAINT `wv_activitylog_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `wv_post` (`id`),
-  ADD CONSTRAINT `wv_activitylog_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `wv_user` (`id`);
+ALTER TABLE `activitylog`
+  ADD CONSTRAINT `activitylog_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`),
+  ADD CONSTRAINT `activitylog_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `wv_cities`
+-- Constraints for table `cities`
 --
-ALTER TABLE `wv_cities`
-  ADD CONSTRAINT `wv_cities_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `wv_states` (`id`);
+ALTER TABLE `cities`
+  ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
 
 --
--- Constraints for table `wv_login_record`
+-- Constraints for table `login_record`
 --
-ALTER TABLE `wv_login_record`
-  ADD CONSTRAINT `wv_login_record_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wv_user` (`id`) ON DELETE CASCADE;
+ALTER TABLE `login_record`
+  ADD CONSTRAINT `login_record_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `wv_states`
+-- Constraints for table `states`
 --
-ALTER TABLE `wv_states`
-  ADD CONSTRAINT `wv_states_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `wv_countries` (`id`);
+ALTER TABLE `states`
+  ADD CONSTRAINT `states_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

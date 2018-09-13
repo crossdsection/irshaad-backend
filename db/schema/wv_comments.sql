@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_comments`
+-- Table structure for table `comments`
 --
 
-CREATE TABLE `wv_comments` (
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
@@ -40,9 +40,9 @@ CREATE TABLE `wv_comments` (
 --
 
 --
--- Indexes for table `wv_comments`
+-- Indexes for table `comments`
 --
-ALTER TABLE `wv_comments`
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -50,9 +50,9 @@ ALTER TABLE `wv_comments`
 --
 
 --
--- AUTO_INCREMENT for table `wv_comments`
+-- AUTO_INCREMENT for table `comments`
 --
-ALTER TABLE `wv_comments`
+ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wv_area_ratings`
+-- Table structure for table `area_ratings`
 --
 
-CREATE TABLE `wv_area_ratings` (
+CREATE TABLE `area_ratings` (
   `id` int(11) NOT NULL,
   `area_level` enum('world','country','state','city','locality','department') COLLATE utf8_unicode_ci NOT NULL,
   `area_level_id` int(11) NOT NULL,
@@ -42,9 +42,9 @@ CREATE TABLE `wv_area_ratings` (
 --
 
 --
--- Indexes for table `wv_area_ratings`
+-- Indexes for table `area_ratings`
 --
-ALTER TABLE `wv_area_ratings`
+ALTER TABLE `area_ratings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `area_level` (`area_level`,`area_level_id`,`user_id`),
   ADD KEY `area_level_id` (`area_level_id`,`user_id`);
@@ -54,9 +54,9 @@ ALTER TABLE `wv_area_ratings`
 --
 
 --
--- AUTO_INCREMENT for table `wv_area_ratings`
+-- AUTO_INCREMENT for table `area_ratings`
 --
-ALTER TABLE `wv_area_ratings`
+ALTER TABLE `area_ratings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
