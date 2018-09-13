@@ -21,7 +21,7 @@ class OAuthComponent extends Component
     public function getAccessToken( $userId = null ){
       $response = array( 'error' => 0, 'message' => '', 'data' => array() );
       if( $userId != null ){
-        $this->Oauth = TableRegistry::get('WvOauth');
+        $this->Oauth = TableRegistry::get('Oauth');
         $result = $this->Oauth->getUserToken( $userId );
         if( $result['error'] == -1 ){
           $result = $this->Oauth->refreshAccessToken( $userId );
@@ -42,7 +42,7 @@ class OAuthComponent extends Component
     public function removeToken( $userId = null ){
       $response = array( 'error' => 0, 'message' => 'Invalid Request', 'data' => array() );
       if( $userId != null ){
-        $this->Oauth = TableRegistry::get('WvOauth');
+        $this->Oauth = TableRegistry::get('Oauth');
         $result = $this->Oauth->deleteUserToken( $userId );
         if( $result )
           $response = array( 'error' => 0, 'message' => 'Logout Successful', 'data' => array() );

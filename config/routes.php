@@ -47,7 +47,7 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 // Router::prefix('/auth', ['_namePrefix' => 'auth:'], function ($routes) {
-//   $routes->resources('WvUser', [
+//   $routes->resources('User', [
 //     'map' => ['login' => ['action' => 'login', 'method' => 'GET']]
 //   ]);
 // });
@@ -62,187 +62,187 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->post(
         '/auth/login/*',
-        ['controller' => 'WvUser', 'action' => 'login']
+        ['controller' => 'User', 'action' => 'login']
     );
 
     $routes->post(
         '/auth/signup/*',
-        ['controller' => 'WvUser', 'action' => 'signup']
+        ['controller' => 'User', 'action' => 'signup']
     );
 
     $routes->post(
         '/auth/recover',
-        ['controller' => 'WvUser', 'action' => 'forgotpassword']
+        ['controller' => 'User', 'action' => 'forgotpassword']
     );
 
     $routes->post(
         '/post/submit/*',
-        ['controller' => 'WvPost', 'action' => 'add']
+        ['controller' => 'Post', 'action' => 'add']
     );
 
     $routes->post(
         '/files/submit/*',
-        ['controller' => 'WvFileuploads', 'action' => 'add']
+        ['controller' => 'Fileuploads', 'action' => 'add']
     );
 
     $routes->post(
         '/comments/submit/*',
-        ['controller' => 'WvComments', 'action' => 'new']
+        ['controller' => 'Comments', 'action' => 'new']
     );
 
     $routes->post(
         '/favlocation/submit/*',
-        ['controller' => 'WvFavLocation', 'action' => 'add']
+        ['controller' => 'FavLocation', 'action' => 'add']
     );
 
     $routes->post(
         '/activity/submit/*',
-        ['controller' => 'WvActivitylog', 'action' => 'add']
+        ['controller' => 'Activitylog', 'action' => 'add']
     );
 
     $routes->post(
         '/polls/submit/*',
-        ['controller' => 'WvUserPolls', 'action' => 'add']
+        ['controller' => 'UserPolls', 'action' => 'add']
     );
 
     $routes->post(
         '/user/access/*',
-        ['controller' => 'WvUser', 'action' => 'updateaccess']
+        ['controller' => 'User', 'action' => 'updateaccess']
     );
 
     $routes->post(
         '/user/update/*',
-        ['controller' => 'WvUser', 'action' => 'updateuserinfo']
+        ['controller' => 'User', 'action' => 'updateuserinfo']
     );
 
     $routes->post(
         '/user/verify/*',
-        ['controller' => 'WvUser', 'action' => 'email_verification']
+        ['controller' => 'User', 'action' => 'email_verification']
     );
 
     $routes->post(
         '/user/changepicture/*',
-        ['controller' => 'WvUser', 'action' => 'changeProfilePicture']
+        ['controller' => 'User', 'action' => 'changeProfilePicture']
     );
 
     $routes->post(
         '/favlocation/remove/*',
-        ['controller' => 'WvFavLocation', 'action' => 'delete']
+        ['controller' => 'FavLocation', 'action' => 'delete']
     );
 
     $routes->post(
         '/favlocation/default/*',
-        ['controller' => 'WvFavLocation', 'action' => 'setDefault']
+        ['controller' => 'FavLocation', 'action' => 'setDefault']
     );
 
     $routes->get(
         '/auth/logout/*',
-        ['controller' => 'WvUser', 'action' => 'logout']
+        ['controller' => 'User', 'action' => 'logout']
     );
 
     $routes->post(
         '/user/getinfo/*',
-        ['controller' => 'WvUser', 'action' => 'getuserinfo']
+        ['controller' => 'User', 'action' => 'getuserinfo']
     );
 
     $routes->get(
         '/user/getinfo/*',
-        ['controller' => 'WvUser', 'action' => 'getuserinfo']
+        ['controller' => 'User', 'action' => 'getuserinfo']
     );
 
     $routes->get(
         '/post/get',
-        ['controller' => 'WvPost', 'action' => 'getfeed']
+        ['controller' => 'Post', 'action' => 'getfeed']
     );
 
     $routes->post(
         '/post/get/*',
-        ['controller' => 'WvPost', 'action' => 'getfeed']
+        ['controller' => 'Post', 'action' => 'getfeed']
     );
 
     $routes->get(
         '/countries/get/*',
-        ['controller' => 'WvCountries', 'action' => 'get']
+        ['controller' => 'Countries', 'action' => 'get']
     );
 
     $routes->post(
         '/post/getpost',
-        ['controller' => 'WvPost', 'action' => 'getpost']
+        ['controller' => 'Post', 'action' => 'getpost']
     );
 
     $routes->get(
         '/comments/get/*',
-        ['controller' => 'WvComments', 'action' => 'get']
+        ['controller' => 'Comments', 'action' => 'get']
     );
 
     $routes->get(
         '/favlocation/get/',
-        ['controller' => 'WvFavLocation', 'action' => 'get']
+        ['controller' => 'FavLocation', 'action' => 'get']
     );
 
     $routes->get(
         '/favlocation/exist/*',
-        ['controller' => 'WvFavLocation', 'action' => 'checkExist']
+        ['controller' => 'FavLocation', 'action' => 'checkExist']
     );
 
     $routes->get(
         '/user/exist/*',
-        ['controller' => 'WvUser', 'action' => 'userexists' ]
+        ['controller' => 'User', 'action' => 'userexists' ]
     );
 
     $routes->get(
         '/location/get/*',
-        ['controller' => 'WvLocalities', 'action' => 'get' ]
+        ['controller' => 'Localities', 'action' => 'get' ]
     );
 
     $routes->post(
         '/user/follow/*',
-        ['controller' => 'WvUser', 'action' => 'follow' ]
+        ['controller' => 'User', 'action' => 'follow' ]
     );
 
     $routes->post(
         '/user/unfollow/*',
-        ['controller' => 'WvUser', 'action' => 'unfollow' ]
+        ['controller' => 'User', 'action' => 'unfollow' ]
     );
 
     $routes->post(
         '/user/getfollowers/*',
-        ['controller' => 'WvUser', 'action' => 'getFollowers' ]
+        ['controller' => 'User', 'action' => 'getFollowers' ]
     );
 
     $routes->post(
         '/user/getfollowing/*',
-        ['controller' => 'WvUser', 'action' => 'getFollowings' ]
+        ['controller' => 'User', 'action' => 'getFollowings' ]
     );
 
     $routes->get(
         '/user/getfollowers/*',
-        ['controller' => 'WvUser', 'action' => 'getFollowers' ]
+        ['controller' => 'User', 'action' => 'getFollowers' ]
     );
 
     $routes->get(
         '/user/getfollowing/*',
-        ['controller' => 'WvUser', 'action' => 'getFollowings' ]
+        ['controller' => 'User', 'action' => 'getFollowings' ]
     );
 
     $routes->post(
         '/post/getbookmarks/*',
-        ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
+        ['controller' => 'Activitylog', 'action' => 'getbookmarks' ]
     );
 
     $routes->post(
         '/area/rate/*',
-        ['controller' => 'WvAreaRatings', 'action' => 'rateArea' ]
+        ['controller' => 'AreaRatings', 'action' => 'rateArea' ]
     );
 
     $routes->get(
         '/area/getratings/*',
-        ['controller' => 'WvAreaRatings', 'action' => 'getdatewiseratings' ]
+        ['controller' => 'AreaRatings', 'action' => 'getdatewiseratings' ]
     );
 
     $routes->get(
         '/post/getbookmarks/*',
-        ['controller' => 'WvActivitylog', 'action' => 'getbookmarks' ]
+        ['controller' => 'Activitylog', 'action' => 'getbookmarks' ]
     );
 
     /**
